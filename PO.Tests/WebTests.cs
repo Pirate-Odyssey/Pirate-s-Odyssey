@@ -6,7 +6,7 @@ public class WebTests
     public async Task GetWebResourceRootReturnsOkStatusCode()
     {
         // Arrange
-        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.Pirate_s_Odyssey_AppHost>();
+        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.PO_Host>();
         appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
         {
             clientBuilder.AddStandardResilienceHandler();
