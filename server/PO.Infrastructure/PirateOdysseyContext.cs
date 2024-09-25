@@ -2,7 +2,7 @@
 
 namespace PO.Infrastructure
 {
-    public class PirateOdysseyContext : DbContext
+    public class PirateOdysseyContext(DbContextOptions options) : DbContext(options)
     {
     }
 }
