@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PO.Host\PO.Host.csproj" />
+    <ProjectReference Include="..\..\PO.Host\PO.Host.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,3 +1,7 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PO.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
@@ -6,10 +10,37 @@ builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
+// Add Newtonsoft.json to make json response
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.Converters.Add(new StringEnumConverter());
+        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
+        options.SerializerSettings.FloatParseHandling = FloatParseHandling.Double;
+    });
+
+
+// Add Swagger
+builder.Services.AddPOSwagger("po-swagger");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseExceptionHandler();
+if (app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler();
+    app.UseHttpsRedirection();
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/po-swagger/swagger.json", "Pirate's Odyssey - API");
+
+        // To serve the Swagger UI at the app's root :
+        options.RoutePrefix = string.Empty;
+    });
+}
 
 var summaries = new[]
 {

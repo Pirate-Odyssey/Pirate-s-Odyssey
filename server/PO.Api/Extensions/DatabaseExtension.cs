@@ -5,7 +5,7 @@ namespace PO.Api.Extensions
 {
     public static class DatabaseExtensions
     {
-        public static IServiceCollection AddIntranetContext(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddPOContext(this IServiceCollection services, string connectionString)
         {
             return services
                 .AddDbContext<PirateOdysseyContext>(options =>
