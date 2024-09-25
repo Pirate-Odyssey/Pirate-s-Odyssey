@@ -13,7 +13,8 @@ namespace PO.Api.Extensions
                     options.UseSqlServer(connectionString,
                         serverOptions =>
                         {
-                            serverOptions.MigrationsAssembly("PO.Migrations");
+                            serverOptions.MigrationsAssembly("PO.MigrationService");
+                            serverOptions.EnableRetryOnFailure();
                         });
                 });
         }

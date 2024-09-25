@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\server\PO.MigrationService\PO.MigrationService.csproj" />
     <ProjectReference Include="..\server\PO.Api\PO.Api.csproj" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
     <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.0" />
     <PackageReference Include="Aspire.Hosting.NodeJs" Version="8.2.0" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="8.2.0" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="8.2.0" />
   </ItemGroup>
 
 </Project>

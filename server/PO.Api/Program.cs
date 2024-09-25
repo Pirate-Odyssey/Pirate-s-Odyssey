@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using PO.Api.Extensions;
+using PO.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,7 @@ builder.Services.AddControllers()
         options.SerializerSettings.FloatParseHandling = FloatParseHandling.Double;
     });
 
+builder.Services.AddPOContext(builder.Configuration.GetConnectionString("pirates-odyssey"));
 
 // Add Swagger
 builder.Services.AddPOSwagger("po-swagger");
@@ -64,7 +67,7 @@ app.MapDefaultEndpoints();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+record WeatherForecast(DateOnly Date, int TemperatureC, string Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
