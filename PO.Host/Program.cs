@@ -2,9 +2,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
-var password = builder.AddParameter("password", secret: true);
-
-var sql = builder.AddSqlServer("sql", password, 1433);
+var sql = builder.AddSqlServer("sql");
 var sqldb = sql.AddDatabase("pirates-odyssey");
 
 var apiService = builder.AddProject<Projects.PO_Api>("apiservice")
@@ -16,7 +14,7 @@ builder.AddProject<Projects.PO_MigrationService>("migrations")
 builder.AddNpmApp("webfrontend", "../web/pirate-s-odyssey")
     .WithReference(cache)
     .WithReference(apiService)
-    .WithHttpEndpoint(port: 4200, env: "PORT")
+    .WithHttpEndpoint(env: "PORT")
     .WithExternalHttpEndpoints()
     .PublishAsDockerFile();
 
