@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using PO.Api.Extensions;
+using PO.Domain.Extensions;
 using PO.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,8 +26,20 @@ builder.Services.AddControllers()
 
 builder.Services.AddPOContext(builder.Configuration.GetConnectionString("pirates-odyssey"));
 
+// Add AutoMapper PO Profile
+builder.Services.AddMappers();
+
+// Add Validators
+builder.Services.AddValidators();
+
+// Add PO Domaine Services
+builder.Services.AddServices();
+
 // Add Swagger
 builder.Services.AddPOSwagger("po-swagger");
+
+// Add SignalR
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 

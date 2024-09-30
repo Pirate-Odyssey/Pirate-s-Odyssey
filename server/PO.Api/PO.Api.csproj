@@ -28,4 +28,9 @@
     <ProjectReference Include="..\PO.ServiceDefaults\PO.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Hubs\" />
+  </ItemGroup>
+
 </Project>
