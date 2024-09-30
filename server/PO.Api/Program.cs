@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using PO.Api.Extensions;
+using PO.Api.Hubs;
 using PO.Domain.Extensions;
 using PO.Infrastructure;
 
@@ -48,6 +49,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler();
     app.UseHttpsRedirection();
+
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
@@ -76,7 +78,9 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
-app.MapDefaultEndpoints();
+app.MapControllers();
+
+app.MapHub<TestHub>("/hub/test");
 
 app.Run();
 
