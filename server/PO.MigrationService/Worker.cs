@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
+using Newtonsoft.Json;
 using OpenTelemetry.Trace;
 using PO.Infrastructure;
 using System.Diagnostics;
+using System.Threading;
 
 namespace PO.MigrationService
 {
@@ -66,22 +68,25 @@ namespace PO.MigrationService
 
         private static async Task SeedDataAsync(PirateOdysseyContext dbContext, CancellationToken cancellationToken)
         {
-            /*SupportTicket firstTicket = new()
-                        {
-                            Title = "Test Ticket",
-                            Description = "Default ticket, please ignore!",
-                            Completed = true
-                        };*/
-
             var strategy = dbContext.Database.CreateExecutionStrategy();
             await strategy.ExecuteAsync(async () =>
             {
                 // Seed the database
                 await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
-                //await dbContext.Tickets.AddAsync(firstTicket, cancellationToken);
+
+                await SeedDBSetAsync("Data/items.json", dbContext.Items, cancellationToken);
+
                 await dbContext.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
             });
+        }
+
+        public static async Task SeedDBSetAsync<T>(string file, DbSet<T> dbSet, CancellationToken cancellationToken) where T : class
+        {
+            using var reader = new StreamReader(file);
+            var json = reader.ReadToEnd();
+            var data = JsonConvert.DeserializeObject<T[]>(json);
+            await dbSet.AddRangeAsync(data, cancellationToken);
         }
     }
 }

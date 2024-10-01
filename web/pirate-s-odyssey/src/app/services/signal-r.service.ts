@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as signalR from '@microsoft/signalr';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr'
 
 const SIGNAL_R_HUB_TEST = '/hub/test';
 
@@ -8,10 +8,10 @@ const SIGNAL_R_HUB_TEST = '/hub/test';
   providedIn: 'root',
 })
 export class SignalRService {
-  private hubConnection: signalR.HubConnection;
+  private hubConnection: HubConnection;
 
   constructor() {
-    this.hubConnection = new signalR.HubConnectionBuilder()
+    this.hubConnection = new HubConnectionBuilder()
       .withUrl(SIGNAL_R_HUB_TEST) // SignalR hub URL
       .build();
   }
