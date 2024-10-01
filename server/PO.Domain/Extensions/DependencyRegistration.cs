@@ -1,7 +1,6 @@
 ﻿using PO.Domain.Mappers;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using FluentValidation;
 
 namespace PO.Domain.Extensions
 {
@@ -10,7 +9,7 @@ namespace PO.Domain.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             return services
-                
+                .AddScoped<IItemService, ItemService>()
             ;
         }
 

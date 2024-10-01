@@ -28,8 +28,4 @@
     <ProjectReference Include="..\PO.ServiceDefaults\PO.ServiceDefaults.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

@@ -1,2 +1,9 @@
-﻿global using PO.Domain.Specifications;
-global using AutoMapper;
+﻿global using AutoMapper;
+global using FluentValidation;
+global using PO.Domain.Entities.Enums;
+global using PO.Domain.Entities.Items;
+global using PO.Domain.Repositories.Base;
+global using PO.Domain.Services.Implementations;
+global using PO.Domain.Services.Interfaces;
+global using PO.Domain.Specifications;
+global using PO.Domain.Repositories;
