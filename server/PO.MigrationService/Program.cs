@@ -10,7 +10,7 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-builder.AddSqlServerDbContext<PirateOdysseyContext>("pirates-odyssey", configureDbContextOptions: options =>
+builder.AddSqlServerDbContext<PirateOdysseyContext>("pirate-s-odyssey-db", configureDbContextOptions: options =>
 {
     options.UseSqlServer(
         serverOptions =>
