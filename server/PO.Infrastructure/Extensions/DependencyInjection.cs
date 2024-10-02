@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PO.Infrastructure.Repositories;
 
 namespace Intranet.Infrastructure.Extensions
 {
@@ -7,7 +8,7 @@ namespace Intranet.Infrastructure.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             return services
-
+                .AddScoped<IItemRepository, ItemRepository>()
             ;
         }
     }

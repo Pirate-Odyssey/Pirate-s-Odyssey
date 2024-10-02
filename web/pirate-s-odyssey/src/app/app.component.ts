@@ -1,44 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { ItemService } from './api';
 import { SignalRService } from './services/signal-r.service';
 
-export interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
-
-export type WeatherForecasts = WeatherForecast[];
-
 @Component({
-  selector: 'app-root',
+  selector: 'po-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'pirate-s-odyssey';
-  forecasts: WeatherForecasts = [];
 
-  private readonly signalRService = inject(SignalRService)
-
-  constructor(private readonly http: HttpClient) {
-    this.http.get<WeatherForecasts>('api/weatherforecast').subscribe({
-      next: result => this.forecasts = result,
-      error: console.error
-    });
-  }
+  private readonly signalRService = inject(SignalRService);
+  private readonly itemService = inject(ItemService);
 
   ngOnInit(): void {
     this.signalRService.startConnection().subscribe(() => {
-      console.log('connection stared')
+      console.log('connection stared');
       this.signalRService.receiveMessage().subscribe((message) => {
         console.log(message);
       });
+    });
+
+    this.itemService.getItems().subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(error);
+      }
     });
   }
 
