@@ -4,6 +4,8 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SignalRService } from './services/signal-r.service';
 
+import { HeaderComponent } from './components/shared/header/header.component';
+
 export interface WeatherForecast {
   date: string;
   temperatureC: number;
@@ -16,12 +18,12 @@ export type WeatherForecasts = WeatherForecast[];
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'pirate-s-odyssey';
+  title = "les p'tits viers ! ";
   forecasts: WeatherForecasts = [];
 
   private readonly signalRService = inject(SignalRService)
