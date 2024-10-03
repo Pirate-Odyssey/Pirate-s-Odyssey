@@ -1,3 +1,4 @@
+using Intranet.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -36,6 +37,9 @@ builder.Services.AddValidators();
 // Add PO Domaine Services
 builder.Services.AddServices();
 
+// Add PO Infrastructur Repositories
+builder.Services.AddRepositories();
+
 // Add Swagger
 builder.Services.AddPOSwagger("po-swagger");
 
@@ -60,31 +64,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
-
 app.MapControllers();
 
 app.MapHub<TestHub>("/hub/test");
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

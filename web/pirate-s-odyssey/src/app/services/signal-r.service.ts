@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { Observable } from 'rxjs';
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr'
 
 const SIGNAL_R_HUB_TEST = '/hub/test';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SignalRService {
   private hubConnection: HubConnection;
@@ -41,6 +41,6 @@ export class SignalRService {
   }
 
   sendMessage(message: string): void {
-    this.hubConnection.invoke('SendMessage', message);
+    void this.hubConnection.invoke('SendMessage', message);
   }
 }

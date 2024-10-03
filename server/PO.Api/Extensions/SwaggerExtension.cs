@@ -14,6 +14,8 @@ namespace PO.Api.Extensions
                     Title = "Pirate's Odyssey - API",
                     Description = "Swagger for Pirate's Odyssey API",
                 });
+
+                options.EnableAnnotations();
             });
             services.AddSwaggerGenNewtonsoftSupport();
             return services;
