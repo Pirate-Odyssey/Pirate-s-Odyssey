@@ -8,7 +8,7 @@ export const routes: Routes = [
       import('./components/boat/boat.component').then(
         (c) => c.BoatComponent
       ),
-      title: 'Votre bateau'
+      title: 'Bateau'
   },
   {
     path: 'crew',
@@ -16,7 +16,7 @@ export const routes: Routes = [
       import('./components/crew/crew.component').then(
         (c) => c.CrewComponent
       ),
-      title: 'Votre équipage'
+      title: 'Equipage'
   },
   {
     path: 'equipment',
@@ -24,7 +24,7 @@ export const routes: Routes = [
       import('./components/equipment/equipment.component').then(
         (c) => c.EquipmentComponent
       ),
-      title: 'Votre équipement'
+      title: 'Equipement'
   },
   {
     path: 'exploration',
