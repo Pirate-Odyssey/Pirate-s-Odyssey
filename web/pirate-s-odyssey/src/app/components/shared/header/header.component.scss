@@ -1,6 +1,6 @@
 header {
   display: flex;
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, #f4e4b2, #d4b78f, #b08c66);
   padding: 10px;
   border-bottom: 1px solid #dee2e6;
   justify-content: space-between;
@@ -25,17 +25,39 @@ header {
         position: relative;
         margin-right: 15px;
 
-        &:hover .dropdown-content {
-          display: block;
-        }
-
         a {
           text-decoration: none;
           color: #000;
           padding: 5px 10px;
           display: inline-block;
+          position: relative;
+          transition: color 0.3s ease;
+
+          // Animation de dégradé
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #5EA6C2, #40bdca);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s ease-out;
+          }
+
+          &:hover {
+            color: #40bdca;
+
+            &::before {
+              transform: scaleX(1);
+              transform-origin: bottom left;
+            }
+          }
         }
 
+        // Style pour le dropdown
         .dropdown-content {
           display: none;
           position: absolute;
@@ -59,6 +81,10 @@ header {
               }
             }
           }
+        }
+
+        &:hover .dropdown-content {
+          display: block;
         }
       }
     }
