@@ -1,4 +1,10 @@
-import { Component, HostBinding, computed, inject } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  OnInit,
+  computed,
+  inject
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import {
@@ -7,6 +13,7 @@ import {
   ThemeService
 } from './services/theme.service';
 import { LayoutComponent } from './components/layout/layout.component';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'bo-root',
@@ -15,8 +22,13 @@ import { LayoutComponent } from './components/layout/layout.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private readonly themeService = inject(ThemeService);
+  private readonly matIconRegistry = inject(MatIconRegistry);
+
+  ngOnInit(): void {
+    this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
+  }
 
   title = 'back-office';
 

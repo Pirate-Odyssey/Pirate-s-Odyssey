@@ -5,7 +5,6 @@ using Newtonsoft.Json.Converters;
 using PO.Api.Extensions;
 using PO.Api.Hubs;
 using PO.Domain.Extensions;
-using PO.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +25,7 @@ builder.Services.AddControllers()
         options.SerializerSettings.FloatParseHandling = FloatParseHandling.Double;
     });
 
-builder.Services.AddPOContext(builder.Configuration.GetConnectionString("pirates-odyssey"));
+builder.Services.AddPOContext(builder.Configuration.GetConnectionString("pirate-s-odyssey-db"));
 
 // Add AutoMapper PO Profile
 builder.Services.AddMappers();
