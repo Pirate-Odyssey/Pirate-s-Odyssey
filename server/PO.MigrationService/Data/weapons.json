@@ -1,0 +1,13 @@
+[
+  {
+    "Id": "bf6d0266-1e16-4111-8a90-79e6d9ecdd74",
+    "Name": "Wooden sword",
+    "Description": "Simple toy for children",
+    "Rarity": "Poor",
+    "Price": 1,
+    "Type": "weapon",
+    "Damage": 2,
+    "Speed": "00:00:03.000",
+    "TwoHanded": false
+  }
+]

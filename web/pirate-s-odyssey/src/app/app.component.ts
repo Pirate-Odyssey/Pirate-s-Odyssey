@@ -5,10 +5,21 @@ import { RouterOutlet } from '@angular/router';
 import { ItemService } from './api';
 import { SignalRService } from './services/signal-r.service';
 
+import { HeaderComponent } from './components/shared/header/header.component';
+
+export interface WeatherForecast {
+  date: string;
+  temperatureC: number;
+  temperatureF: number;
+  summary: string;
+}
+
+export type WeatherForecasts = WeatherForecast[];
+
 @Component({
   selector: 'po-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -9,6 +9,8 @@ namespace Intranet.Infrastructure.Extensions
         {
             return services
                 .AddScoped<IItemRepository, ItemRepository>()
+                .AddScoped<IWeaponRepository, WeaponRepository>()
+                .AddScoped<IEquipmentRepository, EquipmentRepository>()
             ;
         }
     }

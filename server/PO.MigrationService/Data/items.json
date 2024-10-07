@@ -4,6 +4,7 @@
     "Name": "Rock",
     "Description": "It's just a simple rock'",
     "Rarity": "Poor",
-    "Price": 1
+    "Price": 1,
+    "Type":  "trash"
   }
 ]

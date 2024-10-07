@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using OpenTelemetry.Trace;
 using PO.Infrastructure;
 using System.Diagnostics;
-using System.Threading;
 
 namespace PO.MigrationService
 {
@@ -75,6 +74,7 @@ namespace PO.MigrationService
                 await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
 
                 await SeedDBSetAsync("Data/items.json", dbContext.Items, cancellationToken);
+                await SeedDBSetAsync("Data/weapons.json", dbContext.Weapons, cancellationToken);
 
                 await dbContext.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);

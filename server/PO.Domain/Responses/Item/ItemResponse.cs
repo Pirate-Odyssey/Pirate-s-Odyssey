@@ -1,6 +1,4 @@
-﻿using PO.Domain.Entities.Enums;
-
-namespace PO.Domain.Responses.Item
+﻿namespace PO.Domain.Responses.Item
 {
     public class ItemResponse
     {
@@ -9,5 +7,10 @@ namespace PO.Domain.Responses.Item
         public string Description { get; set; }
         public ItemRarity Rarity { get; set; }
         public int Price { get; set; }
+        public ItemType Type { get; set; }
+
+        // FK
+
+        //public virtual ICollection<EquipableItemStat> Stats { get; set; }
     }
 }

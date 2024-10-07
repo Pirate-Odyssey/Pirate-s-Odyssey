@@ -4,7 +4,8 @@
     {
         public void Configure(EntityTypeBuilder<Equipment> builder)
         {
-            builder.Property(x => x.Type).HasConversion<string>().HasMaxLength(20);
+            builder.Property(x => x.Armor);
+            builder.Property(x => x.EquipmentType).HasConversion<string>().HasMaxLength(20);
         }
     }
 }

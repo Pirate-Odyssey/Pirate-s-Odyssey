@@ -1,5 +1,5 @@
-﻿using PO.Domain.Mappers;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PO.Domain.Mappers;
 using System.Reflection;
 
 namespace PO.Domain.Extensions
@@ -10,6 +10,8 @@ namespace PO.Domain.Extensions
         {
             return services
                 .AddScoped<IItemService, ItemService>()
+                .AddScoped<IWeaponService, WeaponService>()
+                .AddScoped<IEquipmentService, EquipmentService>()
             ;
         }
 

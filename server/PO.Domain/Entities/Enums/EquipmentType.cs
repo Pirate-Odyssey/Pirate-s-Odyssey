@@ -1,6 +1,7 @@
-namespace PO.Domain.Entities.Enums;
-
-public enum EquipmentType
+﻿namespace PO.Domain.Entities.Enums
 {
-
+    public enum EquipmentType
+    {
+        Helmet
+    }
 }
