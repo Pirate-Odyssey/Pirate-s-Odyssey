@@ -9,18 +9,19 @@
  * Do not edit the class manually.
  */
 import { ItemRarity } from './item-rarity';
-import { ItemType } from './item-type';
 
 
-export interface ItemResponse { 
+export interface EditWeaponRequest { 
+    damage?: number;
+    speed?: string;
+    twoHanded?: boolean;
     id?: string;
     name?: string | null;
     description?: string | null;
     rarity?: ItemRarity;
     price?: number;
-    type?: ItemType;
 }
-export namespace ItemResponse {
+export namespace EditWeaponRequest {
 }
 
 

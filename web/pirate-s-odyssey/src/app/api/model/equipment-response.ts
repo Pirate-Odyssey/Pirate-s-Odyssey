@@ -10,9 +10,12 @@
  */
 import { ItemRarity } from './item-rarity';
 import { ItemType } from './item-type';
+import { EquipmentType } from './equipment-type';
 
 
-export interface ItemResponse { 
+export interface EquipmentResponse { 
+    armor?: number;
+    equipmentType?: EquipmentType;
     id?: string;
     name?: string | null;
     description?: string | null;
@@ -20,7 +23,7 @@ export interface ItemResponse {
     price?: number;
     type?: ItemType;
 }
-export namespace ItemResponse {
+export namespace EquipmentResponse {
 }
 
 
