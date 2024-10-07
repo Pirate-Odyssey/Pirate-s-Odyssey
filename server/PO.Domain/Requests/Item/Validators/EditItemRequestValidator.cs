@@ -1,6 +1,4 @@
-﻿using PO.Domain.Specifications.Item;
-
-namespace PO.Domain.Requests.Item.Validators
+﻿namespace PO.Domain.Requests.Item.Validators
 {
     public class EditItemRequestValidator : AbstractValidator<EditItemRequest>
     {

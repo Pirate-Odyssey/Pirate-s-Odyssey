@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PO.Domain.Repositories.Base;
-using PO.Infrastructure.SchemaDefinition;
+﻿using PO.Infrastructure.SchemaDefinition;
 
 namespace PO.Infrastructure
 {
     public class PirateOdysseyContext(DbContextOptions options) : DbContext(options), IUnitOfWork
     {
         #region Item
-        
+
         public DbSet<Item> Items { get; set; }
-        public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<Weapon> Weapons { get; set; }
 
         #endregion
 
@@ -17,6 +16,7 @@ namespace PO.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new ItemSchemaDefinition());
             modelBuilder.ApplyConfiguration(new EquipmentSchemaDefinition());
+            modelBuilder.ApplyConfiguration(new WeaponSchemaDefinition());
         }
     }
 }

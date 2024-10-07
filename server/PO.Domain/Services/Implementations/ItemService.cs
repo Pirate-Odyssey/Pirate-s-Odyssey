@@ -1,8 +1,4 @@
-﻿using PO.Domain.Requests.Item;
-using PO.Domain.Responses.Item;
-using PO.Domain.Specifications.Item;
-
-namespace PO.Domain.Services.Implementations
+﻿namespace PO.Domain.Services.Implementations
 {
     public class ItemService(IItemRepository itemRepository, IMapper mapper) : IItemService
     {

@@ -22,6 +22,28 @@ namespace PO.MigrationService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("PO.Domain.Entities.Items.EquipableItemStat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Stats")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("EquipableItemStat");
+                });
+
             modelBuilder.Entity("PO.Domain.Entities.Items.Item", b =>
                 {
                     b.Property<Guid>("Id")
@@ -31,11 +53,6 @@ namespace PO.MigrationService.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)
@@ -49,11 +66,16 @@ namespace PO.MigrationService.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Item", (string)null);
 
-                    b.HasDiscriminator().HasValue("Item");
+                    b.HasDiscriminator<string>("Type").HasValue("Trash");
 
                     b.UseTphMappingStrategy();
                 });
@@ -62,12 +84,47 @@ namespace PO.MigrationService.Migrations
                 {
                     b.HasBaseType("PO.Domain.Entities.Items.Item");
 
-                    b.Property<string>("Type")
+                    b.Property<int>("Armor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EquipmentType")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasDiscriminator().HasValue("Equipment");
+                    b.HasDiscriminator().HasValue("Equipemnt");
+                });
+
+            modelBuilder.Entity("PO.Domain.Entities.Items.Weapon", b =>
+                {
+                    b.HasBaseType("PO.Domain.Entities.Items.Item");
+
+                    b.Property<double>("Damage")
+                        .HasColumnType("float");
+
+                    b.Property<TimeSpan>("Speed")
+                        .HasColumnType("time");
+
+                    b.Property<bool>("TwoHanded")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue("Weapon");
+                });
+
+            modelBuilder.Entity("PO.Domain.Entities.Items.EquipableItemStat", b =>
+                {
+                    b.HasOne("PO.Domain.Entities.Items.Item", "Item")
+                        .WithMany("Stats")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+                });
+
+            modelBuilder.Entity("PO.Domain.Entities.Items.Item", b =>
+                {
+                    b.Navigation("Stats");
                 });
 #pragma warning restore 612, 618
         }
