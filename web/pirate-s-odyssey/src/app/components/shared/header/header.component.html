@@ -3,6 +3,13 @@
     <div class="logo" alt="Logo">
       <img src="../../../../assets/img/logo.jpg">
     </div>
+    <div class="resources">
+      <div class="resource-item" *ngFor="let resource of resources">
+        <p>{{ resource.resourceType}}:</p>
+        <p>{{ resource.amount}} </p>
+        <img class="picto" src="../../../../assets/img/{{resource.img}}.jpg">
+      </div>
+    </div>
     <div class="nav">
       <nav>
         <ul class="nav-list">

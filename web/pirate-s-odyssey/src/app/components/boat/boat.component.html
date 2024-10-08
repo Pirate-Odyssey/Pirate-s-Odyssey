@@ -1,3 +1,31 @@
-<div class="main">
-  PUTE PUTE SPLASH
+<div class="boat-page">
+  <section class="boat-status">
+    <h2>Boat status</h2>
+    <div class="health-bar">
+      <div class="health" [style.width.%]="boatHealth()"></div>
+    </div>
+    <p>Strength: {{ boatHealth() }}%</p>
+  </section>
+
+  <section class="boat-upgrades">
+    <h2>Available upgrades</h2>
+    <div class="upgrades-list">
+      <div class="upgrade" *ngFor="let upgrade of upgrades">
+        <h3>{{ upgrade.name }}</h3>
+        <p>{{ upgrade.description }}</p>
+        <p>Coast: {{ upgrade.cost }} {{ upgrade.resourceType }}</p>
+        <button (click)="applyUpgrade(upgrade)">Upgrade</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="crew-members">
+    <h2>Crew members</h2>
+    <div class="crew-list">
+      <div class="crew-member" *ngFor="let member of crewMembers()">
+        <h3>{{ member.name }} - {{ member.role }}</h3>
+        <p>Health: {{ member.health }}%</p>
+      </div>
+    </div>
+  </section>
 </div>
