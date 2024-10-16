@@ -24,7 +24,7 @@ namespace PO.MigrationService.Migrations
                     Armor = table.Column<int>(type: "int", nullable: true),
                     EquipmentType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     Damage = table.Column<double>(type: "float", nullable: true),
-                    Speed = table.Column<TimeSpan>(type: "time", nullable: true),
+                    Speed = table.Column<double>(type: "float", nullable: true),
                     TwoHanded = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
@@ -33,19 +33,19 @@ namespace PO.MigrationService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EquipableItemStat",
+                name: "ItemStat",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Stats = table.Column<int>(type: "int", nullable: false),
+                    Stats = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Value = table.Column<int>(type: "int", nullable: false),
                     ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EquipableItemStat", x => x.Id);
+                    table.PrimaryKey("PK_ItemStat", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EquipableItemStat_Item_ItemId",
+                        name: "FK_ItemStat_Item_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Item",
                         principalColumn: "Id",
@@ -53,8 +53,8 @@ namespace PO.MigrationService.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EquipableItemStat_ItemId",
-                table: "EquipableItemStat",
+                name: "IX_ItemStat_ItemId",
+                table: "ItemStat",
                 column: "ItemId");
         }
 
@@ -62,7 +62,7 @@ namespace PO.MigrationService.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EquipableItemStat");
+                name: "ItemStat");
 
             migrationBuilder.DropTable(
                 name: "Item");

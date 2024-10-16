@@ -5,20 +5,31 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTable, MatTableModule } from '@angular/material/table';
+import {
+  MatTable,
+  MatTableDataSource,
+  MatTableModule
+} from '@angular/material/table';
 
-import { ItemService } from '../../api';
-import { ItemListDataSource, ItemListItem } from './item-list-datasource';
-import { MatButtonModule } from '@angular/material/button';
+import { ItemService } from '../../../api';
+import { ItemListItem } from './item-list-datasource';
 
 @Component({
   selector: 'bo-item-list',
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatButtonModule]
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule
+  ]
 })
 export class ItemListComponent implements OnInit, AfterViewInit {
   private readonly itemService = inject(ItemService);
@@ -26,15 +37,30 @@ export class ItemListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<ItemListItem>;
-  dataSource = new ItemListDataSource();
+  dataSource = new MatTableDataSource<ItemListItem>();
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = [
+    'name',
+    'type',
+    'rarity',
+    'price',
+    'description',
+    'action'
+  ];
 
   ngOnInit(): void {
     this.itemService.getItems().subscribe({
       next: (response) => {
-        console.log(response);
+        this.dataSource.data = response.map((i) => {
+          return {
+            description: i.description ?? '',
+            id: i.id!,
+            name: i.name!,
+            price: i.price!,
+            rarity: i.rarity!,
+            type: i.type!
+          };
+        });
       }
     });
   }

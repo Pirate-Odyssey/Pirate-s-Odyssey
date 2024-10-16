@@ -26,17 +26,44 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-        >
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-      }
-      <span>back-office</span>
+      <div class="sidenav-toolbar">
+        <div>
+          @if (isHandset$ | async) {
+            <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()"
+            >
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+          }
+          <span>back-office</span>
+        </div>
+        <div>
+          <button
+            type="button"
+            aria-label="toggle theme menu"
+            mat-icon-button
+            color="primary"
+            [matMenuTriggerFor]="themeMenu"
+          >
+            <mat-icon aria-label="Theme menu icon">palette</mat-icon>
+          </button>
+          <mat-menu #themeMenu>
+            @for (theme of themes; track $index) {
+              <button
+                mat-menu-item
+                [class.selected-theme]="themeService.theme() === theme.theme"
+                (click)="themeService.setTheme(theme.theme)"
+              >
+                <mat-icon>{{ theme.icon }}</mat-icon>
+                <span>{{ theme.label }}</span>
+              </button>
+            }
+          </mat-menu>
+        </div>
+      </div>
     </mat-toolbar>
     <div class="sidenav-scroll-wrapper">
       <div class="sidenav-content">

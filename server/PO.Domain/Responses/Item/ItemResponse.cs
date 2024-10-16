@@ -2,15 +2,15 @@
 {
     public class ItemResponse
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public ItemRarity Rarity { get; set; }
-        public int Price { get; set; }
-        public ItemType Type { get; set; }
+        public required Guid Id { get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required ItemRarity Rarity { get; set; }
+        public required int Price { get; set; }
+        public required ItemType Type { get; set; }
 
         // FK
 
-        //public virtual ICollection<EquipableItemStat> Stats { get; set; }
+        public virtual ICollection<ItemStatResponse> Stats { get; set; }
     }
 }

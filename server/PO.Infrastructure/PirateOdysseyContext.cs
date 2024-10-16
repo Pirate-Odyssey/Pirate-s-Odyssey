@@ -9,6 +9,7 @@ namespace PO.Infrastructure
         public DbSet<Item> Items { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<ItemStat> ItemStats { get; set; }
 
         #endregion
 
@@ -17,6 +18,7 @@ namespace PO.Infrastructure
             modelBuilder.ApplyConfiguration(new ItemSchemaDefinition());
             modelBuilder.ApplyConfiguration(new EquipmentSchemaDefinition());
             modelBuilder.ApplyConfiguration(new WeaponSchemaDefinition());
+            modelBuilder.ApplyConfiguration(new ItemStatSchemaDefinition());
         }
     }
 }

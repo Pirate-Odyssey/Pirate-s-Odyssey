@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
+import { Subject } from 'rxjs';
 
 // Keep these constants in sync with the code in index.html
 
@@ -8,7 +9,7 @@ export const DARK_MODE_CLASS_NAME = 'dark-mode';
 export const LIGHT_MODE_CLASS_NAME = 'light-mode';
 export const PREFERS_COLOR_SCHEME_DARK = '(prefers-color-scheme: dark)';
 
-export type Theme = 'dark' | 'light' | 'auto';
+export type ThemeType = 'dark' | 'light' | 'auto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,14 @@ export type Theme = 'dark' | 'light' | 'auto';
 export class ThemeService {
   private readonly platformId = inject(PLATFORM_ID);
 
-  readonly theme = signal<Theme>(this.getThemeFromLocalStorageValue());
+  theme = signal<ThemeType>(this.getThemeFromLocalStorageValue());
+  readonly theme$ = new Subject<ThemeType>();
+
+  preferredScheme: 'dark' | 'light' = window.matchMedia(
+    PREFERS_COLOR_SCHEME_DARK
+  ).matches
+    ? 'dark'
+    : 'light';
 
   constructor() {
     if (!isPlatformBrowser(this.platformId)) {
@@ -24,27 +32,22 @@ export class ThemeService {
     }
   }
 
-  setTheme(theme: Theme): void {
+  setTheme(theme: ThemeType): void {
     this.theme.set(theme);
+    this.theme$.next(this.theme());
     this.setThemeInLocalStorage();
   }
 
-  private getThemeFromLocalStorageValue(): Theme {
+  private getThemeFromLocalStorageValue(): ThemeType {
     const theme = localStorage.getItem(
       THEME_PREFERENCE_LOCAL_STORAGE_KEY
-    ) as Theme;
-    return theme ?? this.preferredScheme();
+    ) as ThemeType;
+    return theme ?? this.preferredScheme;
   }
 
   private setThemeInLocalStorage(): void {
     if (this.theme()) {
       localStorage.setItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY, this.theme());
     }
-  }
-
-  public preferredScheme(): 'dark' | 'light' {
-    return window.matchMedia(PREFERS_COLOR_SCHEME_DARK).matches
-      ? 'dark'
-      : 'light';
   }
 }

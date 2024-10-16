@@ -14,5 +14,5 @@ public class Item
 
     // FK
 
-    public virtual ICollection<EquipableItemStat> Stats { get; set; }
+    public virtual ICollection<ItemStat> Stats { get; set; } = [];
 }

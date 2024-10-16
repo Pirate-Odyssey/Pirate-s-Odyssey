@@ -1,10 +1,4 @@
-import {
-  Component,
-  HostBinding,
-  OnInit,
-  computed,
-  inject
-} from '@angular/core';
+import { Component, HostBinding, OnInit, effect, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import {
@@ -26,22 +20,25 @@ export class AppComponent implements OnInit {
   private readonly themeService = inject(ThemeService);
   private readonly matIconRegistry = inject(MatIconRegistry);
 
-  ngOnInit(): void {
-    this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
-  }
-
   title = 'back-office';
 
   @HostBinding('class')
-  public class = computed((): string => {
-    if (
-      this.themeService.theme() === 'dark' ||
-      (this.themeService.theme() === 'auto' &&
-        this.themeService.preferredScheme() === 'dark')
-    ) {
-      return DARK_MODE_CLASS_NAME;
-    } else {
-      return LIGHT_MODE_CLASS_NAME;
-    }
-  })();
+  public class: string | undefined;
+
+  constructor() {
+    effect(() => {
+      this.class =
+        this.themeService.theme() === 'dark' ||
+        (this.themeService.theme() === 'auto' &&
+          this.themeService.preferredScheme === 'dark')
+          ? DARK_MODE_CLASS_NAME
+          : LIGHT_MODE_CLASS_NAME;
+    });
+  }
+
+  ngOnInit(): void {
+    if (!this.themeService.theme())
+      this.themeService.setTheme(this.themeService.preferredScheme);
+    this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
+  }
 }

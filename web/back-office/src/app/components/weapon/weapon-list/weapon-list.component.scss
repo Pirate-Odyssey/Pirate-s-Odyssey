@@ -1,0 +1,8 @@
+.actions {
+  opacity: 0;
+}
+
+::ng-deep .mat-mdc-row:hover .actions {
+  opacity: 1;
+  transition: opacity 1s;
+}
