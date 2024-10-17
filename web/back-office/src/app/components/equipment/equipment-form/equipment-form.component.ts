@@ -1,39 +1,37 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
   MatDialogRef
 } from '@angular/material/dialog';
-
-import { ItemRarity, ItemResponse } from '../../../api';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common';
+
+import { EquipmentResponse, EquipmentType, ItemRarity } from '../../../api';
 
 @Component({
-  selector: 'bo-item-form',
+  selector: 'bo-equipment-form',
   standalone: true,
   imports: [
     CommonModule,
-
     ReactiveFormsModule,
-
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule
   ],
-  templateUrl: './item-form.component.html',
-  styleUrl: './item-form.component.scss'
+  templateUrl: './equipment-form.component.html',
+  styleUrl: './equipment-form.component.scss'
 })
-export class ItemFormComponent implements OnInit {
-  private readonly data = inject<ItemResponse>(MAT_DIALOG_DATA);
-  private readonly dialogRef = inject<MatDialogRef<ItemFormComponent>>(
-    MatDialogRef<ItemFormComponent>
+export class EquipmentFormComponent implements OnInit {
+  private readonly data = inject<EquipmentResponse>(MAT_DIALOG_DATA);
+  private readonly dialogRef = inject<MatDialogRef<EquipmentFormComponent>>(
+    MatDialogRef<EquipmentFormComponent>
   );
   private readonly fb = inject(FormBuilder);
 
@@ -44,10 +42,16 @@ export class ItemFormComponent implements OnInit {
     price: this.fb.nonNullable.control(0, [
       Validators.required,
       Validators.min(1)
-    ])
+    ]),
+    armor: this.fb.nonNullable.control(0, [
+      Validators.required,
+      Validators.min(1)
+    ]),
+    equipmentType: this.fb.nonNullable.control('', Validators.required)
   });
 
   protected rarities = ItemRarity;
+  protected equipmentTypes = EquipmentType;
 
   ngOnInit(): void {
     if (this.data) {
@@ -55,7 +59,9 @@ export class ItemFormComponent implements OnInit {
         description: this.data.description,
         name: this.data.name,
         price: this.data.price,
-        rarity: this.data.rarity
+        rarity: this.data.rarity,
+        armor: this.data.armor,
+        equipmentType: this.data.equipmentType
       });
     }
   }

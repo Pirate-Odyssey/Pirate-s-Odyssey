@@ -6,7 +6,7 @@ import {
   LIGHT_MODE_CLASS_NAME,
   ThemeService
 } from './services/theme.service';
-import { LayoutComponent } from './components/layout/layout.component';
+import { LayoutComponent } from './components/common/layout/layout.component';
 import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({

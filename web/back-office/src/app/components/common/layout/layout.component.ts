@@ -12,8 +12,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
-import { routes } from '../../app.routes';
-import { ThemeService, ThemeType } from '../../services/theme.service';
+import { routes } from '../../../app.routes';
+import { ThemeService, ThemeType } from '../../../services/theme.service';
 
 @Component({
   selector: 'bo-layout',
