@@ -2,7 +2,9 @@
 {
     public class EquipmentResponse : ItemResponse
     {
-        public required int Armor { get; set; }
-        public required EquipmentType EquipmentType { get; set; }
+        [Required]
+        public int Armor { get; set; }
+        [Required]
+        public EquipmentType EquipmentType { get; set; }
     }
 }

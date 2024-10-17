@@ -37,8 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.themeService.theme())
-      this.themeService.setTheme(this.themeService.preferredScheme);
+    this.themeService.initTheme();
     this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
   }
 }

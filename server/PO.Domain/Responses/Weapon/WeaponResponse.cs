@@ -2,8 +2,11 @@
 {
     public class WeaponResponse : ItemResponse
     {
-        public required double Damage { get; set; }
-        public required double Speed { get; set; }
-        public required bool TwoHanded { get; set; }
+        [Required]
+        public double Damage { get; set; }
+        [Required]
+        public double Speed { get; set; }
+        [Required]
+        public bool TwoHanded { get; set; }
     }
 }

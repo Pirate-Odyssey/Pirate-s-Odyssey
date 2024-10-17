@@ -19,3 +19,4 @@ global using PO.Domain.Specifications.Equipment;
 global using PO.Domain.Specifications.Item;
 global using PO.Domain.Specifications.ItemStat;
 global using PO.Domain.Specifications.Weapon;
+global using System.ComponentModel.DataAnnotations;

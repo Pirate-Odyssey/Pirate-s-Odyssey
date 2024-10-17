@@ -53,19 +53,7 @@ export class WeaponListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.weaponService.getWeapons().subscribe({
       next: (response) => {
-        console.log(response);
-        this.dataSource.data = response.map((e) => {
-          return {
-            description: e.description ?? '',
-            id: e.id!,
-            name: e.name!,
-            price: e.price!,
-            rarity: e.rarity!,
-            damage: e.damage!,
-            speed: e.speed!,
-            twoHanded: e.twoHanded!
-          };
-        });
+        this.dataSource.data = response;
       }
     });
   }

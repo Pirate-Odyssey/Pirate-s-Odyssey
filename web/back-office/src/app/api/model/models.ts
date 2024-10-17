@@ -8,5 +8,7 @@ export * from './equipment-response';
 export * from './equipment-type';
 export * from './item-rarity';
 export * from './item-response';
+export * from './item-stat-response';
 export * from './item-type';
+export * from './stats';
 export * from './weapon-response';

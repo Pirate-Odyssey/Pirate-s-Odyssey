@@ -2,12 +2,18 @@
 {
     public class ItemResponse
     {
-        public required Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required string Description { get; set; }
-        public required ItemRarity Rarity { get; set; }
-        public required int Price { get; set; }
-        public required ItemType Type { get; set; }
+        [Required]
+        public Guid Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Description { get; set; }
+        [Required]
+        public ItemRarity Rarity { get; set; }
+        [Required]
+        public int Price { get; set; }
+        [Required]
+        public ItemType Type { get; set; }
 
         // FK
 

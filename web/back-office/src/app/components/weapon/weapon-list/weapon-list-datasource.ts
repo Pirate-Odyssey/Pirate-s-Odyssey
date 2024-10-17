@@ -7,6 +7,6 @@ export interface WeaponListItem {
   price: number;
   rarity: ItemRarity;
   damage: number;
-  speed: string;
+  speed: number;
   twoHanded: boolean;
 }

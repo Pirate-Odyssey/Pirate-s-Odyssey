@@ -1,9 +1,9 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 // Plus imports for other components in your app.
-@use "./bo-theme";
-@use "./app/components/layout/layout-component.theme";
+@use './bo-theme';
+@use './app/components/layout/layout-component.theme';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -42,5 +42,17 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }

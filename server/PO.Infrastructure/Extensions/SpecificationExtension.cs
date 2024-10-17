@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PO.Domain.Specifications;
-
-namespace MyRock.Infrastructure.Extensions
+﻿namespace MyRock.Infrastructure.Extensions
 {
     public static class SpecificationExtension
     {
         public static IQueryable<T> Specify<T>(this IQueryable<T> query, ISpecification<T> spec) where T : class
         {
+            // remove tracking
+            query = query.AsNoTracking();
+
             // condition
             query = query.Where(spec.Criteria);
 
