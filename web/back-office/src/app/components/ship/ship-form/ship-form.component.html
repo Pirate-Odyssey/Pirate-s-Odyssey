@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Ship</h2>
+<mat-dialog-content>
+  <form [formGroup]="formGroup" class="forms">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Min Seat</mat-label>
+      <input matInput formControlName="minSeat" type="number" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Max Seat</mat-label>
+      <input matInput formControlName="maxSeat" type="number" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Speed</mat-label>
+      <input matInput formControlName="speed" type="number" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Health</mat-label>
+      <input matInput formControlName="health" type="number" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button cdkFocusInitial (click)="onSubmit()">Add</button>
+</mat-dialog-actions>

@@ -66,6 +66,11 @@ export class LayoutComponent {
       title: 'Equipment',
       path: 'equipment',
       icon: 'shield'
+    },
+    {
+      title: 'Ship',
+      path: 'ship',
+      icon: 'sailing'
     }
   ];
 

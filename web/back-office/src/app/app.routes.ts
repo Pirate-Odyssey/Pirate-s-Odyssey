@@ -32,5 +32,13 @@ export const routes: Routes = [
         (c) => c.WeaponListComponent
       ),
     title: 'Weapon'
+  },
+  {
+    path: 'ship',
+    loadComponent: () =>
+      import('./components/ship/ship-list/ship-list.component').then(
+        (c) => c.ShipListComponent
+      ),
+    title: 'ship'
   }
 ];

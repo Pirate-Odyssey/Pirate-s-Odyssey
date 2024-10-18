@@ -12,6 +12,7 @@ namespace PO.Domain.Extensions
                 .AddScoped<IItemService, ItemService>()
                 .AddScoped<IWeaponService, WeaponService>()
                 .AddScoped<IEquipmentService, EquipmentService>()
+                .AddScoped<IShipService, ShipService>()
             ;
         }
 
