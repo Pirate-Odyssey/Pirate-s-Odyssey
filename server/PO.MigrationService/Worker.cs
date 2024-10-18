@@ -76,6 +76,7 @@ namespace PO.MigrationService
                 await SeedDBSetAsync("Data/items.json", dbContext.Items, cancellationToken);
                 await SeedDBSetAsync("Data/weapons.json", dbContext.Weapons, cancellationToken);
                 await SeedDBSetAsync("Data/itemStats.json", dbContext.ItemStats, cancellationToken);
+                await SeedDBSetAsync("Data/ships.json", dbContext.Ships, cancellationToken);
 
                 await dbContext.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);

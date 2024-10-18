@@ -24,13 +24,19 @@
             CreateMap<EditWeaponRequest, Weapon>().ReverseMap();
             CreateMap<DeleteWeaponRequest, Weapon>().ReverseMap();
 
-            // EquipableItemStat
+            // ItemStat
             CreateMap<ItemStat, ItemStatResponse>().ReverseMap();
             CreateMap<AddItemStatRequest, ItemStat>().ReverseMap();
             CreateMap<EditItemStatRequest, ItemStat>().ReverseMap();
             CreateMap<DeleteItemStatRequest, ItemStat>().ReverseMap();
 
             #endregion
+
+            // Ship
+            CreateMap<Ship, ShipResponse>().ReverseMap();
+            CreateMap<AddShipRequest, Ship>().ReverseMap();
+            CreateMap<EditShipRequest, Ship>().ReverseMap();
+            CreateMap<DeleteShipRequest, Ship>().ReverseMap();
         }
 
 

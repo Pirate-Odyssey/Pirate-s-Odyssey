@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "d2ba4d13-040c-49be-960d-5dd938f0fabc",
+    "Name": "black pearl",
+    "MinSeat": 8,
+    "MaxSeat": 32,
+    "Speed": 6.66,
+    "Health": 1295
+  }
+]

@@ -2,9 +2,9 @@
 {
     public class FindItemByIdSpecification : Specification<Entities.Items.Item>
     {
-        public FindItemByIdSpecification(Guid weaponId)
+        public FindItemByIdSpecification(Guid itemId)
         {
-            Criteria = item => item.Id == weaponId;
+            Criteria = item => item.Id == itemId;
         }
     }
 }
