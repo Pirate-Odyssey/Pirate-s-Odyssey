@@ -18,7 +18,7 @@
 
             RuleFor(x => x.Price).NotEmpty().NotEqual(0);
 
-            RuleFor(x => x.Rarity).NotEmpty().IsInEnum();
+            RuleFor(x => x.Rarity).IsInEnum();
         }
     }
 }

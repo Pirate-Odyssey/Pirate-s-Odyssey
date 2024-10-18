@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 
 namespace PO.Api.Extensions
 {
@@ -13,6 +14,12 @@ namespace PO.Api.Extensions
                     Version = "0.1",
                     Title = "Pirate's Odyssey - API",
                     Description = "Swagger for Pirate's Odyssey API",
+                });
+
+                options.MapType<TimeSpan>(() => new OpenApiSchema
+                {
+                    Type = "string",
+                    Example = new OpenApiString("00:00:00")
                 });
 
                 options.EnableAnnotations();

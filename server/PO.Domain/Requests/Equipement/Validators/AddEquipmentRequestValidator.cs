@@ -11,10 +11,10 @@
 
             RuleFor(x => x.Price).NotEmpty().NotEqual(0);
 
-            RuleFor(x => x.Rarity).NotEmpty().IsInEnum();
+            RuleFor(x => x.Rarity).IsInEnum();
 
             // Equipment
-            RuleFor(x => x.EquipmentType).NotEmpty().IsInEnum();
+            RuleFor(x => x.EquipmentType).IsInEnum();
 
             RuleFor(x => x.Armor).NotEmpty().NotEqual(0);
         }

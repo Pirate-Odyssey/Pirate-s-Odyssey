@@ -13,7 +13,7 @@ import { ItemRarity } from './item-rarity';
 
 export interface EditWeaponRequest { 
     damage?: number;
-    speed?: string;
+    speed?: number;
     twoHanded?: boolean;
     id?: string;
     name?: string | null;

@@ -4,7 +4,8 @@
 }
 
 .sidenav {
-  width: 230px;
+  width: 240px;
+  padding: 0 8px;
 }
 
 .sidenav .mat-toolbar {
@@ -21,6 +22,13 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.sidenav-toolbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 mat-sidenav-content {
@@ -64,4 +72,12 @@ mat-sidenav-content {
     overflow-y: visible;
     padding: 8px;
   }
+}
+
+.selected-theme {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48;
 }

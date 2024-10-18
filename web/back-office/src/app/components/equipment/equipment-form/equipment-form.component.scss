@@ -1,0 +1,18 @@
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  & .form-top {
+    display: flex;
+    gap: 0.5em;
+
+    & .form-part {
+      width: 50%;
+    }
+  }
+
+  .field {
+    width: 100%;
+  }
+}

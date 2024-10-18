@@ -5,12 +5,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { routes } from '../../app.routes';
+
+import { routes } from '../../../app.routes';
+import { ThemeService, ThemeType } from '../../../services/theme.service';
 
 @Component({
   selector: 'bo-layout',
@@ -23,6 +26,7 @@ import { routes } from '../../app.routes';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    MatMenuModule,
     MatExpansionModule,
     AsyncPipe,
     RouterLink,
@@ -30,7 +34,8 @@ import { routes } from '../../app.routes';
   ]
 })
 export class LayoutComponent {
-  private breakpointObserver = inject(BreakpointObserver);
+  private readonly breakpointObserver = inject(BreakpointObserver);
+  public readonly themeService = inject(ThemeService);
 
   rootRoutes = routes.filter((r) => r.path);
 
@@ -53,9 +58,32 @@ export class LayoutComponent {
       icon: 'category'
     },
     {
-      title: 'Equipment',
-      path: '',
+      title: 'Weapon',
+      path: 'weapon',
       icon: 'swords'
+    },
+    {
+      title: 'Equipment',
+      path: 'equipment',
+      icon: 'shield'
+    }
+  ];
+
+  themes = [
+    {
+      label: 'Light theme',
+      icon: 'light_mode',
+      theme: 'light' as ThemeType
+    },
+    {
+      label: 'Dark theme',
+      icon: 'dark_mode',
+      theme: 'dark' as ThemeType
+    },
+    {
+      label: 'System theme',
+      icon: 'computer',
+      theme: 'auto' as ThemeType
     }
   ];
 }

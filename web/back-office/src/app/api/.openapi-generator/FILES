@@ -19,8 +19,10 @@ model/equipment-response.ts
 model/equipment-type.ts
 model/item-rarity.ts
 model/item-response.ts
+model/item-stat-response.ts
 model/item-type.ts
 model/models.ts
+model/stats.ts
 model/weapon-response.ts
 param.ts
 variables.ts

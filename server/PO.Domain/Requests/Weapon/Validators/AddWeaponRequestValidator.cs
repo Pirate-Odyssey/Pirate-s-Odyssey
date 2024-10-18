@@ -11,7 +11,7 @@
 
             RuleFor(x => x.Price).NotEmpty().NotEqual(0);
 
-            RuleFor(x => x.Rarity).NotEmpty().IsInEnum();
+            RuleFor(x => x.Rarity).IsInEnum();
 
             // Weapon
             RuleFor(x => x.Damage)
@@ -22,7 +22,7 @@
             RuleFor(x => x.Speed)
                 .NotEmpty()
                 .NotNull()
-                .GreaterThan(new TimeSpan(0, 0, 0));
+                .GreaterThan(0);
 
             RuleFor(x => x.TwoHanded).NotNull();
         }

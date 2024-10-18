@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.signalRService.startConnection().subscribe(() => {
-      console.log('connection stared');
       this.signalRService.receiveMessage().subscribe((message) => {
         console.log(message);
       });
