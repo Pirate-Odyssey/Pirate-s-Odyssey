@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "1221f1d1-d8f2-41c4-90a4-ec81f9a24e5a",
+    "Stats": "strength",
+    "Value": 1,
+    "ItemId": "bf6d0266-1e16-4111-8a90-79e6d9ecdd74"
+  },
+  {
+    "Id": "d95fd9aa-fd59-407e-84ec-4f9eba0d3abd",
+    "Stats": "dexterity",
+    "Value": -1,
+    "ItemId": "bf6d0266-1e16-4111-8a90-79e6d9ecdd74"
+  }
+]

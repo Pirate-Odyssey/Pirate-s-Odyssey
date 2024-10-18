@@ -22,28 +22,6 @@ namespace PO.MigrationService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PO.Domain.Entities.Items.EquipableItemStat", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Stats")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("EquipableItemStat");
-                });
-
             modelBuilder.Entity("PO.Domain.Entities.Items.Item", b =>
                 {
                     b.Property<Guid>("Id")
@@ -80,6 +58,57 @@ namespace PO.MigrationService.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("PO.Domain.Entities.Items.ItemStat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Stats")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("ItemStat", (string)null);
+                });
+
+            modelBuilder.Entity("PO.Domain.Entities.Ship", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Health")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxSeat")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinSeat")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Speed")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ship", (string)null);
+                });
+
             modelBuilder.Entity("PO.Domain.Entities.Items.Equipment", b =>
                 {
                     b.HasBaseType("PO.Domain.Entities.Items.Item");
@@ -92,7 +121,7 @@ namespace PO.MigrationService.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasDiscriminator().HasValue("Equipemnt");
+                    b.HasDiscriminator().HasValue("Equipment");
                 });
 
             modelBuilder.Entity("PO.Domain.Entities.Items.Weapon", b =>
@@ -102,8 +131,8 @@ namespace PO.MigrationService.Migrations
                     b.Property<double>("Damage")
                         .HasColumnType("float");
 
-                    b.Property<TimeSpan>("Speed")
-                        .HasColumnType("time");
+                    b.Property<double>("Speed")
+                        .HasColumnType("float");
 
                     b.Property<bool>("TwoHanded")
                         .HasColumnType("bit");
@@ -111,7 +140,7 @@ namespace PO.MigrationService.Migrations
                     b.HasDiscriminator().HasValue("Weapon");
                 });
 
-            modelBuilder.Entity("PO.Domain.Entities.Items.EquipableItemStat", b =>
+            modelBuilder.Entity("PO.Domain.Entities.Items.ItemStat", b =>
                 {
                     b.HasOne("PO.Domain.Entities.Items.Item", "Item")
                         .WithMany("Stats")

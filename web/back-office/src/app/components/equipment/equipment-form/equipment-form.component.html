@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Weapon</h2>
+<mat-dialog-content>
+  <form [formGroup]="formGroup" class="forms">
+    <div class="form-top">
+      <div class="form-part">
+        <mat-form-field class="field">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Rarity</mat-label>
+          <mat-select formControlName="rarity">
+            @for (rarity of rarities | keyvalue; track $index) {
+              <mat-option [value]="rarity.value">
+                {{ rarity.value | titlecase }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" type="number" />
+        </mat-form-field>
+      </div>
+      <div class="form-part">
+        <mat-form-field class="field">
+          <mat-label>Armor</mat-label>
+          <input matInput formControlName="armor" type="number" />
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Equipment Type</mat-label>
+          <mat-select formControlName="equipmentType">
+            @for (equipmentType of equipmentTypes | keyvalue; track $index) {
+              <mat-option [value]="equipmentType.value">
+                {{ equipmentType.value | titlecase }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button cdkFocusInitial (click)="onSubmit()">Add</button>
+</mat-dialog-actions>

@@ -1,4 +1,4 @@
-﻿using PO.Infrastructure.SchemaDefinition;
+﻿using System.Reflection;
 
 namespace PO.Infrastructure
 {
@@ -9,14 +9,14 @@ namespace PO.Infrastructure
         public DbSet<Item> Items { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<ItemStat> ItemStats { get; set; }
+        public DbSet<Ship> Ships { get; set; }
 
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ItemSchemaDefinition());
-            modelBuilder.ApplyConfiguration(new EquipmentSchemaDefinition());
-            modelBuilder.ApplyConfiguration(new WeaponSchemaDefinition());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

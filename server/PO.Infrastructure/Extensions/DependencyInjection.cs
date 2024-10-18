@@ -11,6 +11,8 @@ namespace Intranet.Infrastructure.Extensions
                 .AddScoped<IItemRepository, ItemRepository>()
                 .AddScoped<IWeaponRepository, WeaponRepository>()
                 .AddScoped<IEquipmentRepository, EquipmentRepository>()
+                .AddScoped<IItemStatRepository, ItemStatRepository>()
+                .AddScoped<IShipRepository, ShipRepository>()
             ;
         }
     }

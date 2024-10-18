@@ -1,11 +1,12 @@
-﻿using PO.Domain.Responses.Item;
-
-namespace PO.Domain.Responses.Weapon
+﻿namespace PO.Domain.Responses.Weapon
 {
     public class WeaponResponse : ItemResponse
     {
+        [Required]
         public double Damage { get; set; }
-        public TimeSpan Speed { get; set; }
+        [Required]
+        public double Speed { get; set; }
+        [Required]
         public bool TwoHanded { get; set; }
     }
 }
