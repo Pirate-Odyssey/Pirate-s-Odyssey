@@ -8,5 +8,9 @@
         public int MaxSeat { get; set; }
         public double Speed { get; set; }
         public int Health { get; set; }
+
+        // FK
+
+        public ICollection<CrewMember> CrewMembers { get; set; } = [];
     }
 }

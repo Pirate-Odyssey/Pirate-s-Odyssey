@@ -37,6 +37,18 @@
             CreateMap<AddShipRequest, Ship>().ReverseMap();
             CreateMap<EditShipRequest, Ship>().ReverseMap();
             CreateMap<DeleteShipRequest, Ship>().ReverseMap();
+
+            // Crew
+            CreateMap<Crew, CrewResponse>().ReverseMap();
+            CreateMap<AddCrewRequest, Crew>().ReverseMap();
+            CreateMap<EditCrewRequest, Crew>().ReverseMap();
+            CreateMap<DeleteCrewRequest, Crew>().ReverseMap();
+
+            // CrewMember
+            CreateMap<CrewMember, CrewMemberResponse>().ReverseMap();
+            CreateMap<AddCrewMemberRequest, CrewMember>().ReverseMap();
+            CreateMap<EditCrewMemberRequest, CrewMember>().ReverseMap();
+            CreateMap<DeleteCrewMemberRequest, CrewMember>().ReverseMap();
         }
 
 

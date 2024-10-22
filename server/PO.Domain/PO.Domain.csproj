@@ -12,4 +12,9 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Requests\CrewMember\Validators\" />
+    <Folder Include="Requests\Crew\Validators\" />
+  </ItemGroup>
+
 </Project>
