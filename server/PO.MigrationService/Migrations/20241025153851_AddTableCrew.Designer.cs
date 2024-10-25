@@ -12,7 +12,7 @@ using PO.Infrastructure;
 namespace PO.MigrationService.Migrations
 {
     [DbContext(typeof(PirateOdysseyContext))]
-    [Migration("20241025094800_AddTableCrew")]
+    [Migration("20241025153851_AddTableCrew")]
     partial class AddTableCrew
     {
         /// <inheritdoc />
@@ -31,6 +31,10 @@ namespace PO.MigrationService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Crew", (string)null);
@@ -44,6 +48,9 @@ namespace PO.MigrationService.Migrations
 
                     b.Property<Guid?>("CrewId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ShipId")
                         .HasColumnType("uniqueidentifier");

@@ -2,5 +2,7 @@
 {
     public class AddCrewRequest
     {
+        [Required]
+        public string Name { get; set; }
     }
 }

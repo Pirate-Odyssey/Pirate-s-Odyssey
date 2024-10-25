@@ -28,6 +28,10 @@ namespace PO.MigrationService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Crew", (string)null);
@@ -41,6 +45,9 @@ namespace PO.MigrationService.Migrations
 
                     b.Property<Guid?>("CrewId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ShipId")
                         .HasColumnType("uniqueidentifier");

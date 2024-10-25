@@ -89,7 +89,7 @@ namespace PO.Api.Controllers
         // DELETE api/<crewMemberController>/5
         [HttpDelete("{id:Guid}")]
         [SwaggerOperation(
-            OperationId = "DeletecrewMember",
+            OperationId = "DeleteCrewMember",
             Summary = "Delete CrewMember",
             Description = "Delete one specific CrewMember",
             Tags = ["CrewMember"]

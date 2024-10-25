@@ -5,6 +5,9 @@
         [Required]
         public Guid Id { get; set; }
 
+        [Required]
+        public string Name { get; set; }
+
         // FK
 
         public Guid? CrewId { get; set; }

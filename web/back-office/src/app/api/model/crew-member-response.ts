@@ -8,16 +8,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CrewMemberResponse } from './crew-member-response';
+import { CrewResponse } from './crew-response';
+import { ShipResponse } from './ship-response';
 
 
-export interface ShipResponse { 
+export interface CrewMemberResponse { 
     id: string;
-    name: string;
-    minSeat: number;
-    maxSeat: number;
-    speed: number;
-    health: number;
-    crewMembers: Array<CrewMemberResponse>;
+    crewId?: string | null;
+    shipId?: string | null;
+    crew?: CrewResponse;
+    ship?: ShipResponse;
 }
 

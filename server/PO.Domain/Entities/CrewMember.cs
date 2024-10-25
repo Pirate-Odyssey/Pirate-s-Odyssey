@@ -3,6 +3,7 @@
     public class CrewMember
     {
         public Guid Id { get; set; }
+        public string Name { get; set; }
 
         // FK
 

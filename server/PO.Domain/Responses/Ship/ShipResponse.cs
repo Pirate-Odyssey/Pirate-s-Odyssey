@@ -17,6 +17,7 @@
 
         // FK
 
+        [Required]
         public ICollection<CrewMemberResponse> CrewMembers { get; set; }
     }
 }

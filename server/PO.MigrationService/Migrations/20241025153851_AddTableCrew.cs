@@ -15,7 +15,8 @@ namespace PO.MigrationService.Migrations
                 name: "Crew",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -27,6 +28,7 @@ namespace PO.MigrationService.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CrewId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ShipId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },

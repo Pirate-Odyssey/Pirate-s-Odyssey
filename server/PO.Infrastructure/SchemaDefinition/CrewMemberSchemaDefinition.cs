@@ -8,6 +8,8 @@
 
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Name);
+
             builder.HasOne(x => x.Crew)
                 .WithMany(y => y.CrewMembers)
                 .HasForeignKey(x => x.CrewId)

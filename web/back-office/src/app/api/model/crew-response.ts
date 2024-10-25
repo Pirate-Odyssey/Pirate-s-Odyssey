@@ -11,13 +11,9 @@
 import { CrewMemberResponse } from './crew-member-response';
 
 
-export interface ShipResponse { 
+export interface CrewResponse { 
     id: string;
     name: string;
-    minSeat: number;
-    maxSeat: number;
-    speed: number;
-    health: number;
     crewMembers: Array<CrewMemberResponse>;
 }
 

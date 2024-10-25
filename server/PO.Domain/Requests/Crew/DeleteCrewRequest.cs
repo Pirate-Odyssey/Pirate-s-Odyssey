@@ -2,6 +2,7 @@
 {
     public class DeleteCrewRequest
     {
+        [Required]
         public Guid Id { get; set; }
     }
 }

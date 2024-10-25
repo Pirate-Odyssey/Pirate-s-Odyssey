@@ -71,6 +71,16 @@ export class LayoutComponent {
       title: 'Ship',
       path: 'ship',
       icon: 'sailing'
+    },
+    {
+      title: 'Crew',
+      path: 'crew',
+      icon: 'groups'
+    },
+    {
+      title: 'Crew Member',
+      path: 'crewMember',
+      icon: 'person'
     }
   ];
 

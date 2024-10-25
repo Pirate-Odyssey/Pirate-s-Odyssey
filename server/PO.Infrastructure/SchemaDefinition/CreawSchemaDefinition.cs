@@ -7,6 +7,8 @@
             builder.ToTable(nameof(Crew));
 
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Name).HasMaxLength(50);
         }
     }
 }
