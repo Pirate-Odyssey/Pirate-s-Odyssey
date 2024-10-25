@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Signal, signal } from '@angular/core';
-import { Resources } from '../../models/resources.model';
+// import { Resources } from '../../models/resources.model';
 
 interface CrewMember {
   name: string;
@@ -16,7 +16,7 @@ interface Upgrade {
 }
 
 @Component({
-  selector: 'app-boat',
+  selector: 'po-boat',
   templateUrl: './boat.component.html',
   standalone: true,
   styleUrls: ['./boat.component.scss'],
@@ -32,9 +32,24 @@ export class BoatComponent {
   ]);
 
   upgrades: Upgrade[] = [
-    { name: 'Improved Sails', description: 'Increase speed', cost: 50, resourceType: 'wood' },
-    { name: 'Reinforced Hull', description: 'Increase durability', cost: 100, resourceType: 'wood' },
-    { name: 'Extra Cannons', description: 'Increase firepower', cost: 150, resourceType: 'iron' }
+    {
+      name: 'Improved Sails',
+      description: 'Increase speed',
+      cost: 50,
+      resourceType: 'wood'
+    },
+    {
+      name: 'Reinforced Hull',
+      description: 'Increase durability',
+      cost: 100,
+      resourceType: 'wood'
+    },
+    {
+      name: 'Extra Cannons',
+      description: 'Increase firepower',
+      cost: 150,
+      resourceType: 'iron'
+    }
   ];
 
   applyUpgrade(upgrade: Upgrade) {

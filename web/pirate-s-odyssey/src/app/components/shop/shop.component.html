@@ -1,0 +1,21 @@
+<div class="main">
+  <h1>Shop</h1>
+  <h2>Buy equipment</h2>
+
+  <div class="row">
+    <lib-selector
+      [options]="shopOptions"
+      [selectedValue]="selectedOption()"
+      (selectionChange)="onSelectionChange($event)"
+    >
+    </lib-selector>
+
+    <lib-item-container
+      *ngFor="let item of filteredItems()"
+      [itemName]="item.itemName"
+      [itemDescription]="item.itemDescription"
+      [buttonText]="item.buttonText"
+    >
+    </lib-item-container>
+  </div>
+</div>

@@ -5,18 +5,14 @@ export const routes: Routes = [
   {
     path: 'boat',
     loadComponent: () =>
-      import('./components/boat/boat.component').then(
-        (c) => c.BoatComponent
-      ),
-      title: 'Bateau'
+      import('./components/boat/boat.component').then((c) => c.BoatComponent),
+    title: 'Bateau'
   },
   {
     path: 'crew',
     loadComponent: () =>
-      import('./components/crew/crew.component').then(
-        (c) => c.CrewComponent
-      ),
-      title: 'Equipage'
+      import('./components/crew/crew.component').then((c) => c.CrewComponent),
+    title: 'Equipage'
   },
   {
     path: 'equipment',
@@ -24,7 +20,7 @@ export const routes: Routes = [
       import('./components/equipment/equipment.component').then(
         (c) => c.EquipmentComponent
       ),
-      title: 'Equipement'
+    title: 'Equipement'
   },
   {
     path: 'exploration',
@@ -32,6 +28,12 @@ export const routes: Routes = [
       import('./components/exploration/exploration.component').then(
         (c) => c.ExplorationComponent
       ),
-      title: 'Exploration'
+    title: 'Exploration'
+  },
+  {
+    path: 'shop',
+    loadComponent: () =>
+      import('./components/shop/shop.component').then((c) => c.ShopComponent),
+    title: 'Shop'
   }
 ];

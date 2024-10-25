@@ -1,13 +1,17 @@
 <div class="main">
   <header>
     <div class="logo" alt="Logo">
-      <img src="../../../../assets/img/logo.jpg">
+      <img alt="logo-pirate-odyssey" src="../../../../assets/img/logo.jpg" />
     </div>
     <div class="resources">
       <div class="resource-item" *ngFor="let resource of resources">
-        <p>{{ resource.resourceType}}:</p>
-        <p>{{ resource.amount}} </p>
-        <img class="picto" src="../../../../assets/img/{{resource.img}}.jpg">
+        <p>{{ resource.resourceType }}:</p>
+        <p>{{ resource.amount }}</p>
+        <img
+          alt="resources"
+          class="picto"
+          src="../../../../assets/img/{{ resource.img }}.jpg"
+        />
       </div>
     </div>
     <div class="nav">
@@ -18,9 +22,9 @@
           <li><a routerLink="equipment">Equipment</a></li>
           <li><a routerLink="crew">Crew</a></li>
           <li><a routerLink="exploration">Explore</a></li>
+          <li><a routerLink="shop">Shop</a></li>
         </ul>
       </nav>
     </div>
   </header>
 </div>
-
