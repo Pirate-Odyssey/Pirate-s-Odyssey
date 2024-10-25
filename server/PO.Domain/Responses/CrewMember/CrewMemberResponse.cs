@@ -2,5 +2,14 @@
 {
     public class CrewMemberResponse
     {
+        [Required]
+        public Guid Id { get; set; }
+
+        // FK
+
+        public Guid? CrewId { get; set; }
+        public Guid? ShipId { get; set; }
+        public CrewResponse Crew { get; set; }
+        public ShipResponse Ship { get; set; }
     }
 }

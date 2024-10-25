@@ -22,6 +22,8 @@ global using PO.Domain.Responses.Weapon;
 global using PO.Domain.Services.Implementations;
 global using PO.Domain.Services.Interfaces;
 global using PO.Domain.Specifications;
+global using PO.Domain.Specifications.Crew;
+global using PO.Domain.Specifications.CrewMember;
 global using PO.Domain.Specifications.Equipment;
 global using PO.Domain.Specifications.Item;
 global using PO.Domain.Specifications.ItemStat;

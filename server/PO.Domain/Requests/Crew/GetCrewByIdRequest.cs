@@ -2,5 +2,6 @@
 {
     public class GetCrewByIdRequest
     {
+        public Guid Id { get; set; }
     }
 }
