@@ -17,6 +17,7 @@
 
         // FK
 
+        [Required]
         public virtual ICollection<ItemStatResponse> Stats { get; set; }
     }
 }

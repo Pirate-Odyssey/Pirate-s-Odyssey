@@ -13,6 +13,8 @@ namespace Intranet.Infrastructure.Extensions
                 .AddScoped<IEquipmentRepository, EquipmentRepository>()
                 .AddScoped<IItemStatRepository, ItemStatRepository>()
                 .AddScoped<IShipRepository, ShipRepository>()
+                .AddScoped<ICrewRepository, CrewRepository>()
+                .AddScoped<ICrewMemberRepository, CrewMemberRepository>()
             ;
         }
     }

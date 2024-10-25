@@ -14,5 +14,10 @@
         public double Speed { get; set; }
         [Required]
         public int Health { get; set; }
+
+        // FK
+
+        [Required]
+        public ICollection<CrewMemberResponse> CrewMembers { get; set; }
     }
 }

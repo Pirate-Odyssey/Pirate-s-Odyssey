@@ -8,6 +8,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CrewMemberResponse } from './crew-member-response';
 
 
 export interface ShipResponse { 
@@ -17,5 +18,6 @@ export interface ShipResponse {
     maxSeat: number;
     speed: number;
     health: number;
+    crewMembers: Array<CrewMemberResponse>;
 }
 
