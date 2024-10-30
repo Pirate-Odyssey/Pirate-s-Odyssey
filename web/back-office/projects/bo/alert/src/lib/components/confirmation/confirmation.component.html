@@ -1,0 +1,23 @@
+@if (data && data.title) {
+  <h2 mat-dialog-title>{{ data.title }}</h2>
+}
+<mat-dialog-content>
+  {{
+    data && data.message
+      ? data.message
+      : 'Souhaitez-vous vraiment continuer comme ca?'
+  }}
+</mat-dialog-content>
+<mat-dialog-actions style="justify-content: flex-end">
+  <button mat-stroked-button mat-dialog-close color="primary">
+    {{ data && data.cancelLabel ? data.cancelLabel : 'Cancel' }}
+  </button>
+  <button
+    mat-raised-button
+    [color]="data.okButtonColor ? data.okButtonColor : 'primary'"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    {{ data && data.okLabel ? data.okLabel : 'Validate' }}
+  </button>
+</mat-dialog-actions>

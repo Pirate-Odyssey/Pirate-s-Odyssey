@@ -9,6 +9,7 @@ import {
 } from '../../../api';
 import { ListComponent } from '../../common/list/list.component';
 import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
+import { AlertService } from '@bo/alert';
 
 @Component({
   selector: 'bo-crew-list',
@@ -20,6 +21,7 @@ import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
 export class CrewListComponent implements OnInit {
   private readonly crewService = inject(CrewService);
   private readonly dialog = inject(MatDialog);
+  private readonly alertService = inject(AlertService);
 
   public data = signal<CrewResponse[]>([]);
 
@@ -31,6 +33,22 @@ export class CrewListComponent implements OnInit {
         this.data.set(response);
       }
     });
+  }
+
+  readCrew(id: string): void {
+    console.log(id);
+    this.alertService.alert({
+      message: 'coucou',
+      type: 'info'
+    });
+    setTimeout(() => {
+      this.alertService.alert({
+        message: 'coucou',
+        type: 'success',
+        durationInSeconds: 1000,
+        hasAction: true
+      });
+    }, 1000);
   }
 
   addCrew(): void {
