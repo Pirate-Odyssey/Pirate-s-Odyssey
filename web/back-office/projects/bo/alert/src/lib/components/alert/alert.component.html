@@ -1,0 +1,22 @@
+<div matSnackBarLabel class="message">
+  <span>{{ content() }}</span>
+  @switch (type()) {
+    @case ('success') {
+      <mat-icon>check_circle</mat-icon>
+    }
+    @case ('info') {
+      <mat-icon>info</mat-icon>
+    }
+    @case ('warning') {
+      <mat-icon>warning</mat-icon>
+    }
+    @case ('error') {
+      <mat-icon>report</mat-icon>
+    }
+  }
+</div>
+@if (hasAction()) {
+  <span matSnackBarActions>
+    <button mat-flat-button color="primary" (click)="close()">Close</button>
+  </span>
+}

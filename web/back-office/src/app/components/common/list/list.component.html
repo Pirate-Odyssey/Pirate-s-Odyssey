@@ -22,7 +22,11 @@
           </th>
           <td mat-cell *matCellDef="let row">
             <div class="actions">
-              <button mat-icon-button color="primary">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="readItem.emit(row.id)"
+              >
                 <mat-icon>visibility</mat-icon>
               </button>
               <button

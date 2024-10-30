@@ -47,6 +47,9 @@ export class ListComponent<T = any> implements AfterViewInit {
   public columns = computed(() => [...this.displayedColumns(), 'action']);
 
   @Output()
+  public readItem = new EventEmitter<string>();
+
+  @Output()
   public addItem = new EventEmitter<void>();
 
   @Output()
