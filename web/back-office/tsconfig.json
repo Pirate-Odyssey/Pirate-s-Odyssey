@@ -4,9 +4,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@bo/alert": [
-        "./dist/bo/alert"
-      ]
+      "@bo/common": ["./dist/bo/common"],
+      "@bo/alert": ["./dist/bo/alert"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -24,10 +23,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

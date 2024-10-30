@@ -16,7 +16,7 @@
           routerLinkActive
           [activated]="link.isActive"
         >
-          <div class="sidenav-menu-title">
+          <div class="sidenav-menu-title" [class.selected]="link.isActive">
             <mat-icon>{{ menuItem.icon }}</mat-icon
             ><span>{{ menuItem.title }}</span>
           </div>
@@ -54,7 +54,7 @@
             @for (theme of themes; track $index) {
               <button
                 mat-menu-item
-                [class.selected-theme]="themeService.theme() === theme.theme"
+                [class.selected]="themeService.theme() === theme.theme"
                 (click)="themeService.setTheme(theme.theme)"
               >
                 <mat-icon>{{ theme.icon }}</mat-icon>

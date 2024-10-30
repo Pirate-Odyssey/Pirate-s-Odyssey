@@ -23,7 +23,7 @@ import {
 } from '@angular/material/table';
 
 @Component({
-  selector: 'bo-list',
+  selector: 'common-list',
   standalone: true,
   imports: [
     TitleCasePipe,

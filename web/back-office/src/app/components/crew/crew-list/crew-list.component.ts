@@ -1,5 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '@bo/alert';
+import { ListComponent } from '@bo/common';
 
 import {
   AddCrewRequest,
@@ -7,9 +9,7 @@ import {
   CrewService,
   EditCrewRequest
 } from '../../../api';
-import { ListComponent } from '../../common/list/list.component';
 import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
-import { AlertService } from '@bo/alert';
 
 @Component({
   selector: 'bo-crew-list',
@@ -34,8 +34,6 @@ export class CrewListComponent implements OnInit {
       }
     });
   }
-
-  readCrew(id: string): void {}
 
   addCrew(): void {
     this.dialog

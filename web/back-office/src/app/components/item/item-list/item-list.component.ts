@@ -1,5 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '@bo/alert';
+import { ListComponent } from '@bo/common';
 
 import {
   AddItemRequest,
@@ -7,9 +9,7 @@ import {
   ItemResponse,
   ItemService
 } from '../../../api';
-import { ListComponent } from '../../common/list/list.component';
 import { ItemFormComponent } from '../item-form/item-form.component';
-import { AlertService } from '@bo/alert';
 
 @Component({
   selector: 'bo-item-list',

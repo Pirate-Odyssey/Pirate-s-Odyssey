@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from '@bo/alert';
+import { ListComponent } from '@bo/common';
 
 import {
   AddShipRequest,
@@ -8,7 +9,6 @@ import {
   ShipResponse,
   ShipService
 } from '../../../api';
-import { ListComponent } from '../../common/list/list.component';
 import { ShipFormComponent } from '../ship-form/ship-form.component';
 
 @Component({

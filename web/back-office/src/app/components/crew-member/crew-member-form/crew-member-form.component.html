@@ -1,13 +1,8 @@
-<h2 mat-dialog-title>Crew Member</h2>
-<mat-dialog-content>
+<common-form-modal title="Crew Member" (onSubmit)="onSubmit()">
   <form [formGroup]="formGroup" class="forms">
     <mat-form-field class="field">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" />
     </mat-form-field>
   </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-flat-button cdkFocusInitial (click)="onSubmit()">Add</button>
-</mat-dialog-actions>
+</common-form-modal>
