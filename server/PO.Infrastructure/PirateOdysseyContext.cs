@@ -11,6 +11,8 @@ namespace PO.Infrastructure
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<ItemStat> ItemStats { get; set; }
         public DbSet<Ship> Ships { get; set; }
+        public DbSet<Crew> Crews { get; set; }
+        public DbSet<CrewMember> CrewMembers { get; set; }
 
         #endregion
 

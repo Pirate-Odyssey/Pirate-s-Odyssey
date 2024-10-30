@@ -22,6 +22,45 @@ namespace PO.MigrationService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("PO.Domain.Entities.Crew", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Crew", (string)null);
+                });
+
+            modelBuilder.Entity("PO.Domain.Entities.CrewMember", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CrewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ShipId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CrewId");
+
+                    b.HasIndex("ShipId");
+
+                    b.ToTable("CrewMember", (string)null);
+                });
+
             modelBuilder.Entity("PO.Domain.Entities.Items.Item", b =>
                 {
                     b.Property<Guid>("Id")
@@ -140,6 +179,23 @@ namespace PO.MigrationService.Migrations
                     b.HasDiscriminator().HasValue("Weapon");
                 });
 
+            modelBuilder.Entity("PO.Domain.Entities.CrewMember", b =>
+                {
+                    b.HasOne("PO.Domain.Entities.Crew", "Crew")
+                        .WithMany("CrewMembers")
+                        .HasForeignKey("CrewId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("PO.Domain.Entities.Ship", "Ship")
+                        .WithMany("CrewMembers")
+                        .HasForeignKey("ShipId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Crew");
+
+                    b.Navigation("Ship");
+                });
+
             modelBuilder.Entity("PO.Domain.Entities.Items.ItemStat", b =>
                 {
                     b.HasOne("PO.Domain.Entities.Items.Item", "Item")
@@ -151,9 +207,19 @@ namespace PO.MigrationService.Migrations
                     b.Navigation("Item");
                 });
 
+            modelBuilder.Entity("PO.Domain.Entities.Crew", b =>
+                {
+                    b.Navigation("CrewMembers");
+                });
+
             modelBuilder.Entity("PO.Domain.Entities.Items.Item", b =>
                 {
                     b.Navigation("Stats");
+                });
+
+            modelBuilder.Entity("PO.Domain.Entities.Ship", b =>
+                {
+                    b.Navigation("CrewMembers");
                 });
 #pragma warning restore 612, 618
         }

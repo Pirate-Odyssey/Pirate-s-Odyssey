@@ -20,7 +20,7 @@ export interface ItemResponse {
     rarity: ItemRarity;
     price: number;
     type: ItemType;
-    stats?: Array<ItemStatResponse> | null;
+    stats: Array<ItemStatResponse>;
 }
 export namespace ItemResponse {
 }

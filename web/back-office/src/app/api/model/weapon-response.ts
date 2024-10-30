@@ -23,7 +23,7 @@ export interface WeaponResponse {
     rarity: ItemRarity;
     price: number;
     type: ItemType;
-    stats?: Array<ItemStatResponse> | null;
+    stats: Array<ItemStatResponse>;
 }
 export namespace WeaponResponse {
 }

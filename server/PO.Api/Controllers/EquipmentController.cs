@@ -1,4 +1,6 @@
-﻿using PO.Domain.Requests.Equipment;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using PO.Domain.Requests.Equipment;
 using PO.Domain.Requests.Equipment.Validators;
 using PO.Domain.Responses.Equipment;
 
@@ -8,6 +10,7 @@ namespace PO.Api.Controllers
     [ApiController]
     public class EquipmentController(
         IEquipmentService equipmentService,
+        IMapper mapper,
         GetEquipmentByIdRequestValidator getEquipmentByIdValidator,
         AddEquipmentRequestValidator addEquipmentRequestValidator,
         EditEquipmentRequestValidator editEquipmentRequestValidator,
@@ -84,6 +87,35 @@ namespace PO.Api.Controllers
             if (result.IsValid)
                 return await equipmentService.EditEquipmentAsync(request);
             else return BadRequest(result.ToDictionary());
+        }
+
+        // PATCH api/<EquipmentController>/5
+        [HttpPatch("{id:Guid}")]
+        [SwaggerOperation(
+            OperationId = "PatchEquipment",
+            Summary = "Patch equipment",
+            Description = "Patch one specific equipment",
+            Tags = ["Equipment"]
+        )]
+        [SwaggerResponse(200, "The equipment was updated", typeof(EquipmentResponse))]
+        [SwaggerResponse(400, "The equipment requested is invalid")]
+        public async Task<ActionResult<EquipmentResponse>> Patch(Guid id, [FromBody] JsonPatchDocument<EditEquipmentRequest> jsonPatch)
+        {
+            var getRequest = new GetEquipmentByIdRequest() { Id = id };
+            var getResult = await getEquipmentByIdValidator.ValidateAsync(getRequest);
+            if (getResult.IsValid)
+            {
+                var equipment = await equipmentService.GetEquipmentAsync(getRequest);
+                var editRequest = new EditEquipmentRequest();
+                mapper.Map(equipment, editRequest);
+                jsonPatch.ApplyTo(editRequest);
+                var editResult = await editEquipmentRequestValidator.ValidateAsync(editRequest);
+                if (editResult.IsValid)
+                    return await equipmentService.EditEquipmentAsync(editRequest);
+                else
+                    return BadRequest(editResult.ToDictionary());
+            }
+            else return BadRequest(getResult.ToDictionary());
         }
 
         // DELETE api/<EquipmentController>/5
