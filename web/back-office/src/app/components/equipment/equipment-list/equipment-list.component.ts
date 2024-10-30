@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '@bo/alert';
 
 import {
   AddEquipmentRequest,
@@ -20,6 +21,7 @@ import { EquipmentFormComponent } from '../equipment-form/equipment-form.compone
 export class EquipmentListComponent implements OnInit {
   private readonly equipmentService = inject(EquipmentService);
   private readonly dialog = inject(MatDialog);
+  private readonly alertService = inject(AlertService);
 
   public data = signal<EquipmentResponse[]>([]);
 
@@ -57,6 +59,11 @@ export class EquipmentListComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.data.update((d) => [...d, response]);
+
+                this.alertService.alert({
+                  message: 'Equipment added successfully',
+                  type: 'success'
+                });
               }
             });
         }
@@ -92,6 +99,11 @@ export class EquipmentListComponent implements OnInit {
                     d[index] = response;
                     return [...d];
                   });
+
+                  this.alertService.alert({
+                    message: 'Equipment edited successfully',
+                    type: 'success'
+                  });
                 }
               }
             });
@@ -100,14 +112,28 @@ export class EquipmentListComponent implements OnInit {
   }
 
   deleteEquipment(id: string): void {
-    this.equipmentService
-      .deleteEquipment({
-        id: id
+    this.alertService
+      .confirm({
+        okLabel: 'Delete',
+        title: 'Delete Equipment',
+        message: 'Are you sur to delete this equipment?',
+        okButtonColor: 'warn'
       })
-      .subscribe({
-        next: () => {
-          this.data.update((d) => d.filter((dd) => dd.id !== id));
-        }
+      .subscribe(() => {
+        this.equipmentService
+          .deleteEquipment({
+            id: id
+          })
+          .subscribe({
+            next: () => {
+              this.data.update((d) => d.filter((dd) => dd.id !== id));
+
+              this.alertService.alert({
+                message: 'Equipment deleted successfully',
+                type: 'success'
+              });
+            }
+          });
       });
   }
 }

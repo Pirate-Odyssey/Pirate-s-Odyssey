@@ -9,6 +9,7 @@ import {
 } from '../../../api';
 import { ListComponent } from '../../common/list/list.component';
 import { ItemFormComponent } from '../item-form/item-form.component';
+import { AlertService } from '@bo/alert';
 
 @Component({
   selector: 'bo-item-list',
@@ -20,6 +21,7 @@ import { ItemFormComponent } from '../item-form/item-form.component';
 export class ItemListComponent implements OnInit {
   private readonly itemService = inject(ItemService);
   private readonly dialog = inject(MatDialog);
+  private readonly alertService = inject(AlertService);
 
   public data = signal<ItemResponse[]>([]);
 
@@ -48,6 +50,11 @@ export class ItemListComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.data.update((d) => [...d, response]);
+
+                this.alertService.alert({
+                  message: 'Item added successfully',
+                  type: 'success'
+                });
               }
             });
         }
@@ -83,6 +90,11 @@ export class ItemListComponent implements OnInit {
                     d[index] = response;
                     return [...d];
                   });
+
+                  this.alertService.alert({
+                    message: 'Item edited successfully',
+                    type: 'success'
+                  });
                 }
               }
             });
@@ -91,14 +103,28 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteItem(id: string): void {
-    this.itemService
-      .deleteItem({
-        id: id
+    this.alertService
+      .confirm({
+        okLabel: 'Delete',
+        title: 'Delete Item',
+        message: 'Are you sur to delete this item?',
+        okButtonColor: 'warn'
       })
-      .subscribe({
-        next: () => {
-          this.data.update((d) => d.filter((dd) => dd.id !== id));
-        }
+      .subscribe(() => {
+        this.itemService
+          .deleteItem({
+            id: id
+          })
+          .subscribe({
+            next: () => {
+              this.data.update((d) => d.filter((dd) => dd.id !== id));
+
+              this.alertService.alert({
+                message: 'Item deleted successfully',
+                type: 'success'
+              });
+            }
+          });
       });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '@bo/alert';
 
 import {
   AddShipRequest,
@@ -20,6 +21,7 @@ import { ShipFormComponent } from '../ship-form/ship-form.component';
 export class ShipListComponent implements OnInit {
   private readonly shipService = inject(ShipService);
   private readonly dialog = inject(MatDialog);
+  private readonly alertService = inject(AlertService);
 
   public data = signal<ShipResponse[]>([]);
 
@@ -48,6 +50,11 @@ export class ShipListComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.data.update((d) => [...d, response]);
+
+                this.alertService.alert({
+                  message: 'Ship added successfully',
+                  type: 'success'
+                });
               }
             });
         }
@@ -83,6 +90,11 @@ export class ShipListComponent implements OnInit {
                     d[index] = response;
                     return [...d];
                   });
+
+                  this.alertService.alert({
+                    message: 'Ship edited successfully',
+                    type: 'success'
+                  });
                 }
               }
             });
@@ -91,14 +103,28 @@ export class ShipListComponent implements OnInit {
   }
 
   deleteShip(id: string): void {
-    this.shipService
-      .deleteShip({
-        id: id
+    this.alertService
+      .confirm({
+        okLabel: 'Delete',
+        title: 'Delete Ship',
+        message: 'Are you sur to delete this ship?',
+        okButtonColor: 'warn'
       })
-      .subscribe({
-        next: () => {
-          this.data.update((d) => d.filter((dd) => dd.id !== id));
-        }
+      .subscribe(() => {
+        this.shipService
+          .deleteShip({
+            id: id
+          })
+          .subscribe({
+            next: () => {
+              this.data.update((d) => d.filter((dd) => dd.id !== id));
+
+              this.alertService.alert({
+                message: 'Ship deleted successfully',
+                type: 'success'
+              });
+            }
+          });
       });
   }
 }

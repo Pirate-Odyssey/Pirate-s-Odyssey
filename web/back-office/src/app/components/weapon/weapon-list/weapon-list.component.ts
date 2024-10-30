@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '@bo/alert';
 
 import {
   AddWeaponRequest,
@@ -20,6 +21,7 @@ import { WeaponFormComponent } from '../weapon-form/weapon-form.component';
 export class WeaponListComponent implements OnInit {
   private readonly weaponService = inject(WeaponService);
   private readonly dialog = inject(MatDialog);
+  private readonly alertService = inject(AlertService);
 
   public data = signal<WeaponResponse[]>([]);
 
@@ -58,6 +60,11 @@ export class WeaponListComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.data.update((d) => [...d, response]);
+
+                this.alertService.alert({
+                  message: 'Weapon added successfully',
+                  type: 'success'
+                });
               }
             });
         }
@@ -93,6 +100,11 @@ export class WeaponListComponent implements OnInit {
                     d[index] = response;
                     return [...d];
                   });
+
+                  this.alertService.alert({
+                    message: 'Weapon edited successfully',
+                    type: 'success'
+                  });
                 }
               }
             });
@@ -101,14 +113,28 @@ export class WeaponListComponent implements OnInit {
   }
 
   deleteWeapon(id: string): void {
-    this.weaponService
-      .deleteWeapon({
-        id: id
+    this.alertService
+      .confirm({
+        okLabel: 'Delete',
+        title: 'Delete Weapon',
+        message: 'Are you sur to delete this weapon?',
+        okButtonColor: 'warn'
       })
-      .subscribe({
-        next: () => {
-          this.data.update((d) => d.filter((dd) => dd.id !== id));
-        }
+      .subscribe(() => {
+        this.weaponService
+          .deleteWeapon({
+            id: id
+          })
+          .subscribe({
+            next: () => {
+              this.data.update((d) => d.filter((dd) => dd.id !== id));
+
+              this.alertService.alert({
+                message: 'Weapon deleted successfully',
+                type: 'success'
+              });
+            }
+          });
       });
   }
 }
