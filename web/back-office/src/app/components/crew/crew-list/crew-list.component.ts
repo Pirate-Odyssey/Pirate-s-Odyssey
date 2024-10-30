@@ -35,8 +35,6 @@ export class CrewListComponent implements OnInit {
     });
   }
 
-  readCrew(id: string): void {}
-
   addCrew(): void {
     this.dialog
       .open<CrewFormComponent, undefined, AddCrewRequest>(CrewFormComponent)

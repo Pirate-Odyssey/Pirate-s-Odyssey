@@ -1,22 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef
-} from '@angular/material/dialog';
-import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
-import { CrewResponse } from '../../../api';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormModalComponent } from '@bo/common';
+
+import { CrewResponse } from '../../../api';
+import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
 
 @Component({
   selector: 'bo-crew-member-form',
   standalone: true,
   imports: [
-    MatDialogModule,
-    MatButtonModule,
+    FormModalComponent,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule

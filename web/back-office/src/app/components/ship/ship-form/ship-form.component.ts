@@ -1,24 +1,20 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormModalComponent } from '@bo/common';
+
 import { ShipResponse } from '../../../api';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'bo-ship-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    FormModalComponent
   ],
   templateUrl: './ship-form.component.html',
   styleUrl: './ship-form.component.scss'

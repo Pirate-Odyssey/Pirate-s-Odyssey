@@ -1,5 +1,4 @@
-<h2 mat-dialog-title>Weapon</h2>
-<mat-dialog-content>
+<common-form-modal title="Equipment" (onSubmit)="onSubmit()">
   <form [formGroup]="formGroup" class="forms">
     <div class="form-top">
       <div class="form-part">
@@ -49,8 +48,4 @@
       </mat-form-field>
     </div>
   </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-flat-button cdkFocusInitial (click)="onSubmit()">Add</button>
-</mat-dialog-actions>
+</common-form-modal>

@@ -1,17 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef
-} from '@angular/material/dialog';
-
-import { ItemRarity, ItemResponse } from '../../../api';
-import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common';
+import { FormModalComponent } from '@bo/common';
+
+import { ItemRarity, ItemResponse } from '../../../api';
 
 @Component({
   selector: 'bo-item-form',
@@ -21,11 +17,10 @@ import { CommonModule } from '@angular/common';
 
     ReactiveFormsModule,
 
-    MatDialogModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    FormModalComponent
   ],
   templateUrl: './item-form.component.html',
   styleUrl: './item-form.component.scss'
