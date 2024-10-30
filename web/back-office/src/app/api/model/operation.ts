@@ -10,10 +10,10 @@
  */
 
 
-export interface EditCrewMemberRequest { 
-    id?: string;
-    name: string;
-    crewId?: string;
-    shipId?: string;
+export interface Operation { 
+    value?: any | null;
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
 }
 

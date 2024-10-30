@@ -1,4 +1,6 @@
-﻿using PO.Domain.Requests.Weapon;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using PO.Domain.Requests.Weapon;
 using PO.Domain.Requests.Weapon.Validators;
 using PO.Domain.Responses.Weapon;
 
@@ -8,6 +10,7 @@ namespace PO.Api.Controllers
     [ApiController]
     public class WeaponController(
         IWeaponService weaponService,
+        IMapper mapper,
         GetWeaponByIdRequestValidator getWeaponByIdValidator,
         AddWeaponRequestValidator addWeaponRequestValidator,
         EditWeaponRequestValidator editWeaponRequestValidator,
@@ -84,6 +87,35 @@ namespace PO.Api.Controllers
             if (result.IsValid)
                 return await weaponService.EditWeaponAsync(request);
             else return BadRequest(result.ToDictionary());
+        }
+
+        // PATCH api/<WeaponController>/5
+        [HttpPatch("{id:Guid}")]
+        [SwaggerOperation(
+            OperationId = "PatchWeapon",
+            Summary = "Patch weapon",
+            Description = "Patch one specific weapon",
+            Tags = ["Weapon"]
+        )]
+        [SwaggerResponse(200, "The weapon was updated", typeof(WeaponResponse))]
+        [SwaggerResponse(400, "The weapon requested is invalid")]
+        public async Task<ActionResult<WeaponResponse>> Patch(Guid id, [FromBody] JsonPatchDocument<EditWeaponRequest> jsonPatch)
+        {
+            var getRequest = new GetWeaponByIdRequest() { Id = id };
+            var getResult = await getWeaponByIdValidator.ValidateAsync(getRequest);
+            if (getResult.IsValid)
+            {
+                var weapon = await weaponService.GetWeaponAsync(getRequest);
+                var editRequest = new EditWeaponRequest();
+                mapper.Map(weapon, editRequest);
+                jsonPatch.ApplyTo(editRequest);
+                var editResult = await editWeaponRequestValidator.ValidateAsync(editRequest);
+                if (editResult.IsValid)
+                    return await weaponService.EditWeaponAsync(editRequest);
+                else
+                    return BadRequest(editResult.ToDictionary());
+            }
+            else return BadRequest(getResult.ToDictionary());
         }
 
         // DELETE api/<WeaponController>/5

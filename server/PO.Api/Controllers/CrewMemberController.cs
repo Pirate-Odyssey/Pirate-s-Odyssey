@@ -1,4 +1,6 @@
-﻿using PO.Domain.Requests.CrewMember;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using PO.Domain.Requests.CrewMember;
 using PO.Domain.Requests.CrewMember.Validators;
 using PO.Domain.Responses.CrewMember;
 
@@ -8,6 +10,7 @@ namespace PO.Api.Controllers
     [ApiController]
     public class CrewMemberController(
         ICrewMemberService crewMemberService,
+        IMapper mapper,
         GetCrewMemberByIdRequestValidator getCrewMemberByIdValidator,
         AddCrewMemberRequestValidator addCrewMemberRequestValidator,
         EditCrewMemberRequestValidator editCrewMemberRequestValidator,
@@ -84,6 +87,35 @@ namespace PO.Api.Controllers
             if (result.IsValid)
                 return await crewMemberService.EditCrewMemberAsync(request);
             else return BadRequest(result.ToDictionary());
+        }
+
+        // PATCH api/<WeaponController>/5
+        [HttpPatch("{id:Guid}")]
+        [SwaggerOperation(
+            OperationId = "PatchCrewMember",
+            Summary = "Patch crewMember",
+            Description = "Patch one specific crewMember",
+            Tags = ["CrewMember"]
+        )]
+        [SwaggerResponse(200, "The crewMember was updated", typeof(CrewMemberResponse))]
+        [SwaggerResponse(400, "The crewMember requested is invalid")]
+        public async Task<ActionResult<CrewMemberResponse>> Patch(Guid id, [FromBody] JsonPatchDocument<EditCrewMemberRequest> jsonPatch)
+        {
+            var getRequest = new GetCrewMemberByIdRequest() { Id = id };
+            var getResult = await getCrewMemberByIdValidator.ValidateAsync(getRequest);
+            if (getResult.IsValid)
+            {
+                var crewMember = await crewMemberService.GetCrewMemberAsync(getRequest);
+                var editRequest = new EditCrewMemberRequest();
+                mapper.Map(crewMember, editRequest);
+                jsonPatch.ApplyTo(editRequest);
+                var editResult = await editCrewMemberRequestValidator.ValidateAsync(editRequest);
+                if (editResult.IsValid)
+                    return await crewMemberService.EditCrewMemberAsync(editRequest);
+                else
+                    return BadRequest(editResult.ToDictionary());
+            }
+            else return BadRequest(getResult.ToDictionary());
         }
 
         // DELETE api/<crewMemberController>/5

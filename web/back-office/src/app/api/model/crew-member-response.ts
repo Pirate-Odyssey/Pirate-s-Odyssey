@@ -14,6 +14,7 @@ import { ShipResponse } from './ship-response';
 
 export interface CrewMemberResponse { 
     id: string;
+    name: string;
     crewId?: string | null;
     shipId?: string | null;
     crew?: CrewResponse;
