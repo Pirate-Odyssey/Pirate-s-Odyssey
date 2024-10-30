@@ -18,6 +18,7 @@ export * from './item-rarity';
 export * from './item-response';
 export * from './item-stat-response';
 export * from './item-type';
+export * from './operation';
 export * from './ship-response';
 export * from './stats';
 export * from './weapon-response';

@@ -11,6 +11,7 @@
 
 
 export interface AddCrewMemberRequest { 
+    name: string;
     crewId?: string;
     shipId?: string;
 }

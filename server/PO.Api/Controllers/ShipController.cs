@@ -1,4 +1,6 @@
-﻿using PO.Domain.Requests.Ship;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using PO.Domain.Requests.Ship;
 using PO.Domain.Requests.Ship.Validators;
 using PO.Domain.Responses.Ship;
 
@@ -8,6 +10,7 @@ namespace PO.Api.Controllers
     [ApiController]
     public class ShipController(
         IShipService shipService,
+        IMapper mapper,
         GetShipByIdRequestValidator getShipByIdValidator,
         AddShipRequestValidator addShipRequestValidator,
         EditShipRequestValidator editShipRequestValidator,
@@ -84,6 +87,35 @@ namespace PO.Api.Controllers
             if (result.IsValid)
                 return await shipService.EditShipAsync(request);
             else return BadRequest(result.ToDictionary());
+        }
+
+        // PATCH api/<ShipController>/5
+        [HttpPatch("{id:Guid}")]
+        [SwaggerOperation(
+            OperationId = "PatchShip",
+            Summary = "Patch ship",
+            Description = "Patch one specific ship",
+            Tags = ["Ship"]
+        )]
+        [SwaggerResponse(200, "The ship was updated", typeof(ShipResponse))]
+        [SwaggerResponse(400, "The ship requested is invalid")]
+        public async Task<ActionResult<ShipResponse>> Patch(Guid id, [FromBody] JsonPatchDocument<EditShipRequest> jsonPatch)
+        {
+            var getRequest = new GetShipByIdRequest() { Id = id };
+            var getResult = await getShipByIdValidator.ValidateAsync(getRequest);
+            if (getResult.IsValid)
+            {
+                var ship = await shipService.GetShipAsync(getRequest);
+                var editRequest = new EditShipRequest();
+                mapper.Map(ship, editRequest);
+                jsonPatch.ApplyTo(editRequest);
+                var editResult = await editShipRequestValidator.ValidateAsync(editRequest);
+                if (editResult.IsValid)
+                    return await shipService.EditShipAsync(editRequest);
+                else
+                    return BadRequest(editResult.ToDictionary());
+            }
+            else return BadRequest(getResult.ToDictionary());
         }
 
         // DELETE api/<ShipController>/5

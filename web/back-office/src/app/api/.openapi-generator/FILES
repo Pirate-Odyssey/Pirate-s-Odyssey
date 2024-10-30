@@ -33,6 +33,7 @@ model/item-response.ts
 model/item-stat-response.ts
 model/item-type.ts
 model/models.ts
+model/operation.ts
 model/ship-response.ts
 model/stats.ts
 model/weapon-response.ts

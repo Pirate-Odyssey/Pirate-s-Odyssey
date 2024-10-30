@@ -1,4 +1,6 @@
-﻿using PO.Domain.Requests.Item;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using PO.Domain.Requests.Item;
 using PO.Domain.Requests.Item.Validators;
 using PO.Domain.Responses.Item;
 
@@ -8,6 +10,7 @@ namespace PO.Api.Controllers
     [ApiController]
     public class ItemController(
         IItemService itemService,
+        IMapper mapper,
         GetItemByIdRequestValidator getItemByIdValidator,
         AddItemRequestValidator addItemRequestValidator,
         EditItemRequestValidator editItemRequestValidator,
@@ -84,6 +87,35 @@ namespace PO.Api.Controllers
             if (result.IsValid)
                 return await itemService.EditItemAsync(request);
             else return BadRequest(result.ToDictionary());
+        }
+
+        // PATCH api/<ItemController>/5
+        [HttpPatch("{id:Guid}")]
+        [SwaggerOperation(
+            OperationId = "PatchItem",
+            Summary = "Patch item",
+            Description = "Patch one specific item",
+            Tags = ["Item"]
+        )]
+        [SwaggerResponse(200, "The item was updated", typeof(ItemResponse))]
+        [SwaggerResponse(400, "The item requested is invalid")]
+        public async Task<ActionResult<ItemResponse>> Patch(Guid id, [FromBody] JsonPatchDocument<EditItemRequest> jsonPatch)
+        {
+            var getRequest = new GetItemByIdRequest() { Id = id };
+            var getResult = await getItemByIdValidator.ValidateAsync(getRequest);
+            if (getResult.IsValid)
+            {
+                var item = await itemService.GetItemAsync(getRequest);
+                var editRequest = new EditItemRequest();
+                mapper.Map(item, editRequest);
+                jsonPatch.ApplyTo(editRequest);
+                var editResult = await editItemRequestValidator.ValidateAsync(editRequest);
+                if (editResult.IsValid)
+                    return await itemService.EditItemAsync(editRequest);
+                else
+                    return BadRequest(editResult.ToDictionary());
+            }
+            else return BadRequest(getResult.ToDictionary());
         }
 
         // DELETE api/<ItemController>/5

@@ -1,4 +1,6 @@
-﻿using PO.Domain.Requests.Crew;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using PO.Domain.Requests.Crew;
 using PO.Domain.Requests.Crew.Validators;
 using PO.Domain.Responses.Crew;
 
@@ -7,7 +9,8 @@ namespace PO.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CrewController(
-        ICrewService CrewService,
+        ICrewService crewService,
+        IMapper mapper,
         GetCrewByIdRequestValidator getCrewByIdValidator,
         AddCrewRequestValidator addCrewRequestValidator,
         EditCrewRequestValidator editCrewRequestValidator,
@@ -24,7 +27,7 @@ namespace PO.Api.Controllers
         [SwaggerResponse(200, "The Crews list", typeof(IEnumerable<CrewResponse>))]
         public async Task<ActionResult<IEnumerable<CrewResponse>>> List()
         {
-            return Ok(await CrewService.GetCrewsAsync());
+            return Ok(await crewService.GetCrewsAsync());
         }
 
         // GET api/<CrewController>/5
@@ -42,7 +45,7 @@ namespace PO.Api.Controllers
             var request = new GetCrewByIdRequest { Id = id };
             var result = await getCrewByIdValidator.ValidateAsync(request);
             if (result.IsValid)
-                return await CrewService.GetCrewAsync(request);
+                return await crewService.GetCrewAsync(request);
             else return BadRequest(result.ToDictionary());
         }
 
@@ -61,7 +64,7 @@ namespace PO.Api.Controllers
             var result = await addCrewRequestValidator.ValidateAsync(request);
             if (result.IsValid)
             {
-                var Crew = await CrewService.AddCrewAsync(request);
+                var Crew = await crewService.AddCrewAsync(request);
                 return CreatedAtAction(nameof(Get), new { id = Crew.Id }, Crew);
             }
             else return BadRequest(result.ToDictionary());
@@ -82,8 +85,37 @@ namespace PO.Api.Controllers
             request.Id = id;
             var result = await editCrewRequestValidator.ValidateAsync(request);
             if (result.IsValid)
-                return await CrewService.EditCrewAsync(request);
+                return await crewService.EditCrewAsync(request);
             else return BadRequest(result.ToDictionary());
+        }
+
+        // PATCH api/<CrewController>/5
+        [HttpPatch("{id:Guid}")]
+        [SwaggerOperation(
+            OperationId = "PatchCrew",
+            Summary = "Patch crew",
+            Description = "Patch one specific crew",
+            Tags = ["Crew"]
+        )]
+        [SwaggerResponse(200, "The crew was updated", typeof(CrewResponse))]
+        [SwaggerResponse(400, "The crew requested is invalid")]
+        public async Task<ActionResult<CrewResponse>> Patch(Guid id, [FromBody] JsonPatchDocument<EditCrewRequest> jsonPatch)
+        {
+            var getRequest = new GetCrewByIdRequest() { Id = id };
+            var getResult = await getCrewByIdValidator.ValidateAsync(getRequest);
+            if (getResult.IsValid)
+            {
+                var crew = await crewService.GetCrewAsync(getRequest);
+                var editRequest = new EditCrewRequest();
+                mapper.Map(crew, editRequest);
+                jsonPatch.ApplyTo(editRequest);
+                var editResult = await editCrewRequestValidator.ValidateAsync(editRequest);
+                if (editResult.IsValid)
+                    return await crewService.EditCrewAsync(editRequest);
+                else
+                    return BadRequest(editResult.ToDictionary());
+            }
+            else return BadRequest(getResult.ToDictionary());
         }
 
         // DELETE api/<CrewController>/5
@@ -101,7 +133,7 @@ namespace PO.Api.Controllers
             var request = new DeleteCrewRequest { Id = id };
             var result = await deleteCrewRequestValidator.ValidateAsync(request);
             if (result.IsValid)
-                return await CrewService.DeleteCrewAsync(request);
+                return await crewService.DeleteCrewAsync(request);
             else return BadRequest(result.ToDictionary());
         }
     }
