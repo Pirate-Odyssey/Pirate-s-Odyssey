@@ -1,5 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '@bo/alert';
+import { ListComponent } from '@bo/common';
 
 import {
   AddCrewMemberRequest,
@@ -7,9 +9,7 @@ import {
   CrewMemberService,
   EditCrewMemberRequest
 } from '../../../api';
-import { ListComponent } from '../../common/list/list.component';
 import { CrewMemberFormComponent } from '../crew-member-form/crew-member-form.component';
-import { AlertService } from '@bo/alert';
 
 @Component({
   selector: 'bo-crew-member-list',

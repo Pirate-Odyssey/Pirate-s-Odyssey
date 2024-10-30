@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from '@bo/alert';
+import { ListComponent } from '@bo/common';
 
 import {
   AddWeaponRequest,
@@ -8,7 +9,6 @@ import {
   WeaponResponse,
   WeaponService
 } from '../../../api';
-import { ListComponent } from '../../common/list/list.component';
 import { WeaponFormComponent } from '../weapon-form/weapon-form.component';
 
 @Component({
