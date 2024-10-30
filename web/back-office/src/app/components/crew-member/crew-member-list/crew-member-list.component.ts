@@ -9,6 +9,7 @@ import {
 } from '../../../api';
 import { ListComponent } from '../../common/list/list.component';
 import { CrewMemberFormComponent } from '../crew-member-form/crew-member-form.component';
+import { AlertService } from '@bo/alert';
 
 @Component({
   selector: 'bo-crew-member-list',
@@ -20,6 +21,7 @@ import { CrewMemberFormComponent } from '../crew-member-form/crew-member-form.co
 export class CrewMemberListComponent implements OnInit {
   private readonly crewMemberService = inject(CrewMemberService);
   private readonly dialog = inject(MatDialog);
+  private readonly alertService = inject(AlertService);
 
   public data = signal<CrewMemberResponse[]>([]);
 
@@ -50,6 +52,11 @@ export class CrewMemberListComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.data.update((d) => [...d, response]);
+
+                this.alertService.alert({
+                  message: 'Crew member added successfully',
+                  type: 'success'
+                });
               }
             });
         }
@@ -85,6 +92,11 @@ export class CrewMemberListComponent implements OnInit {
                     d[index] = response;
                     return [...d];
                   });
+
+                  this.alertService.alert({
+                    message: 'Crew member edited successfully',
+                    type: 'success'
+                  });
                 }
               }
             });
@@ -93,14 +105,28 @@ export class CrewMemberListComponent implements OnInit {
   }
 
   deleteCrewMember(id: string): void {
-    this.crewMemberService
-      .deleteCrewMember({
-        id: id
+    this.alertService
+      .confirm({
+        okLabel: 'Delete',
+        title: 'Delete Crew member',
+        message: 'Are you sur to delete this crew member?',
+        okButtonColor: 'warn'
       })
-      .subscribe({
-        next: () => {
-          this.data.update((d) => d.filter((dd) => dd.id !== id));
-        }
+      .subscribe(() => {
+        this.crewMemberService
+          .deleteCrewMember({
+            id: id
+          })
+          .subscribe({
+            next: () => {
+              this.data.update((d) => d.filter((dd) => dd.id !== id));
+
+              this.alertService.alert({
+                message: 'Crew member deleted successfully',
+                type: 'success'
+              });
+            }
+          });
       });
   }
 }

@@ -35,21 +35,7 @@ export class CrewListComponent implements OnInit {
     });
   }
 
-  readCrew(id: string): void {
-    console.log(id);
-    this.alertService.alert({
-      message: 'coucou',
-      type: 'info'
-    });
-    setTimeout(() => {
-      this.alertService.alert({
-        message: 'coucou',
-        type: 'success',
-        durationInSeconds: 1000,
-        hasAction: true
-      });
-    }, 1000);
-  }
+  readCrew(id: string): void {}
 
   addCrew(): void {
     this.dialog
@@ -66,6 +52,11 @@ export class CrewListComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.data.update((d) => [...d, response]);
+
+                this.alertService.alert({
+                  message: 'Crew added successfully',
+                  type: 'success'
+                });
               }
             });
         }
@@ -101,6 +92,11 @@ export class CrewListComponent implements OnInit {
                     d[index] = response;
                     return [...d];
                   });
+
+                  this.alertService.alert({
+                    message: 'Crew edited successfully',
+                    type: 'success'
+                  });
                 }
               }
             });
@@ -109,14 +105,28 @@ export class CrewListComponent implements OnInit {
   }
 
   deleteCrew(id: string): void {
-    this.crewService
-      .deleteCrew({
-        id: id
+    this.alertService
+      .confirm({
+        okLabel: 'Delete',
+        title: 'Delete Crew',
+        message: 'Are you sur to delete this crew?',
+        okButtonColor: 'warn'
       })
-      .subscribe({
-        next: () => {
-          this.data.update((d) => d.filter((dd) => dd.id !== id));
-        }
+      .subscribe(() => {
+        this.crewService
+          .deleteCrew({
+            id: id
+          })
+          .subscribe({
+            next: () => {
+              this.data.update((d) => d.filter((dd) => dd.id !== id));
+
+              this.alertService.alert({
+                message: 'Crew deleted successfully',
+                type: 'success'
+              });
+            }
+          });
       });
   }
 }
