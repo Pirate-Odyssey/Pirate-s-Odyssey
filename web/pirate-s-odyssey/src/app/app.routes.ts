@@ -3,9 +3,9 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: 'boat',
+    path: 'ship',
     loadComponent: () =>
-      import('./components/boat/boat.component').then((c) => c.BoatComponent),
+      import('./components/ship/ship.component').then((c) => c.ShipComponent),
     title: 'Bateau'
   },
   {

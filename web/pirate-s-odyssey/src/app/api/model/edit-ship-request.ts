@@ -8,19 +8,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ItemRarity } from './item-rarity';
 
 
-export interface AddWeaponRequest { 
-    damage?: number;
-    speed?: number;
-    twoHanded?: boolean;
+export interface EditShipRequest { 
+    id?: string;
     name?: string | null;
-    description?: string | null;
-    rarity?: ItemRarity;
-    price?: number;
+    minSeat?: number;
+    maxSeat?: number;
+    speed?: number;
+    health?: number;
 }
-export namespace AddWeaponRequest {
-}
-
 

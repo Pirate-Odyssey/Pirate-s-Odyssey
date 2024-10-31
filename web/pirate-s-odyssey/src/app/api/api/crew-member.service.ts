@@ -18,11 +18,11 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { AddEquipmentRequest } from '../model/add-equipment-request';
+import { AddCrewMemberRequest } from '../model/add-crew-member-request';
 // @ts-ignore
-import { EditEquipmentRequest } from '../model/edit-equipment-request';
+import { CrewMemberResponse } from '../model/crew-member-response';
 // @ts-ignore
-import { EquipmentResponse } from '../model/equipment-response';
+import { EditCrewMemberRequest } from '../model/edit-crew-member-request';
 // @ts-ignore
 import { Operation } from '../model/operation';
 
@@ -31,24 +31,24 @@ import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables'
 import { Configuration }                                     from '../configuration';
 
 
-export interface AddEquipmentRequestParams {
-    addEquipmentRequest?: AddEquipmentRequest;
+export interface AddCrewMemberRequestParams {
+    addCrewMemberRequest?: AddCrewMemberRequest;
 }
 
-export interface DeleteEquipmentRequestParams {
+export interface DeleteCrewMemberRequestParams {
     id: string;
 }
 
-export interface EditEquipmentRequestParams {
+export interface EditCrewMemberRequestParams {
     id: string;
-    editEquipmentRequest?: EditEquipmentRequest;
+    editCrewMemberRequest?: EditCrewMemberRequest;
 }
 
-export interface GetEquipmentRequestParams {
+export interface GetCrewMemberRequestParams {
     id: string;
 }
 
-export interface PatchEquipmentRequestParams {
+export interface PatchCrewMemberRequestParams {
     id: string;
     operation?: Array<Operation>;
 }
@@ -57,7 +57,7 @@ export interface PatchEquipmentRequestParams {
 @Injectable({
   providedIn: 'root'
 })
-export class EquipmentService {
+export class CrewMemberService {
 
     protected basePath = 'http://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -120,17 +120,17 @@ export class EquipmentService {
     }
 
     /**
-     * Add equipment
-     * Add equipment
+     * Add CrewMember
+     * Add CrewMember
      * @param requestParameters
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addEquipment(requestParameters?: AddEquipmentRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<EquipmentResponse>;
-    public addEquipment(requestParameters?: AddEquipmentRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EquipmentResponse>>;
-    public addEquipment(requestParameters?: AddEquipmentRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<EquipmentResponse>>;
-    public addEquipment(requestParameters?: AddEquipmentRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        const addEquipmentRequest = requestParameters?.addEquipmentRequest;
+    public addCrewMember(requestParameters?: AddCrewMemberRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<CrewMemberResponse>;
+    public addCrewMember(requestParameters?: AddCrewMemberRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CrewMemberResponse>>;
+    public addCrewMember(requestParameters?: AddCrewMemberRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CrewMemberResponse>>;
+    public addCrewMember(requestParameters?: AddCrewMemberRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        const addCrewMemberRequest = requestParameters?.addCrewMemberRequest;
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -182,11 +182,11 @@ export class EquipmentService {
             }
         }
 
-        let localVarPath = `/api/Equipment`;
-        return this.httpClient.request<EquipmentResponse>('post', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/CrewMember`;
+        return this.httpClient.request<CrewMemberResponse>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: addEquipmentRequest,
+                body: addCrewMemberRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -198,19 +198,19 @@ export class EquipmentService {
     }
 
     /**
-     * Delete equipment
-     * Delete one specific equipment
+     * Delete CrewMember
+     * Delete one specific CrewMember
      * @param requestParameters
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEquipment(requestParameters?: DeleteEquipmentRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<EquipmentResponse>;
-    public deleteEquipment(requestParameters?: DeleteEquipmentRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EquipmentResponse>>;
-    public deleteEquipment(requestParameters?: DeleteEquipmentRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<EquipmentResponse>>;
-    public deleteEquipment(requestParameters?: DeleteEquipmentRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public deleteCrewMember(requestParameters?: DeleteCrewMemberRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<CrewMemberResponse>;
+    public deleteCrewMember(requestParameters?: DeleteCrewMemberRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CrewMemberResponse>>;
+    public deleteCrewMember(requestParameters?: DeleteCrewMemberRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CrewMemberResponse>>;
+    public deleteCrewMember(requestParameters?: DeleteCrewMemberRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         const id = requestParameters?.id;
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteEquipment.');
+            throw new Error('Required parameter id was null or undefined when calling deleteCrewMember.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -251,8 +251,8 @@ export class EquipmentService {
             }
         }
 
-        let localVarPath = `/api/Equipment/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<EquipmentResponse>('delete', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/CrewMember/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<CrewMemberResponse>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -266,21 +266,21 @@ export class EquipmentService {
     }
 
     /**
-     * Edit equipment
-     * Edit one specific equipment
+     * Edit CrewMember
+     * Edit one specific CrewMember
      * @param requestParameters
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public editEquipment(requestParameters?: EditEquipmentRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<EquipmentResponse>;
-    public editEquipment(requestParameters?: EditEquipmentRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EquipmentResponse>>;
-    public editEquipment(requestParameters?: EditEquipmentRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<EquipmentResponse>>;
-    public editEquipment(requestParameters?: EditEquipmentRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public editCrewMember(requestParameters?: EditCrewMemberRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<CrewMemberResponse>;
+    public editCrewMember(requestParameters?: EditCrewMemberRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CrewMemberResponse>>;
+    public editCrewMember(requestParameters?: EditCrewMemberRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CrewMemberResponse>>;
+    public editCrewMember(requestParameters?: EditCrewMemberRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         const id = requestParameters?.id;
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling editEquipment.');
+            throw new Error('Required parameter id was null or undefined when calling editCrewMember.');
         }
-        const editEquipmentRequest = requestParameters?.editEquipmentRequest;
+        const editCrewMemberRequest = requestParameters?.editCrewMemberRequest;
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -332,11 +332,11 @@ export class EquipmentService {
             }
         }
 
-        let localVarPath = `/api/Equipment/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<EquipmentResponse>('put', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/CrewMember/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<CrewMemberResponse>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: editEquipmentRequest,
+                body: editCrewMemberRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -348,19 +348,19 @@ export class EquipmentService {
     }
 
     /**
-     * Get equipment
-     * Get one specific equipment
+     * Get CrewMember
+     * Get one specific CrewMember
      * @param requestParameters
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getEquipment(requestParameters?: GetEquipmentRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<EquipmentResponse>;
-    public getEquipment(requestParameters?: GetEquipmentRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EquipmentResponse>>;
-    public getEquipment(requestParameters?: GetEquipmentRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<EquipmentResponse>>;
-    public getEquipment(requestParameters?: GetEquipmentRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getCrewMember(requestParameters?: GetCrewMemberRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<CrewMemberResponse>;
+    public getCrewMember(requestParameters?: GetCrewMemberRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CrewMemberResponse>>;
+    public getCrewMember(requestParameters?: GetCrewMemberRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CrewMemberResponse>>;
+    public getCrewMember(requestParameters?: GetCrewMemberRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         const id = requestParameters?.id;
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getEquipment.');
+            throw new Error('Required parameter id was null or undefined when calling getCrewMember.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -401,8 +401,8 @@ export class EquipmentService {
             }
         }
 
-        let localVarPath = `/api/Equipment/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<EquipmentResponse>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/CrewMember/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<CrewMemberResponse>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -416,15 +416,15 @@ export class EquipmentService {
     }
 
     /**
-     * Get equipments
-     * Get all equipments
+     * Get CrewMembers
+     * Get all CrewMembers
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getEquipments(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<EquipmentResponse>>;
-    public getEquipments(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<EquipmentResponse>>>;
-    public getEquipments(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<EquipmentResponse>>>;
-    public getEquipments(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getCrewMembers(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<CrewMemberResponse>>;
+    public getCrewMembers(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<CrewMemberResponse>>>;
+    public getCrewMembers(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<CrewMemberResponse>>>;
+    public getCrewMembers(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -464,8 +464,8 @@ export class EquipmentService {
             }
         }
 
-        let localVarPath = `/api/Equipment`;
-        return this.httpClient.request<Array<EquipmentResponse>>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/CrewMember`;
+        return this.httpClient.request<Array<CrewMemberResponse>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -479,19 +479,19 @@ export class EquipmentService {
     }
 
     /**
-     * Patch equipment
-     * Patch one specific equipment
+     * Patch crewMember
+     * Patch one specific crewMember
      * @param requestParameters
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public patchEquipment(requestParameters?: PatchEquipmentRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<EquipmentResponse>;
-    public patchEquipment(requestParameters?: PatchEquipmentRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EquipmentResponse>>;
-    public patchEquipment(requestParameters?: PatchEquipmentRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<EquipmentResponse>>;
-    public patchEquipment(requestParameters?: PatchEquipmentRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public patchCrewMember(requestParameters?: PatchCrewMemberRequestParams, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<CrewMemberResponse>;
+    public patchCrewMember(requestParameters?: PatchCrewMemberRequestParams, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CrewMemberResponse>>;
+    public patchCrewMember(requestParameters?: PatchCrewMemberRequestParams, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CrewMemberResponse>>;
+    public patchCrewMember(requestParameters?: PatchCrewMemberRequestParams, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         const id = requestParameters?.id;
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling patchEquipment.');
+            throw new Error('Required parameter id was null or undefined when calling patchCrewMember.');
         }
         const operation = requestParameters?.operation;
 
@@ -545,8 +545,8 @@ export class EquipmentService {
             }
         }
 
-        let localVarPath = `/api/Equipment/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<EquipmentResponse>('patch', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/CrewMember/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<CrewMemberResponse>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: operation,

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Signal, signal } from '@angular/core';
+import { Component, OnInit, Signal, inject, signal } from '@angular/core';
+import { ShipService } from '../../api';
 // import { Resources } from '../../models/resources.model';
 
 interface CrewMember {
@@ -16,13 +17,15 @@ interface Upgrade {
 }
 
 @Component({
-  selector: 'po-boat',
-  templateUrl: './boat.component.html',
+  selector: 'po-ship',
+  templateUrl: './ship.component.html',
   standalone: true,
-  styleUrls: ['./boat.component.scss'],
+  styleUrls: ['./ship.component.scss'],
   imports: [CommonModule]
 })
-export class BoatComponent {
+export class ShipComponent implements OnInit {
+  private readonly shipService = inject(ShipService);
+
   boatHealth: Signal<number> = signal(25);
 
   crewMembers: Signal<CrewMember[]> = signal([
@@ -51,6 +54,12 @@ export class BoatComponent {
       resourceType: 'iron'
     }
   ];
+
+  ngOnInit(): void {
+    this.shipService.getShips().subscribe((response) => {
+      console.log(response);
+    });
+  }
 
   applyUpgrade(upgrade: Upgrade) {
     console.log(`Applying upgrade: ${upgrade.name}`);

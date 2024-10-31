@@ -8,12 +8,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CrewMemberResponse } from './crew-member-response';
 
 
-export type EquipmentType = 'Helmet' | 'Chestplate';
-
-export const EquipmentType = {
-    Helmet: 'Helmet' as EquipmentType,
-    Chestplate: 'Chestplate' as EquipmentType
-};
+export interface CrewResponse { 
+    id: string;
+    name: string;
+    crewMembers: Array<CrewMemberResponse>;
+}
 

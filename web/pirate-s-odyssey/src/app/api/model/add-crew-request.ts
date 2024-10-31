@@ -10,10 +10,7 @@
  */
 
 
-export type EquipmentType = 'Helmet' | 'Chestplate';
-
-export const EquipmentType = {
-    Helmet: 'Helmet' as EquipmentType,
-    Chestplate: 'Chestplate' as EquipmentType
-};
+export interface AddCrewRequest { 
+    name: string;
+}
 

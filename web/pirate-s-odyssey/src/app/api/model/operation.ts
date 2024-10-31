@@ -10,10 +10,10 @@
  */
 
 
-export type EquipmentType = 'Helmet' | 'Chestplate';
-
-export const EquipmentType = {
-    Helmet: 'Helmet' as EquipmentType,
-    Chestplate: 'Chestplate' as EquipmentType
-};
+export interface Operation { 
+    value?: any | null;
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+}
 

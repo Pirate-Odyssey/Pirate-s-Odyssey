@@ -9,16 +9,18 @@
  * Do not edit the class manually.
  */
 import { ItemRarity } from './item-rarity';
+import { ItemStatResponse } from './item-stat-response';
 import { ItemType } from './item-type';
 
 
 export interface ItemResponse { 
-    id?: string;
-    name?: string | null;
-    description?: string | null;
-    rarity?: ItemRarity;
-    price?: number;
-    type?: ItemType;
+    id: string;
+    name: string;
+    description: string;
+    rarity: ItemRarity;
+    price: number;
+    type: ItemType;
+    stats: Array<ItemStatResponse>;
 }
 export namespace ItemResponse {
 }
