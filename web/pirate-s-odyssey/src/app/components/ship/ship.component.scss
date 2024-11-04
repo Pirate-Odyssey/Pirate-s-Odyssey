@@ -1,0 +1,138 @@
+$primary-color: #5EA6C2;
+$secondary-color: #40bdca;
+$background-color: linear-gradient(135deg, #f4e4b2, #d4b78f, #b08c66);
+$text-color: #333;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-time: 0.3s;
+
+.boat-page {
+  padding: 20px;
+  background: $background-color;
+  color: $text-color;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h2 {
+    color: $primary-color;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .boat-status,
+  .boat-upgrades,
+  .crew-members {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    transition: transform $transition-time, box-shadow $transition-time;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .boat-status {
+    .health-bar {
+      background: $secondary-color;
+      border-radius: 10px;
+      height: 20px;
+      overflow: hidden;
+      margin-bottom: 10px;
+
+      .health {
+        background: $primary-color;
+        height: 100%;
+        transition: width $transition-time;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .boat-upgrades {
+    .upgrades-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      .upgrade {
+        background-color: #f0f9ff;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: $box-shadow;
+        width: 200px;
+        transition: transform $transition-time, box-shadow $transition-time;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h3 {
+          color: $secondary-color;
+          font-size: 20px;
+          margin-bottom: 5px;
+        }
+
+        p {
+          font-size: 16px;
+          margin: 5px 0;
+        }
+
+        button {
+          background-color: $primary-color;
+          color: white;
+          border: none;
+          padding: 8px 12px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background $transition-time;
+
+          &:hover {
+            background-color: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .crew-members {
+    .crew-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      .crew-member {
+        background-color: #f0f9ff;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: $box-shadow;
+        width: 150px;
+        transition: transform $transition-time, box-shadow $transition-time;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h3 {
+          color: $secondary-color;
+          font-size: 18px;
+          margin-bottom: 5px;
+        }
+
+        p {
+          font-size: 16px;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+}

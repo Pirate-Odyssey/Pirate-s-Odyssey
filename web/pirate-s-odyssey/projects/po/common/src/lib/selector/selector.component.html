@@ -1,0 +1,7 @@
+<div class="selector-container">
+  <select [ngModel]="selectedValue" (ngModelChange)="onSelect($event)">
+    <option *ngFor="let option of options" [ngValue]="option">
+      {{ getDisplayText(option) }}
+    </option>
+  </select>
+</div>
