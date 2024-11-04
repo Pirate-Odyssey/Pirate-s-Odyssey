@@ -1,14 +1,13 @@
-import { Component, computed, signal } from '@angular/core';
-import { SelectorComponent } from '../../../../projects/po/common/src/lib/selector/selector.component';
 import { CommonModule } from '@angular/common';
-import { ItemContainerComponent } from '../../../../projects/po/common/src/lib/item-container/item-container.component';
+import { Component, computed, signal } from '@angular/core';
+import { ItemContainerComponent, SelectorComponent } from '@po/common';
 
 @Component({
   selector: 'po-shop',
   templateUrl: './shop.component.html',
   standalone: true,
   styleUrls: ['./shop.component.scss'],
-  imports: [CommonModule, SelectorComponent, ItemContainerComponent]
+  imports: [CommonModule, ItemContainerComponent, SelectorComponent]
 })
 export class ShopComponent {
   // Les options disponibles dans le shop
@@ -85,8 +84,6 @@ export class ShopComponent {
   filteredItems = computed(() =>
     this.shopItems().filter((item) => item.itemName === this.selectedOption())
   );
-
-  constructor() {}
 
   // Méthode appelée lors du changement de sélection
   onSelectionChange(option: string) {

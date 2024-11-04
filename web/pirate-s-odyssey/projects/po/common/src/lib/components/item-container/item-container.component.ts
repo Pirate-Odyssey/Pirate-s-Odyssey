@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'lib-item-container',
+  selector: 'poc-item-container',
   standalone: true,
-  imports: [],
   templateUrl: './item-container.component.html',
   styleUrl: './item-container.component.scss'
 })
@@ -18,7 +17,7 @@ export class ItemContainerComponent {
   @Input() buttonText = 'Buy';
 
   // Méthode pour réagir au clic du bouton (ici, on log l'action)
-  onButtonClick() {
+  onButtonClick(): void {
     console.log(`${this.buttonText} action triggered for ${this.itemName}`);
   }
 }
