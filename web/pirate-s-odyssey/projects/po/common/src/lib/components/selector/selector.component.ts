@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'lib-selector',
+  selector: 'poc-selector',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './selector.component.html',

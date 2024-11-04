@@ -3,19 +3,18 @@
   <h2>Buy equipment</h2>
 
   <div class="row">
-    <lib-selector
+    <poc-selector
       [options]="shopOptions"
       [selectedValue]="selectedOption()"
       (selectionChange)="onSelectionChange($event)"
-    >
-    </lib-selector>
+    />
 
-    <lib-item-container
-      *ngFor="let item of filteredItems()"
-      [itemName]="item.itemName"
-      [itemDescription]="item.itemDescription"
-      [buttonText]="item.buttonText"
-    >
-    </lib-item-container>
+    @for (item of filteredItems(); track $index) {
+      <poc-item-container
+        [itemName]="item.itemName"
+        [itemDescription]="item.itemDescription"
+        [buttonText]="item.buttonText"
+      />
+    }
   </div>
 </div>

@@ -115,7 +115,7 @@
       "projectType": "library",
       "root": "projects/po/common",
       "sourceRoot": "projects/po/common/src",
-      "prefix": "lib",
+      "prefix": "poc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
