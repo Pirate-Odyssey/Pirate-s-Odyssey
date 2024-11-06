@@ -38,6 +38,7 @@
         public async Task<IEnumerable<ItemResponse>> GetItemsAsync()
         {
             var spec = new FindItemSpecification();
+            spec.AddInclude(i => i.Stats);
             var items = await itemRepository.FindAsync(spec);
             return items.Select(mapper.Map<ItemResponse>);
         }
