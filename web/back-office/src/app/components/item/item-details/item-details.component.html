@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Item</h2>
+    <section id="information">
+      <h3>General information</h3>
+      <div>
+        <p>Name: {{ item()?.name }}</p>
+        <p>Price: {{ item()?.price }}</p>
+        <p>Rarity: {{ item()?.rarity }}</p>
+        <p>Description: {{ item()?.description }}</p>
+      </div>
+      <mat-divider />
+    </section>
+
+    <section id="stats">
+      <h3>Stats</h3>
+      <div>
+        <div>
+          <button mat-icon-button color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <div>
+          <mat-list role="stats list">
+            @for (stat of item()?.stats; track stat.id; let last = $last) {
+              <mat-list-item role="stat item">
+                <div matListItemLine>{{ stat.stats }}: {{ stat.value }}</div>
+                <div matListItemMeta class="actions">
+                  <button mat-icon-button color="accent">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+              @if (!last) {
+                <mat-divider />
+              }
+            } @empty {
+              <p>No stat for this item</p>
+            }
+          </mat-list>
+        </div>
+      </div>
+      <mat-divider />
+    </section>
+
+    <div>
+      <button mat-raised-button [routerLink]="['../']">Back</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<bo-side-content>
+  <footer>je suis en bas</footer>
+  <span>coucou c'est moi mon chou</span>
+</bo-side-content>

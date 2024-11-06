@@ -30,6 +30,7 @@
         public async Task<ItemResponse> GetItemAsync(GetItemByIdRequest request)
         {
             var spec = new FindItemByIdSpecification(request.Id);
+            spec.AddInclude(i => i.Stats);
             var item = await itemRepository.FindOneAsync(spec);
             return mapper.Map<ItemResponse>(item);
         }
@@ -37,7 +38,6 @@
         public async Task<IEnumerable<ItemResponse>> GetItemsAsync()
         {
             var spec = new FindItemSpecification();
-            spec.AddInclude(i => i.Stats);
             var items = await itemRepository.FindAsync(spec);
             return items.Select(mapper.Map<ItemResponse>);
         }
