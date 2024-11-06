@@ -2,17 +2,3 @@
   display: block;
   height: 100%;
 }
-
-.content {
-  background-color: unset;
-}
-
-.actions {
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-::ng-deep .mat-mdc-list-item:hover .actions {
-  opacity: 1;
-  transition: opacity 1s;
-}

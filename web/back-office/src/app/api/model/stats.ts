@@ -10,7 +10,7 @@
  */
 
 
-export type Stats = 'Strength' | 'Constitution' | 'Dexterity' | 'Speed' | 'Intelligence' | 'Wisdom' | 'Charisma';
+export type Stats = 'Strength' | 'Constitution' | 'Dexterity' | 'Speed' | 'Intelligence' | 'Wisdom' | 'Charism';
 
 export const Stats = {
     Strength: 'Strength' as Stats,
@@ -19,6 +19,6 @@ export const Stats = {
     Speed: 'Speed' as Stats,
     Intelligence: 'Intelligence' as Stats,
     Wisdom: 'Wisdom' as Stats,
-    Charisma: 'Charisma' as Stats
+    Charism: 'Charism' as Stats
 };
 

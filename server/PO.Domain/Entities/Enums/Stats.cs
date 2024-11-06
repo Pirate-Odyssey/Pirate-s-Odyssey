@@ -8,6 +8,6 @@
         Speed, // attack speed and movement speed
         Intelligence, // magic and potions
         Wisdom, // find hidden objects and craft
-        Charisma // purchasing/sales and recruitment
+        Charism // purchasing/sales and recruitment
     }
 }
