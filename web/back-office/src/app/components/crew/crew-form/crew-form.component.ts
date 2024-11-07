@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { FormModalComponent } from '../../../../../projects/bo/common/src/lib/components/form-modal/form-modal.component';
 import { CrewResponse } from '../../../api';
+import { FormModalComponent } from '@bo/common';
 
 @Component({
   selector: 'bo-crew-form',

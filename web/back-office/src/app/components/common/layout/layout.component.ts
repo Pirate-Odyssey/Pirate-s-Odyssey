@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -14,6 +14,7 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { routes } from '../../../app.routes';
 import { ThemeService, ThemeType } from '../../../services/theme.service';
+import { SideContentService } from '../../../services/side-content.service';
 
 @Component({
   selector: 'bo-layout',
@@ -21,6 +22,7 @@ import { ThemeService, ThemeType } from '../../../services/theme.service';
   styleUrl: './layout.component.scss',
   standalone: true,
   imports: [
+    NgTemplateOutlet,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -36,6 +38,7 @@ import { ThemeService, ThemeType } from '../../../services/theme.service';
 export class LayoutComponent {
   private readonly breakpointObserver = inject(BreakpointObserver);
   public readonly themeService = inject(ThemeService);
+  public readonly sideContentService = inject(SideContentService);
 
   rootRoutes = routes.filter((r) => r.path);
 

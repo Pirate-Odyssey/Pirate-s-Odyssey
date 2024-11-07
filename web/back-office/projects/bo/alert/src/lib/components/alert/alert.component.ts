@@ -10,7 +10,7 @@ import { AlertData } from './alert-data.interface';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'alert-alert',
+  selector: 'boa-alert',
   standalone: true,
   imports: [MatIconModule, MatSnackBarModule, MatButtonModule],
   templateUrl: './alert.component.html',
