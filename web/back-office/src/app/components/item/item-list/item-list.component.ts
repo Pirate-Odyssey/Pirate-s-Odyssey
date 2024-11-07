@@ -1,7 +1,9 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AlertService } from '@bo/alert';
 import { ListComponent } from '@bo/common';
+import { connect } from 'ngxtension/connect';
 
 import {
   AddItemRequest,
@@ -18,21 +20,22 @@ import { ItemFormComponent } from '../item-form/item-form.component';
   standalone: true,
   imports: [ListComponent]
 })
-export class ItemListComponent implements OnInit {
+export class ItemListComponent {
   private readonly itemService = inject(ItemService);
   private readonly dialog = inject(MatDialog);
   private readonly alertService = inject(AlertService);
+  private readonly router = inject(Router);
 
   public data = signal<ItemResponse[]>([]);
 
   displayedColumns = ['name', 'type', 'rarity', 'price', 'description'];
 
-  ngOnInit(): void {
-    this.itemService.getItems().subscribe({
-      next: (response) => {
-        this.data.set(response);
-      }
-    });
+  constructor() {
+    connect(this.data, this.itemService.getItems());
+  }
+
+  readItem(id: string): void {
+    void this.router.navigate(['item', id]);
   }
 
   addItem(): void {

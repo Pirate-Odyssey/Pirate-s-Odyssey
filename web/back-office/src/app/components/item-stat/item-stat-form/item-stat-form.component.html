@@ -1,0 +1,17 @@
+<common-form-modal title="Item Stat" (onSubmit)="onSubmit()">
+  <form [formGroup]="formGroup" class="form">
+    <mat-form-field>
+      <mat-label>Stat</mat-label>
+      <mat-select formControlName="stats">
+        @for (stat of stats | keyvalue; track $index) {
+          <mat-option [value]="stat.value">{{ stat.value }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Value</mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+  </form>
+</common-form-modal>

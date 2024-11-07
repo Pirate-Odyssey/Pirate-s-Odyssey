@@ -1,6 +1,7 @@
 <common-list
   [displayedColumns]="displayedColumns"
   [data]="data()"
+  (readItem)="readItem($event)"
   (addItem)="addItem()"
   (editItem)="editItem($event)"
   (deleteItem)="deleteItem($event)"

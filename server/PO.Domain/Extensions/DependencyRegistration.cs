@@ -10,6 +10,7 @@ namespace PO.Domain.Extensions
         {
             return services
                 .AddScoped<IItemService, ItemService>()
+                .AddScoped<IItemStatService, ItemStatService>()
                 .AddScoped<IWeaponService, WeaponService>()
                 .AddScoped<IEquipmentService, EquipmentService>()
                 .AddScoped<IShipService, ShipService>()

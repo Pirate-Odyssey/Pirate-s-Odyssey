@@ -1,0 +1,26 @@
+<boc-details title="Item">
+  <section id="information">
+    <h3>General information</h3>
+    <div>
+      <p>Name: {{ item()?.name }}</p>
+      <p>Price: {{ item()?.price }}</p>
+      <p>Rarity: {{ item()?.rarity }}</p>
+      <p>Description: {{ item()?.description }}</p>
+    </div>
+    <mat-divider />
+  </section>
+
+  <section id="stats">
+    @if (item() !== null) {
+      <bo-item-stat-list
+        [(stats)]="item()!.stats"
+        [itemId]="item()!.id"
+      ></bo-item-stat-list>
+    }
+  </section>
+</boc-details>
+
+<bo-side-content>
+  <footer>je suis en bas</footer>
+  <span>coucou c'est moi mon chou, ca va ?</span>
+</bo-side-content>

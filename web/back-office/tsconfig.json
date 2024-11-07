@@ -19,6 +19,7 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",

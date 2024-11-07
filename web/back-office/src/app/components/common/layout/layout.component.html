@@ -65,10 +65,28 @@
         </div>
       </div>
     </mat-toolbar>
-    <div class="sidenav-scroll-wrapper">
-      <div class="sidenav-content">
-        <ng-content></ng-content>
-      </div>
-    </div>
+    <mat-drawer-container>
+      <mat-drawer
+        class="sidenav"
+        fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        mode="side"
+        position="end"
+        [opened]="
+          sideContentService.ref() !== null && (isHandset$ | async) === false
+        "
+      >
+        <ng-container
+          [ngTemplateOutlet]="sideContentService.ref()"
+        ></ng-container>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div class="sidenav-scroll-wrapper">
+          <div class="sidenav-content">
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

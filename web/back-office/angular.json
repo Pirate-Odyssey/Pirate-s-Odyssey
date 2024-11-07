@@ -113,7 +113,7 @@
       },
       "root": "projects/bo/common",
       "sourceRoot": "projects/bo/common/src",
-      "prefix": "common",
+      "prefix": "boc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -158,7 +158,7 @@
       },
       "root": "projects/bo/alert",
       "sourceRoot": "projects/bo/alert/src",
-      "prefix": "alert",
+      "prefix": "boa",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
