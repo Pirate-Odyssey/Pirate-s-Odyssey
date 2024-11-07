@@ -16,6 +16,7 @@ import { startWith, switchMap } from 'rxjs';
 import { ItemService } from '../../../api';
 import { SideContentComponent } from '../../common/side-content/side-content.component';
 import { ItemStatListComponent } from '../../item-stat/item-stat-list/item-stat-list.component';
+import { DetailsComponent } from '../../../../../projects/bo/common/src/lib/components/details/details.component';
 
 @Component({
   selector: 'bo-item-details',
@@ -33,7 +34,8 @@ import { ItemStatListComponent } from '../../item-stat/item-stat-list/item-stat-
     MatIconModule,
     MatListModule,
     SideContentComponent,
-    ItemStatListComponent
+    ItemStatListComponent,
+    DetailsComponent
   ],
   templateUrl: './item-details.component.html',
   styleUrl: './item-details.component.scss'

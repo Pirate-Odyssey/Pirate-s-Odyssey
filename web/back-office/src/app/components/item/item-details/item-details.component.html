@@ -1,30 +1,24 @@
-<mat-card>
-  <mat-card-content>
-    <h2>Item</h2>
-    <section id="information">
-      <h3>General information</h3>
-      <div>
-        <p>Name: {{ item()?.name }}</p>
-        <p>Price: {{ item()?.price }}</p>
-        <p>Rarity: {{ item()?.rarity }}</p>
-        <p>Description: {{ item()?.description }}</p>
-      </div>
-      <mat-divider />
-    </section>
+<boc-details title="Item">
+  <section id="information">
+    <h3>General information</h3>
+    <div>
+      <p>Name: {{ item()?.name }}</p>
+      <p>Price: {{ item()?.price }}</p>
+      <p>Rarity: {{ item()?.rarity }}</p>
+      <p>Description: {{ item()?.description }}</p>
+    </div>
+    <mat-divider />
+  </section>
 
-    <section id="stats">
-      @if (item() !== null) {
-        <bo-item-stat-list
-          [(stats)]="item()!.stats"
-          [itemId]="item()!.id"
-        ></bo-item-stat-list>
-      }
-    </section>
-  </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-raised-button [routerLink]="['../']">Back</button>
-  </mat-card-actions>
-</mat-card>
+  <section id="stats">
+    @if (item() !== null) {
+      <bo-item-stat-list
+        [(stats)]="item()!.stats"
+        [itemId]="item()!.id"
+      ></bo-item-stat-list>
+    }
+  </section>
+</boc-details>
 
 <bo-side-content>
   <footer>je suis en bas</footer>
