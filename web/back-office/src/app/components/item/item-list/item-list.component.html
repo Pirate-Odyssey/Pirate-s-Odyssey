@@ -1,8 +1,15 @@
-<common-list
+<boc-list
   [displayedColumns]="displayedColumns"
   [data]="data()"
+  (selectItem)="selectItem($event)"
   (readItem)="readItem($event)"
   (addItem)="addItem()"
   (editItem)="editItem($event)"
   (deleteItem)="deleteItem($event)"
-></common-list>
+></boc-list>
+
+@if (selectedItem()) {
+  <bo-side-content>
+    {{ selectedItem() | json }}
+  </bo-side-content>
+}
