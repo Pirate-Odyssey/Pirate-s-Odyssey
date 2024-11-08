@@ -11,6 +11,15 @@ var apiService = builder.AddProject<Projects.PO_Api>("apiservice")
 builder.AddProject<Projects.PO_MigrationService>("migrations")
     .WithReference(sqldb);
 
+builder.AddSpringApp(
+    "javaapiservice",
+    new JavaAppContainerResourceOptions
+    {
+        ContainerImageName = "flopes/spring-boot-docker",
+        OtelAgentPath = Path.Combine(AppContext.BaseDirectory, ".agents", "opentelemetry-javaagent.jar")
+    })
+    .WithReference(sqldb);
+
 builder.AddNpmApp("pirate-s-odyssey", "../web/pirate-s-odyssey")
     .WithReference(cache)
     .WithReference(apiService)

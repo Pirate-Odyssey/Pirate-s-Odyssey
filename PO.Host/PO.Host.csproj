@@ -29,6 +29,13 @@
     <PackageReference Include="Aspire.Hosting.NodeJs" Version="8.2.2" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="8.2.2" />
     <PackageReference Include="Aspire.Hosting.SqlServer" Version="8.2.2" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Java" Version="8.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="agents\opentelemetry-javaagent.jar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
