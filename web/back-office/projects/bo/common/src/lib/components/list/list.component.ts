@@ -1,13 +1,13 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { TitleCasePipe } from '@angular/common';
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
-  Output,
   ViewChild,
   computed,
   effect,
-  input
+  input,
+  output
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -46,26 +46,31 @@ export class ListComponent<T = any> implements AfterViewInit {
 
   public columns = computed(() => [...this.displayedColumns(), 'action']);
 
-  @Output()
-  public readItem = new EventEmitter<string>();
+  public selectItem = output<string | undefined>();
 
-  @Output()
-  public addItem = new EventEmitter<void>();
+  public readItem = output<string>();
 
-  @Output()
-  public editItem = new EventEmitter<string>();
+  public addItem = output();
 
-  @Output()
-  public deleteItem = new EventEmitter<string>();
+  public editItem = output<string>();
+
+  public deleteItem = output<string>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<T>;
   dataSource = new MatTableDataSource<T>();
 
+  selection = new SelectionModel<T>(false);
+
   constructor() {
     effect(() => {
       this.dataSource.data = this.data();
+    });
+    this.selection.changed.subscribe((value) => {
+      this.selectItem.emit(
+        (value.added[0]?.['id' as keyof T] as string) ?? undefined
+      );
     });
   }
 
@@ -84,7 +89,7 @@ export class ListComponent<T = any> implements AfterViewInit {
     }
   }
 
-  getType(item: any) {
+  getType(item?: any): string {
     return typeof item;
   }
 }

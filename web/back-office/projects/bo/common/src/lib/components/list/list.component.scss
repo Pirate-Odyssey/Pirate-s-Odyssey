@@ -12,3 +12,12 @@
   opacity: 1;
   transition: opacity 1s;
 }
+
+.row-selected {
+  font-weight: bold;
+
+  .actions {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+}
