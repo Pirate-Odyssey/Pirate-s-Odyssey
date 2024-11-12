@@ -10,14 +10,14 @@
     flex-wrap: wrap;
     gap: 15px;
 
-    lib-selector {
+    poc-selector {
       min-width: 20vw;
       width: 20vw;
       padding: 16px;
       margin-right: 10px;
     }
 
-    lib-item-container {
+    poc-item-container {
       flex: 1 1 calc(25% - 20px);
       box-sizing: border-box;
       max-width: calc(25% - 20px);
