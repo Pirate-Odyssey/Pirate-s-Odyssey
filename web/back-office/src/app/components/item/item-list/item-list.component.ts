@@ -1,9 +1,12 @@
+import { JsonPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AlertService } from '@bo/alert';
 import { ListComponent } from '@bo/common';
 import { connect } from 'ngxtension/connect';
+import { derivedFrom } from 'ngxtension/derived-from';
+import { of, pipe, startWith, switchMap } from 'rxjs';
 
 import {
   AddItemRequest,
@@ -11,6 +14,7 @@ import {
   ItemResponse,
   ItemService
 } from '../../../api';
+import { SideContentComponent } from '../../common/side-content/side-content.component';
 import { ItemFormComponent } from '../item-form/item-form.component';
 
 @Component({
@@ -18,7 +22,7 @@ import { ItemFormComponent } from '../item-form/item-form.component';
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss',
   standalone: true,
-  imports: [ListComponent]
+  imports: [ListComponent, SideContentComponent, JsonPipe]
 })
 export class ItemListComponent {
   private readonly itemService = inject(ItemService);
@@ -28,10 +32,29 @@ export class ItemListComponent {
 
   public data = signal<ItemResponse[]>([]);
 
+  private selectedItemId = signal<string | null>(null);
+  public selectedItem = derivedFrom(
+    [this.selectedItemId],
+    pipe(
+      switchMap(([id]) =>
+        id != null
+          ? this.itemService.getItem({
+              id
+            })
+          : of(null)
+      ),
+      startWith(null)
+    )
+  );
+
   displayedColumns = ['name', 'type', 'rarity', 'price', 'description'];
 
   constructor() {
     connect(this.data, this.itemService.getItems());
+  }
+
+  selectItem(id: string | undefined) {
+    this.selectedItemId.set(id ?? null);
   }
 
   readItem(id: string): void {

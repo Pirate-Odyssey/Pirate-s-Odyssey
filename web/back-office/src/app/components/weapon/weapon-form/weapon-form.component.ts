@@ -53,6 +53,8 @@ export class WeaponFormComponent implements OnInit {
 
   protected rarities = ItemRarity;
 
+  isUpdate = !!this.data;
+
   ngOnInit(): void {
     if (this.data) {
       this.formGroup.setValue({

@@ -46,6 +46,8 @@ export class ShipFormComponent implements OnInit {
     ])
   });
 
+  isUpdate = !!this.data;
+
   ngOnInit(): void {
     if (this.data) {
       this.formGroup.setValue({

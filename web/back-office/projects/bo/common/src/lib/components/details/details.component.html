@@ -3,7 +3,7 @@
     <h2>{{ title() }}</h2>
     <ng-content></ng-content>
   </mat-card-content>
-  <mat-card-actions align="end">
+  <mat-card-actions [align]="'end'">
     <button mat-raised-button [routerLink]="['../']">Back</button>
   </mat-card-actions>
 </mat-card>
