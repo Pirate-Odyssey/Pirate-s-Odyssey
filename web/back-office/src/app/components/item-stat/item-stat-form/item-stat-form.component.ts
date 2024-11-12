@@ -34,7 +34,9 @@ export class ItemStatFormComponent implements OnInit {
     stats: this.fb.nonNullable.control('', Validators.required)
   });
 
-  public stats = Stats;
+  protected stats = Stats;
+
+  isUpdate = !!this.data;
 
   ngOnInit(): void {
     if (this.data) {

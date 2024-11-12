@@ -1,4 +1,4 @@
-<boc-form-modal title="Ship" (onSubmit)="onSubmit()">
+<boc-form-modal title="Ship" [isUpdate]="isUpdate" (onSubmit)="onSubmit()">
   <form [formGroup]="formGroup" class="forms">
     <mat-form-field>
       <mat-label>Name</mat-label>

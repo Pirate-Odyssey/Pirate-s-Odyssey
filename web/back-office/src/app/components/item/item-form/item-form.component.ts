@@ -44,7 +44,10 @@ export class ItemFormComponent implements OnInit {
 
   protected rarities = ItemRarity;
 
+  isUpdate = !!this.data;
+
   ngOnInit(): void {
+    console.log(this.data);
     if (this.data) {
       this.formGroup.setValue({
         description: this.data.description,

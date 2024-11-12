@@ -1,4 +1,4 @@
-<boc-form-modal title="Equipment" (onSubmit)="onSubmit()">
+<boc-form-modal title="Equipment" [isUpdate]="isUpdate" (onSubmit)="onSubmit()">
   <form [formGroup]="formGroup" class="forms">
     <div class="form-top">
       <div class="form-part">
