@@ -2,9 +2,41 @@
   {
     "Id": "003613d5-0c80-40a9-9fbc-bd7a98cb5b51",
     "Name": "Rock",
-    "Description": "It's just a simple rock'",
+    "Description": "It's just a simple rock",
     "Rarity": "Poor",
     "Price": 1,
-    "Type":  "trash"
+    "Type": "trash"
+  },
+  {
+    "Id": "9af3801f-f05b-4362-b2a1-7a3bac192932",
+    "Name": "wooden stick",
+    "Description": "It's just a simple stick",
+    "Rarity": "Poor",
+    "Price": 1,
+    "Type": "trash"
+  },
+  {
+    "Id": "e1045b0a-cc56-4a68-83b2-ad6199691536",
+    "Name": "Slime ball",
+    "Description": "It's just a simple slime ball",
+    "Rarity": "Poor",
+    "Price": 1,
+    "Type": "trash"
+  },
+  {
+    "Id": "dc2fafe9-f760-4091-b338-b0ed1c6bc881",
+    "Name": "Rock",
+    "Description": "The rock",
+    "Rarity": "Common",
+    "Price": 1,
+    "Type": "trash"
+  },
+  {
+    "Id": "e4d6f3ac-00b1-4b33-9536-c5d47e726c89",
+    "Name": "Leaf",
+    "Description": "Magical leaf",
+    "Rarity": "Poor",
+    "Price": 1,
+    "Type": "trash"
   }
 ]

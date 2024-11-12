@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -11,6 +11,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 })
 export class FormModalComponent {
   title = input.required<string>();
+
+  isUpdate = input.required<boolean>();
+
+  actionName = computed(() => (this.isUpdate() === true ? 'Edit' : 'Add'));
 
   onSubmit = output<void>();
 }

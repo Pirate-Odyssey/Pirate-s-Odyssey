@@ -48,6 +48,8 @@ export class EquipmentFormComponent implements OnInit {
   protected rarities = ItemRarity;
   protected equipmentTypes = EquipmentType;
 
+  isUpdate = !!this.data;
+
   ngOnInit(): void {
     if (this.data) {
       this.formGroup.setValue({

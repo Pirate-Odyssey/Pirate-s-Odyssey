@@ -30,6 +30,8 @@ export class CrewFormComponent implements OnInit {
     name: this.fb.nonNullable.control('', Validators.required)
   });
 
+  isUpdate = !!this.data;
+
   ngOnInit(): void {
     if (this.data) {
       this.formGroup.setValue({

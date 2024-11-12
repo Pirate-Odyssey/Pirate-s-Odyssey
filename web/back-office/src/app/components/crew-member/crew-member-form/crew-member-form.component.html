@@ -1,8 +1,12 @@
-<common-form-modal title="Crew Member" (onSubmit)="onSubmit()">
+<boc-form-modal
+  title="Crew Member"
+  [isUpdate]="isUpdate"
+  (onSubmit)="onSubmit()"
+>
   <form [formGroup]="formGroup" class="forms">
     <mat-form-field class="field">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" />
     </mat-form-field>
   </form>
-</common-form-modal>
+</boc-form-modal>
