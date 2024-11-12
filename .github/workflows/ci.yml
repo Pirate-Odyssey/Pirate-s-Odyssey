@@ -55,13 +55,13 @@ jobs:
       run: dotnet workload install aspire
       
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore "PO.Host"
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build "PO.Host" --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test "PO.Host" --no-build --verbosity normal
 
     - name: Test
       id: test
