@@ -59,14 +59,11 @@ jobs:
       
     - name: Build
       run: dotnet build "PO.Host" --no-restore
-      
-    - name: Test
-      run: dotnet test "PO.Host" --no-build --verbosity normal
 
     - name: Test
       id: test
       # Note that the space after the last double dash (--) is intentional
-      run: dotnet test 
+      run: dotnet test "PO.Host" --no-build --verbosity normal
         --logger console --logger trx --logger html --logger GitHubActions
         --results-directory ./TestResults --blame
         -- 
