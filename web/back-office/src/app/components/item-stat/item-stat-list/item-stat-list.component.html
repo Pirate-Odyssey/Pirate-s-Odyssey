@@ -1,0 +1,34 @@
+<div class="header">
+  <h3>Stats</h3>
+  <button mat-icon-button color="primary" (click)="addItemStat()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div>
+  <mat-list role="stats list">
+    @for (stat of orderedStats(); track stat.id) {
+      <mat-list-item role="stat item">
+        <div matListItemLine>{{ stat.stats }}: {{ stat.value }}</div>
+        <div matListItemMeta class="actions">
+          <button
+            mat-icon-button
+            color="accent"
+            (click)="editItemStat(stat.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteItemStat(stat.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider />
+    } @empty {
+      <p>No stat for this item</p>
+    }
+  </mat-list>
+</div>

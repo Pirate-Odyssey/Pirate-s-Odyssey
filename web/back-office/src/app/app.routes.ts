@@ -18,6 +18,14 @@ export const routes: Routes = [
     title: 'Item'
   },
   {
+    path: 'item/:id',
+    loadComponent: () =>
+      import('./components/item/item-details/item-details.component').then(
+        (c) => c.ItemDetailsComponent
+      ),
+    title: 'Item details'
+  },
+  {
     path: 'equipment',
     loadComponent: () =>
       import(

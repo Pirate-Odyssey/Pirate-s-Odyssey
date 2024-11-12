@@ -8,7 +8,7 @@ import { ConfirmationData } from './confirmation-data.interface';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'alert-confirmation',
+  selector: 'boa-confirmation',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
   templateUrl: './confirmation.component.html',
