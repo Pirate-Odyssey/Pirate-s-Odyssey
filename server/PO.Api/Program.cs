@@ -27,6 +27,15 @@ builder.Services.AddControllers()
 
 builder.Services.AddPOContext(builder.Configuration.GetConnectionString("pirate-s-odyssey-db"));
 
+builder.Services.AddAuthentication()
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://localhost:5001";
+        options.TokenValidationParameters.ValidateAudience = false;
+    });
+
+builder.Services.AddAuthorization();
+
 // Add AutoMapper PO Profile
 builder.Services.AddMappers();
 

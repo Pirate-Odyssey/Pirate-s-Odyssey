@@ -73,6 +73,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "back-office", "web\back-off
 		SlnRelativePath = "web\back-office\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PO.IdentityServer", "server\PO.IdentityServer\PO.IdentityServer.csproj", "{6BB49BB8-40D4-4C6A-90E6-E50CF9700578}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{D4142ED1-2CDE-436B-974C-05D1B764853F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4142ED1-2CDE-436B-974C-05D1B764853F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4142ED1-2CDE-436B-974C-05D1B764853F}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6BB49BB8-40D4-4C6A-90E6-E50CF9700578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB49BB8-40D4-4C6A-90E6-E50CF9700578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB49BB8-40D4-4C6A-90E6-E50CF9700578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB49BB8-40D4-4C6A-90E6-E50CF9700578}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +154,7 @@ Global
 		{8EEB3E58-46B2-4502-AFB2-AEF42E0FCB87} = {8559DCD3-9323-4832-B1B5-BEC61A408D81}
 		{55F0EFEB-0D82-47FC-9B2B-101D36D7C3EF} = {77B872C1-B6E3-4DFE-9F90-52A3918938C7}
 		{D4142ED1-2CDE-436B-974C-05D1B764853F} = {F716BE1D-A364-4660-93E8-56FC3AF1CD67}
+		{6BB49BB8-40D4-4C6A-90E6-E50CF9700578} = {77B872C1-B6E3-4DFE-9F90-52A3918938C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B36B9E0-D15B-43B8-805A-060BE6DFCAE5}
