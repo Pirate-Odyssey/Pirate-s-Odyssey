@@ -59,6 +59,14 @@
               @case ('boolean') {
                 <mat-checkbox disabled [checked]="row[col]"></mat-checkbox>
               }
+              @case ('array') {
+                {{ row[col].length }}
+                <span [ngPlural]="row[col].length">
+                  <ng-template ngPluralCase="=0">item</ng-template>
+                  <ng-template ngPluralCase="=1">item</ng-template>
+                  <ng-template ngPluralCase="other">items</ng-template>
+                </span>
+              }
               @default {
                 {{ row[col] }}
               }

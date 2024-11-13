@@ -47,7 +47,14 @@ export class ItemListComponent {
     )
   );
 
-  displayedColumns = ['name', 'type', 'rarity', 'price', 'description'];
+  displayedColumns = [
+    'name',
+    'type',
+    'rarity',
+    'price',
+    'description',
+    'stats'
+  ];
 
   constructor() {
     connect(this.data, this.itemService.getItems());
