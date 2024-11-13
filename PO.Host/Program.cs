@@ -9,10 +9,11 @@ var sqlAuthdb = sql.AddDatabase("auth-db");
 var apiService = builder.AddProject<Projects.PO_Api>("apiservice")
     .WithReference(sqldb);
 
-builder.AddProject<Projects.PO_MigrationService>("migrations")
-    .WithReference(sqldb);
-
 builder.AddProject<Projects.PO_IdentityServer>("identityServer")
+    .WithReference(sqlAuthdb);
+
+builder.AddProject<Projects.PO_MigrationService>("migrations")
+    .WithReference(sqldb)
     .WithReference(sqlAuthdb);
 
 builder.AddNpmApp("pirate-s-odyssey", "../web/pirate-s-odyssey")

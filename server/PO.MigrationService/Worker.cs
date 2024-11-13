@@ -1,8 +1,11 @@
+using Duende.IdentityServer.EntityFramework.DbContexts;
+using Duende.IdentityServer.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using PO.Infrastructure;
+using PO.MigrationService.Data;
 using System.Diagnostics;
 
 namespace PO.MigrationService
@@ -21,11 +24,20 @@ namespace PO.MigrationService
             try
             {
                 using var scope = serviceProvider.CreateScope();
-                var dbContext = scope.ServiceProvider.GetRequiredService<PirateOdysseyContext>();
+                var apidbContext = scope.ServiceProvider.GetRequiredService<PirateOdysseyContext>();
+                var grantContext = scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>();
+                var configContext = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
 
-                await EnsureDatabaseAsync(dbContext, cancellationToken);
-                await RunMigrationAsync(dbContext, cancellationToken);
-                await SeedDataAsync(dbContext, cancellationToken);
+                await EnsureDatabaseAsync(apidbContext, cancellationToken);
+                await EnsureDatabaseAsync(grantContext, cancellationToken);
+                await EnsureDatabaseAsync(configContext, cancellationToken);
+
+                await RunMigrationAsync(apidbContext, cancellationToken);
+                await RunMigrationAsync(grantContext, cancellationToken);
+                await RunMigrationAsync(configContext, cancellationToken);
+
+                await InitializeConfigDatabaseAsync(configContext, cancellationToken);
+                await SeedApiDataAsync(apidbContext, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -36,7 +48,7 @@ namespace PO.MigrationService
             hostApplicationLifetime.StopApplication();
         }
 
-        private static async Task EnsureDatabaseAsync(PirateOdysseyContext dbContext, CancellationToken cancellationToken)
+        private static async Task EnsureDatabaseAsync(DbContext dbContext, CancellationToken cancellationToken)
         {
             var dbCreator = dbContext.GetService<IRelationalDatabaseCreator>();
 
@@ -52,17 +64,16 @@ namespace PO.MigrationService
             });
         }
 
-        private static async Task RunMigrationAsync(PirateOdysseyContext dbContext, CancellationToken cancellationToken)
+        private static async Task RunMigrationAsync(DbContext dbContext, CancellationToken cancellationToken)
         {
             var strategy = dbContext.Database.CreateExecutionStrategy();
             await strategy.ExecuteAsync(async () =>
             {
-                // Run migration in a transaction to avoid partial migration if it fails.
                 await dbContext.Database.MigrateAsync(cancellationToken);
             });
         }
 
-        private static async Task SeedDataAsync(PirateOdysseyContext dbContext, CancellationToken cancellationToken)
+        private static async Task SeedApiDataAsync(PirateOdysseyContext dbContext, CancellationToken cancellationToken)
         {
             var strategy = dbContext.Database.CreateExecutionStrategy();
             await strategy.ExecuteAsync(async () =>
@@ -88,6 +99,36 @@ namespace PO.MigrationService
             var json = reader.ReadToEnd();
             var data = JsonConvert.DeserializeObject<T[]>(json);
             await dbSet.AddRangeAsync(data, cancellationToken);
+        }
+
+        public static async Task InitializeConfigDatabaseAsync(ConfigurationDbContext configContext, CancellationToken cancellationToken)
+        {
+            if (!configContext.Clients.Any())
+            {
+                foreach (var client in Config.Clients)
+                {
+                    configContext.Clients.Add(client.ToEntity());
+                }
+                await configContext.SaveChangesAsync(cancellationToken);
+            }
+
+            if (!configContext.IdentityResources.Any())
+            {
+                foreach (var resource in Config.IdentityResources)
+                {
+                    configContext.IdentityResources.Add(resource.ToEntity());
+                }
+                await configContext.SaveChangesAsync(cancellationToken);
+            }
+
+            if (!configContext.ApiScopes.Any())
+            {
+                foreach (var resource in Config.ApiScopes)
+                {
+                    configContext.ApiScopes.Add(resource.ToEntity());
+                }
+                await configContext.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }

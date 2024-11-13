@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="Duende.IdentityServer.EntityFramework" Version="7.0.8" />
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -16,9 +17,5 @@
   <ItemGroup>
     <ProjectReference Include="..\PO.Infrastructure\PO.Infrastructure.csproj" />
     <ProjectReference Include="..\PO.ServiceDefaults\PO.ServiceDefaults.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

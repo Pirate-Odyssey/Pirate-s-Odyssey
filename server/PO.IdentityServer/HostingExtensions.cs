@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using System.Reflection;
 
 namespace PO.IdentityServer;
 
@@ -14,6 +13,8 @@ internal static class HostingExtensions
         // comment if dont you want to add a UI
         builder.Services.AddRazorPages();
 
+        var connectionString = builder.Configuration.GetConnectionString("auth-db");
+
         builder.Services.AddIdentityServer(options =>
             {
                 // https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/api_scopes#authorization-based-on-scopes
@@ -22,13 +23,21 @@ internal static class HostingExtensions
             })
             .AddConfigurationStore(options =>
             {
-                options.ConfigureDbContext = b => b.UseSqlServer(builder.Configuration.GetConnectionString("auth-db"),
-                    sql => sql.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
+                options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                    sql =>
+                    {
+                        sql.MigrationsAssembly("PO.MigrationService");
+                        sql.EnableRetryOnFailure();
+                    });
             })
             .AddOperationalStore(options =>
             {
-                options.ConfigureDbContext = b => b.UseSqlServer(builder.Configuration.GetConnectionString("auth-db"),
-                    sql => sql.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
+                options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                    sql =>
+                    {
+                        sql.MigrationsAssembly("PO.MigrationService");
+                        sql.EnableRetryOnFailure();
+                    });
             })
             .AddTestUsers(TestUsers.Users);
 

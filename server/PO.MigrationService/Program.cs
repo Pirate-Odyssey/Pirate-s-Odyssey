@@ -20,5 +20,30 @@ builder.AddSqlServerDbContext<PirateOdysseyContext>("pirate-s-odyssey-db", confi
         });
 });
 
+var connectionString = builder.Configuration.GetConnectionString("auth-db");
+builder.Services.AddIdentityServer(options =>
+{
+    options.EmitStaticAudienceClaim = true;
+    options.KeyManagement.Enabled = false;
+})
+.AddConfigurationStore(options =>
+{
+    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+        sql =>
+        {
+            sql.MigrationsAssembly("PO.MigrationService");
+            sql.EnableRetryOnFailure();
+        });
+})
+.AddOperationalStore(options =>
+{
+    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+        sql =>
+        {
+            sql.MigrationsAssembly("PO.MigrationService");
+            sql.EnableRetryOnFailure();
+        });
+});
+
 var host = builder.Build();
 host.Run();

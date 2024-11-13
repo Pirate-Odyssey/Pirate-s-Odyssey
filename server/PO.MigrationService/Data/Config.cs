@@ -1,7 +1,7 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
-namespace PO.IdentityServer;
+namespace PO.MigrationService.Data;
 
 public static class Config
 {
