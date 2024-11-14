@@ -6,27 +6,28 @@ using Microsoft.AspNetCore.Authentication;
 using System.Text;
 using System.Text.Json;
 
-namespace PO.IdentityServer.Pages.Diagnostics;
-
-public class ViewModel
+namespace PO.IdentityServer.Pages.Diagnostics
 {
-    public ViewModel(AuthenticateResult result)
+    public class ViewModel
     {
-        AuthenticateResult = result;
-
-        if (result?.Properties?.Items.TryGetValue("client_list", out var encoded) == true)
+        public ViewModel(AuthenticateResult result)
         {
-            if (encoded != null)
-            {
-                var bytes = Base64Url.Decode(encoded);
-                var value = Encoding.UTF8.GetString(bytes);
-                Clients = JsonSerializer.Deserialize<string[]>(value) ?? Enumerable.Empty<string>();
-                return;
-            }
-        }
-        Clients = Enumerable.Empty<string>();
-    }
+            AuthenticateResult = result;
 
-    public AuthenticateResult AuthenticateResult { get; }
-    public IEnumerable<string> Clients { get; }
+            if (result?.Properties?.Items.TryGetValue("client_list", out var encoded) == true)
+            {
+                if (encoded != null)
+                {
+                    var bytes = Base64Url.Decode(encoded);
+                    var value = Encoding.UTF8.GetString(bytes);
+                    Clients = JsonSerializer.Deserialize<string[]>(value) ?? Enumerable.Empty<string>();
+                    return;
+                }
+            }
+            Clients = Enumerable.Empty<string>();
+        }
+
+        public AuthenticateResult AuthenticateResult { get; }
+        public IEnumerable<string> Clients { get; }
+    }
 }

@@ -3,7 +3,7 @@ using Duende.IdentityServer.Models;
 
 namespace PO.MigrationService.Data;
 
-public static class Config
+public static class IdentityConfig
 {
     public static IEnumerable<IdentityResource> IdentityResources =>
         [

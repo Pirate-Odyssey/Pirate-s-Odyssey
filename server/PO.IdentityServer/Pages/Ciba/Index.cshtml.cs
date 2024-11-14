@@ -7,36 +7,37 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace PO.IdentityServer.Pages.Ciba;
-
-[AllowAnonymous]
-[SecurityHeaders]
-public class IndexModel : PageModel
+namespace PO.IdentityServer.Pages.Ciba
 {
-    public BackchannelUserLoginRequest LoginRequest { get; set; } = default!;
-
-    private readonly IBackchannelAuthenticationInteractionService _backchannelAuthenticationInteraction;
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(IBackchannelAuthenticationInteractionService backchannelAuthenticationInteractionService, ILogger<IndexModel> logger)
+    [AllowAnonymous]
+    [SecurityHeaders]
+    public class IndexModel : PageModel
     {
-        _backchannelAuthenticationInteraction = backchannelAuthenticationInteractionService;
-        _logger = logger;
-    }
+        public BackchannelUserLoginRequest LoginRequest { get; set; } = default!;
 
-    public async Task<IActionResult> OnGet(string id)
-    {
-        var result = await _backchannelAuthenticationInteraction.GetLoginRequestByInternalIdAsync(id);
-        if (result == null)
+        private readonly IBackchannelAuthenticationInteractionService _backchannelAuthenticationInteraction;
+        private readonly ILogger<IndexModel> _logger;
+
+        public IndexModel(IBackchannelAuthenticationInteractionService backchannelAuthenticationInteractionService, ILogger<IndexModel> logger)
         {
-            _logger.InvalidBackchannelLoginId(id);
-            return RedirectToPage("/Home/Error/Index");
+            _backchannelAuthenticationInteraction = backchannelAuthenticationInteractionService;
+            _logger = logger;
         }
-        else
+
+        public async Task<IActionResult> OnGet(string id)
         {
-            LoginRequest = result;
+            var result = await _backchannelAuthenticationInteraction.GetLoginRequestByInternalIdAsync(id);
+            if (result == null)
+            {
+                _logger.InvalidBackchannelLoginId(id);
+                return RedirectToPage("/Home/Error/Index");
+            }
+            else
+            {
+                LoginRequest = result;
+            }
+
+            return Page();
         }
-        
-        return Page();
     }
 }

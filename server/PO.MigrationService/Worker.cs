@@ -105,7 +105,7 @@ namespace PO.MigrationService
         {
             if (!configContext.Clients.Any())
             {
-                foreach (var client in Config.Clients)
+                foreach (var client in IdentityConfig.Clients)
                 {
                     configContext.Clients.Add(client.ToEntity());
                 }
@@ -114,7 +114,7 @@ namespace PO.MigrationService
 
             if (!configContext.IdentityResources.Any())
             {
-                foreach (var resource in Config.IdentityResources)
+                foreach (var resource in IdentityConfig.IdentityResources)
                 {
                     configContext.IdentityResources.Add(resource.ToEntity());
                 }
@@ -123,7 +123,7 @@ namespace PO.MigrationService
 
             if (!configContext.ApiScopes.Any())
             {
-                foreach (var resource in Config.ApiScopes)
+                foreach (var resource in IdentityConfig.ApiScopes)
                 {
                     configContext.ApiScopes.Add(resource.ToEntity());
                 }

@@ -3,18 +3,19 @@
 
 using Duende.IdentityServer.Models;
 
-namespace PO.IdentityServer.Pages.Error;
-
-public class ViewModel
+namespace PO.IdentityServer.Pages.Error
 {
-    public ViewModel()
+    public class ViewModel
     {
-    }
+        public ViewModel()
+        {
+        }
 
-    public ViewModel(string error)
-    {
-        Error = new ErrorMessage { Error = error };
-    }
+        public ViewModel(string error)
+        {
+            Error = new ErrorMessage { Error = error };
+        }
 
-    public ErrorMessage? Error { get; set; }
+        public ErrorMessage? Error { get; set; }
+    }
 }

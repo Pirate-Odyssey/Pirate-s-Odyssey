@@ -6,23 +6,24 @@ using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace PO.IdentityServer.Pages.Ciba;
-
-[SecurityHeaders]
-[Authorize]
-public class AllModel : PageModel
+namespace PO.IdentityServer.Pages.Ciba
 {
-    public IEnumerable<BackchannelUserLoginRequest> Logins { get; set; } = default!;
-
-    private readonly IBackchannelAuthenticationInteractionService _backchannelAuthenticationInteraction;
-
-    public AllModel(IBackchannelAuthenticationInteractionService backchannelAuthenticationInteractionService)
+    [SecurityHeaders]
+    [Authorize]
+    public class AllModel : PageModel
     {
-        _backchannelAuthenticationInteraction = backchannelAuthenticationInteractionService;
-    }
+        public IEnumerable<BackchannelUserLoginRequest> Logins { get; set; } = default!;
 
-    public async Task OnGet()
-    {
-        Logins = await _backchannelAuthenticationInteraction.GetPendingLoginRequestsForCurrentUserAsync();
+        private readonly IBackchannelAuthenticationInteractionService _backchannelAuthenticationInteraction;
+
+        public AllModel(IBackchannelAuthenticationInteractionService backchannelAuthenticationInteractionService)
+        {
+            _backchannelAuthenticationInteraction = backchannelAuthenticationInteractionService;
+        }
+
+        public async Task OnGet()
+        {
+            Logins = await _backchannelAuthenticationInteraction.GetPendingLoginRequestsForCurrentUserAsync();
+        }
     }
 }

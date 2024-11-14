@@ -3,11 +3,12 @@
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace PO.IdentityServer.Pages.Account;
-
-public class AccessDeniedModel : PageModel
+namespace PO.IdentityServer.Pages.Account
 {
-    public void OnGet()
+    public class AccessDeniedModel : PageModel
     {
+        public void OnGet()
+        {
+        }
     }
 }
