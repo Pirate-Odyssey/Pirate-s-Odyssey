@@ -1,7 +1,7 @@
 <div class="item-container">
   <h3>{{ itemName() }}</h3>
   <p>{{ itemDescription() }}</p>
-  <p>{{ itemPrice() }}</p>
-  <p>{{ itemRarity() }}</p>
+  <p *ngIf="shop()">{{ itemPrice() }} Gold</p>
+  <p [ngClass]="getRarityClass()">{{ itemRarity() }}</p>
   <button (click)="onButtonClick()">{{ buttonText() }}</button>
 </div>

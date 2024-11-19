@@ -5,7 +5,7 @@
   <div class="row">
     <!-- Sélecteur pour choisir le type d'équipement -->
     <poc-selector
-      [options]="shopOptions"
+      [options]="shopOptions()"
       [selectedValue]="selectedOption()"
       (selectionChange)="onSelectionChange($event)"
     ></poc-selector>
@@ -17,6 +17,7 @@
         [itemDescription]="item.description"
         [itemPrice]="item.price"
         [itemRarity]="item.rarity"
+        [shop]="true"
         [buttonText]="'Buy'"
       >
         <div class="item-details">

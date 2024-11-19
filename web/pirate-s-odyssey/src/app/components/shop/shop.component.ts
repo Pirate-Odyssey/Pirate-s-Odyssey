@@ -14,10 +14,10 @@ export class ShopComponent implements OnInit {
   private readonly equipmentService = inject(EquipmentService);
 
   // Les options disponibles dans le shop (basées sur les types d'équipements)
-  shopOptions = ['Helmet', 'Sword', 'Boots', 'Shield', 'Chestplate'];
+  shopOptions = signal(['Helmet', 'Sword', 'Boots', 'Shield', 'Chestplate']);
 
   // Option sélectionnée par défaut
-  selectedOption = signal(this.shopOptions[0]);
+  selectedOption = signal(this.shopOptions()[0]);
 
   // Les items à afficher dans les lib-item-container
   shopItems = signal<EquipmentResponse[]>([]);
@@ -28,14 +28,6 @@ export class ShopComponent implements OnInit {
       (item) => item.equipmentType === this.selectedOption()
     )
   );
-
-  // filteredItems = computed(() => {
-  //   const items = this.shopItems().filter(
-  //     (item) => item.equipmentType === this.selectedOption()
-  //   );
-  //   console.log(items); // Ajoutez ceci pour vérifier le contenu des items
-  //   return items;
-  // });
 
   ngOnInit(): void {
     // Appel de l'API pour obtenir les équipements

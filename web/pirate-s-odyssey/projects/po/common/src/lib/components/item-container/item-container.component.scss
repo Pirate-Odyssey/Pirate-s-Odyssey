@@ -21,6 +21,22 @@
   p {
     margin: 10px 0;
     font-size: 1rem;
+
+    &.rarity-common {
+      color: blue;
+    }
+
+    &.rarity-rare {
+      color: yellow;
+    }
+
+    &.rarity-epic {
+      color: purple;
+    }
+
+    &.rarity-legendary {
+      color: orange;
+    }
   }
 }
 

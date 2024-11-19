@@ -29,14 +29,6 @@ export class EquipmentComponent implements OnInit {
     )
   );
 
-  // filteredItems = computed(() => {
-  //   const items = this.shopItems().filter(
-  //     (item) => item.equipmentType === this.selectedOption()
-  //   );
-  //   console.log(items); // Ajoutez ceci pour vérifier le contenu des items
-  //   return items;
-  // });
-
   ngOnInit(): void {
     // Appel de l'API pour obtenir les équipements
     this.equipmentService.getEquipments().subscribe({
