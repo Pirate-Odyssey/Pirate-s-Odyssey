@@ -11,19 +11,18 @@ import { FormModalComponent } from '@bo/common';
 import { ItemRarity, WeaponResponse } from '../../../api';
 
 @Component({
-  selector: 'bo-weapon-form',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    FormModalComponent
-  ],
-  templateUrl: './weapon-form.component.html',
-  styleUrl: './weapon-form.component.scss'
+    selector: 'bo-weapon-form',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        FormModalComponent
+    ],
+    templateUrl: './weapon-form.component.html',
+    styleUrl: './weapon-form.component.scss'
 })
 export class WeaponFormComponent implements OnInit {
   private readonly data = inject<WeaponResponse>(MAT_DIALOG_DATA);

@@ -10,11 +10,10 @@ import { AlertData } from './alert-data.interface';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'boa-alert',
-  standalone: true,
-  imports: [MatIconModule, MatSnackBarModule, MatButtonModule],
-  templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss'
+    selector: 'boa-alert',
+    imports: [MatIconModule, MatSnackBarModule, MatButtonModule],
+    templateUrl: './alert.component.html',
+    styleUrl: './alert.component.scss'
 })
 export class AlertComponent {
   private readonly data = inject<AlertData>(MAT_SNACK_BAR_DATA);

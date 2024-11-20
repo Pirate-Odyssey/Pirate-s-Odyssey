@@ -15,11 +15,10 @@ import {
 import { ItemStatFormComponent } from '../item-stat-form/item-stat-form.component';
 
 @Component({
-  selector: 'bo-item-stat-list',
-  standalone: true,
-  imports: [MatIconModule, MatListModule, MatButtonModule],
-  templateUrl: './item-stat-list.component.html',
-  styleUrl: './item-stat-list.component.scss'
+    selector: 'bo-item-stat-list',
+    imports: [MatIconModule, MatListModule, MatButtonModule],
+    templateUrl: './item-stat-list.component.html',
+    styleUrl: './item-stat-list.component.scss'
 })
 export class ItemStatListComponent {
   private readonly itemStatService = inject(ItemStatService);

@@ -17,23 +17,22 @@ import { ThemeService, ThemeType } from '../../../services/theme.service';
 import { SideContentService } from '../../../services/side-content.service';
 
 @Component({
-  selector: 'bo-layout',
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss',
-  standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatMenuModule,
-    MatExpansionModule,
-    AsyncPipe,
-    RouterLink,
-    RouterLinkActive
-  ]
+    selector: 'bo-layout',
+    templateUrl: './layout.component.html',
+    styleUrl: './layout.component.scss',
+    imports: [
+        NgTemplateOutlet,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        MatMenuModule,
+        MatExpansionModule,
+        AsyncPipe,
+        RouterLink,
+        RouterLinkActive
+    ]
 })
 export class LayoutComponent {
   private readonly breakpointObserver = inject(BreakpointObserver);

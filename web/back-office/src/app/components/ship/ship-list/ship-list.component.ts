@@ -12,11 +12,10 @@ import {
 import { ShipFormComponent } from '../ship-form/ship-form.component';
 
 @Component({
-  selector: 'bo-ship-list',
-  standalone: true,
-  imports: [ListComponent],
-  templateUrl: './ship-list.component.html',
-  styleUrl: './ship-list.component.scss'
+    selector: 'bo-ship-list',
+    imports: [ListComponent],
+    templateUrl: './ship-list.component.html',
+    styleUrl: './ship-list.component.scss'
 })
 export class ShipListComponent implements OnInit {
   private readonly shipService = inject(ShipService);

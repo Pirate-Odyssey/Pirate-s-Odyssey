@@ -8,16 +8,15 @@ import { CrewResponse } from '../../../api';
 import { FormModalComponent } from '@bo/common';
 
 @Component({
-  selector: 'bo-crew-form',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FormModalComponent
-  ],
-  templateUrl: './crew-form.component.html',
-  styleUrl: './crew-form.component.scss'
+    selector: 'bo-crew-form',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormModalComponent
+    ],
+    templateUrl: './crew-form.component.html',
+    styleUrl: './crew-form.component.scss'
 })
 export class CrewFormComponent implements OnInit {
   private readonly data = inject<CrewResponse>(MAT_DIALOG_DATA);

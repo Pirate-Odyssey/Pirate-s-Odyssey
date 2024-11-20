@@ -10,11 +10,10 @@ import { LayoutComponent } from './components/common/layout/layout.component';
 import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
-  selector: 'bo-root',
-  standalone: true,
-  imports: [RouterOutlet, LayoutComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'bo-root',
+    imports: [RouterOutlet, LayoutComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   private readonly themeService = inject(ThemeService);

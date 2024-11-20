@@ -12,11 +12,10 @@ import {
 import { WeaponFormComponent } from '../weapon-form/weapon-form.component';
 
 @Component({
-  selector: 'bo-weapon-list',
-  standalone: true,
-  imports: [ListComponent],
-  templateUrl: './weapon-list.component.html',
-  styleUrl: './weapon-list.component.scss'
+    selector: 'bo-weapon-list',
+    imports: [ListComponent],
+    templateUrl: './weapon-list.component.html',
+    styleUrl: './weapon-list.component.scss'
 })
 export class WeaponListComponent implements OnInit {
   private readonly weaponService = inject(WeaponService);
