@@ -4,7 +4,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'boc-form-modal',
-  standalone: true,
   imports: [MatDialogModule, MatButtonModule],
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss'

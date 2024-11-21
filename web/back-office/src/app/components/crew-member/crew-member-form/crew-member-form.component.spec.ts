@@ -9,8 +9,7 @@ describe('CrewMemberFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CrewMemberFormComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CrewMemberFormComponent);
     component = fixture.componentInstance;

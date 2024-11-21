@@ -21,7 +21,6 @@ import { ItemFormComponent } from '../item-form/item-form.component';
   selector: 'bo-item-list',
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss',
-  standalone: true,
   imports: [ListComponent, SideContentComponent, JsonPipe]
 })
 export class ItemListComponent {
@@ -47,7 +46,14 @@ export class ItemListComponent {
     )
   );
 
-  displayedColumns = ['name', 'type', 'rarity', 'price', 'description'];
+  displayedColumns = [
+    'name',
+    'type',
+    'rarity',
+    'price',
+    'description',
+    'stats'
+  ];
 
   constructor() {
     connect(this.data, this.itemService.getItems());

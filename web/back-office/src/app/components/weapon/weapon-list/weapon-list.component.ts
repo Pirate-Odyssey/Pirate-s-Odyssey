@@ -13,7 +13,6 @@ import { WeaponFormComponent } from '../weapon-form/weapon-form.component';
 
 @Component({
   selector: 'bo-weapon-list',
-  standalone: true,
   imports: [ListComponent],
   templateUrl: './weapon-list.component.html',
   styleUrl: './weapon-list.component.scss'

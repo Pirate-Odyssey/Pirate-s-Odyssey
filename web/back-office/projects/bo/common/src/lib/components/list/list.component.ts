@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { TitleCasePipe } from '@angular/common';
+import { NgPlural, NgPluralCase, TitleCasePipe } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -24,7 +24,6 @@ import {
 
 @Component({
   selector: 'boc-list',
-  standalone: true,
   imports: [
     TitleCasePipe,
     MatIconModule,
@@ -34,7 +33,9 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgPlural,
+    NgPluralCase
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
@@ -90,6 +91,7 @@ export class ListComponent<T = any> implements AfterViewInit {
   }
 
   getType(item?: any): string {
+    if (Array.isArray(item)) return 'array';
     return typeof item;
   }
 }
