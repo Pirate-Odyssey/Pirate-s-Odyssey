@@ -90,17 +90,17 @@ jobs:
         
     - name: Install dependencies
       run: npm ci
-      working-directory: web/backoffice
+      working-directory: web/back-office
         
     - name: Run tests
       run: npm run test:ci
-      working-directory: web/backoffice
+      working-directory: web/back-office
 
     - name: Run lint
       run: npm run lint
-      working-directory: web/backoffice
+      working-directory: web/back-office
       
     - name: Build
       run: npm run build
-      working-directory: web/backoffice
+      working-directory: web/back-office
 
