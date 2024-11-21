@@ -12,6 +12,8 @@ import { Resources } from '../../../models/resources.model';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  menuOpen = false;
+
   resources: Resources[] = [
     { resourceType: 'Wood', amount: 150, img: 'wood' },
     { resourceType: 'Gold', amount: 50, img: 'gold' },
@@ -19,4 +21,8 @@ export class HeaderComponent {
     { resourceType: 'Iron', amount: 10, img: 'iron' },
     { resourceType: 'Rhum', amount: 110, img: 'rhum' }
   ];
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 }

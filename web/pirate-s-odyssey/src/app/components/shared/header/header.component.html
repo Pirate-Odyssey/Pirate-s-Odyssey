@@ -15,7 +15,14 @@
       </div>
     </div>
     <div class="nav">
-      <nav>
+      <!-- Menu burger -->
+      <div class="burger-menu" (click)="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <!-- Navigation principale -->
+      <nav [class.open]="menuOpen">
         <ul class="nav-list">
           <li><a routerLink="dashboard">Home</a></li>
           <li><a routerLink="ship">Ship</a></li>
