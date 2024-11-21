@@ -10,7 +10,6 @@ import { KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'bo-item-stat-form',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     FormModalComponent,

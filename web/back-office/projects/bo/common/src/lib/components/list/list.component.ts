@@ -24,7 +24,6 @@ import {
 
 @Component({
   selector: 'boc-list',
-  standalone: true,
   imports: [
     TitleCasePipe,
     MatIconModule,

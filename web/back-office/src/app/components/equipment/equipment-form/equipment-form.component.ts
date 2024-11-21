@@ -11,7 +11,6 @@ import { EquipmentResponse, EquipmentType, ItemRarity } from '../../../api';
 
 @Component({
   selector: 'bo-equipment-form',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

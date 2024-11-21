@@ -9,8 +9,7 @@ describe('CrewListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CrewListComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CrewListComponent);
     component = fixture.componentInstance;
