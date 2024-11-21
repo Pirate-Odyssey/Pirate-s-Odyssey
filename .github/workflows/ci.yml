@@ -91,6 +91,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
       working-directory: web/back-office
+
+    - name: Build dependencies
+      run: |
+        npm run ng build @bo/common
+        npm run ng build @bo/alert
+      working-directory: web/back-office
         
     # - name: Run tests
     #   run: npm run test
