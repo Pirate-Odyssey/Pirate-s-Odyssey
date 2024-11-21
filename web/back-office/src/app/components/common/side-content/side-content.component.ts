@@ -11,7 +11,6 @@ import { SideContentService } from '../../../services/side-content.service';
 
 @Component({
   selector: 'bo-side-content',
-  standalone: true,
   imports: [],
   templateUrl: './side-content.component.html',
   styleUrl: './side-content.component.scss'

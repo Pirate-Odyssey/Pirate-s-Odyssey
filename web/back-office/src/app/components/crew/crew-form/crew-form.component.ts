@@ -9,7 +9,6 @@ import { FormModalComponent } from '@bo/common';
 
 @Component({
   selector: 'bo-crew-form',
-  standalone: true,
   imports: [
     MatFormFieldModule,
     MatInputModule,

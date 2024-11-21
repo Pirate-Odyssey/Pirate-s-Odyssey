@@ -9,7 +9,6 @@ import { ShipResponse } from '../../../api';
 
 @Component({
   selector: 'bo-ship-form',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,

@@ -9,8 +9,7 @@ describe('WeaponFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [WeaponFormComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(WeaponFormComponent);
     component = fixture.componentInstance;

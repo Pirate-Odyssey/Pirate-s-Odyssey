@@ -9,8 +9,7 @@ describe('ItemStatListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ItemStatListComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ItemStatListComponent);
     component = fixture.componentInstance;

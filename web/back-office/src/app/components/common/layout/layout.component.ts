@@ -20,7 +20,6 @@ import { SideContentService } from '../../../services/side-content.service';
   selector: 'bo-layout',
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     MatToolbarModule,
