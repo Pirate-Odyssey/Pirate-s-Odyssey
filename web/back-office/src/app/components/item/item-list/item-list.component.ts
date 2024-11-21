@@ -18,10 +18,10 @@ import { SideContentComponent } from '../../common/side-content/side-content.com
 import { ItemFormComponent } from '../item-form/item-form.component';
 
 @Component({
-    selector: 'bo-item-list',
-    templateUrl: './item-list.component.html',
-    styleUrl: './item-list.component.scss',
-    imports: [ListComponent, SideContentComponent, JsonPipe]
+  selector: 'bo-item-list',
+  templateUrl: './item-list.component.html',
+  styleUrl: './item-list.component.scss',
+  imports: [ListComponent, SideContentComponent, JsonPipe]
 })
 export class ItemListComponent {
   private readonly itemService = inject(ItemService);

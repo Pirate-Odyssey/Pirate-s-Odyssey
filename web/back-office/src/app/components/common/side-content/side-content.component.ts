@@ -10,10 +10,10 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { SideContentService } from '../../../services/side-content.service';
 
 @Component({
-    selector: 'bo-side-content',
-    imports: [],
-    templateUrl: './side-content.component.html',
-    styleUrl: './side-content.component.scss'
+  selector: 'bo-side-content',
+  imports: [],
+  templateUrl: './side-content.component.html',
+  styleUrl: './side-content.component.scss'
 })
 export class SideContentComponent implements OnDestroy {
   private readonly sideContentService = inject(SideContentService);

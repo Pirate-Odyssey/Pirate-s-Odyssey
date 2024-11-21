@@ -8,15 +8,15 @@ import { FormModalComponent } from '@bo/common';
 import { ShipResponse } from '../../../api';
 
 @Component({
-    selector: 'bo-ship-form',
-    imports: [
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormModalComponent
-    ],
-    templateUrl: './ship-form.component.html',
-    styleUrl: './ship-form.component.scss'
+  selector: 'bo-ship-form',
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormModalComponent
+  ],
+  templateUrl: './ship-form.component.html',
+  styleUrl: './ship-form.component.scss'
 })
 export class ShipFormComponent implements OnInit {
   private readonly data = inject<ShipResponse>(MAT_DIALOG_DATA);

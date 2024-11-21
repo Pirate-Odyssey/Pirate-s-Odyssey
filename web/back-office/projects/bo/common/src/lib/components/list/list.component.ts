@@ -23,22 +23,22 @@ import {
 } from '@angular/material/table';
 
 @Component({
-    selector: 'boc-list',
-    imports: [
-        TitleCasePipe,
-        MatIconModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        NgPlural,
-        NgPluralCase
-    ],
-    templateUrl: './list.component.html',
-    styleUrl: './list.component.scss'
+  selector: 'boc-list',
+  imports: [
+    TitleCasePipe,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    NgPlural,
+    NgPluralCase
+  ],
+  templateUrl: './list.component.html',
+  styleUrl: './list.component.scss'
 })
 export class ListComponent<T = any> implements AfterViewInit {
   public data = input.required<T[]>();

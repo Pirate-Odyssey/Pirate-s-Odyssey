@@ -12,10 +12,10 @@ import {
 import { CrewMemberFormComponent } from '../crew-member-form/crew-member-form.component';
 
 @Component({
-    selector: 'bo-crew-member-list',
-    imports: [ListComponent],
-    templateUrl: './crew-member-list.component.html',
-    styleUrl: './crew-member-list.component.scss'
+  selector: 'bo-crew-member-list',
+  imports: [ListComponent],
+  templateUrl: './crew-member-list.component.html',
+  styleUrl: './crew-member-list.component.scss'
 })
 export class CrewMemberListComponent implements OnInit {
   private readonly crewMemberService = inject(CrewMemberService);

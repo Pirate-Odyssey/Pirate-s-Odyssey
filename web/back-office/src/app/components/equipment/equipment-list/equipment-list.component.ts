@@ -12,10 +12,10 @@ import {
 import { EquipmentFormComponent } from '../equipment-form/equipment-form.component';
 
 @Component({
-    selector: 'bo-equipment-list',
-    imports: [ListComponent],
-    templateUrl: './equipment-list.component.html',
-    styleUrl: './equipment-list.component.scss'
+  selector: 'bo-equipment-list',
+  imports: [ListComponent],
+  templateUrl: './equipment-list.component.html',
+  styleUrl: './equipment-list.component.scss'
 })
 export class EquipmentListComponent implements OnInit {
   private readonly equipmentService = inject(EquipmentService);

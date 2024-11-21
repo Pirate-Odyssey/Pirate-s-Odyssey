@@ -8,10 +8,10 @@ import { ConfirmationData } from './confirmation-data.interface';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    selector: 'boa-confirmation',
-    imports: [MatDialogModule, MatButtonModule],
-    templateUrl: './confirmation.component.html',
-    styleUrl: './confirmation.component.scss'
+  selector: 'boa-confirmation',
+  imports: [MatDialogModule, MatButtonModule],
+  templateUrl: './confirmation.component.html',
+  styleUrl: './confirmation.component.scss'
 })
 export class ConfirmationComponent {
   public readonly data = inject<ConfirmationData>(MAT_DIALOG_DATA);

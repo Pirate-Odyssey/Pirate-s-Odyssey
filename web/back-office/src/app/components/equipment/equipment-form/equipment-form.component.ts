@@ -10,17 +10,17 @@ import { FormModalComponent } from '@bo/common';
 import { EquipmentResponse, EquipmentType, ItemRarity } from '../../../api';
 
 @Component({
-    selector: 'bo-equipment-form',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        FormModalComponent
-    ],
-    templateUrl: './equipment-form.component.html',
-    styleUrl: './equipment-form.component.scss'
+  selector: 'bo-equipment-form',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    FormModalComponent
+  ],
+  templateUrl: './equipment-form.component.html',
+  styleUrl: './equipment-form.component.scss'
 })
 export class EquipmentFormComponent implements OnInit {
   private readonly data = inject<EquipmentResponse>(MAT_DIALOG_DATA);

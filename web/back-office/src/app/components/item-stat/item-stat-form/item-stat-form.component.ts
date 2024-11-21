@@ -9,17 +9,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { KeyValuePipe } from '@angular/common';
 
 @Component({
-    selector: 'bo-item-stat-form',
-    imports: [
-        ReactiveFormsModule,
-        FormModalComponent,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        KeyValuePipe
-    ],
-    templateUrl: './item-stat-form.component.html',
-    styleUrl: './item-stat-form.component.scss'
+  selector: 'bo-item-stat-form',
+  imports: [
+    ReactiveFormsModule,
+    FormModalComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    KeyValuePipe
+  ],
+  templateUrl: './item-stat-form.component.html',
+  styleUrl: './item-stat-form.component.scss'
 })
 export class ItemStatFormComponent implements OnInit {
   private readonly data = inject<ItemStatResponse>(MAT_DIALOG_DATA);
