@@ -21,10 +21,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-aspire:
 
     runs-on: ubuntu-latest
-    name: Build & Test
+    name: Build Apire
     
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -75,3 +75,38 @@ jobs:
       with:
         name: TestResults
         path: PO.Host/TestResults
+        
+  build-backoffice:
+
+    runs-on: ubuntu-latest
+    name: Build Backoffice
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        
+    - name: Install dependencies
+      run: npm ci
+      working-directory: web/back-office
+
+    - name: Build dependencies
+      run: |
+        npm run ng build @bo/common
+        npm run ng build @bo/alert
+      working-directory: web/back-office
+        
+    # - name: Run tests
+    #   run: npm run test
+    #   working-directory: web/back-office
+
+    - name: Run lint
+      run: npm run lint
+      working-directory: web/back-office
+      
+    - name: Build
+      run: npm run build
+      working-directory: web/back-office
+
