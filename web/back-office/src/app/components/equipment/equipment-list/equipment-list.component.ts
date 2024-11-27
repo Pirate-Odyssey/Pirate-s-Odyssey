@@ -13,7 +13,6 @@ import { EquipmentFormComponent } from '../equipment-form/equipment-form.compone
 
 @Component({
   selector: 'bo-equipment-list',
-  standalone: true,
   imports: [ListComponent],
   templateUrl: './equipment-list.component.html',
   styleUrl: './equipment-list.component.scss'

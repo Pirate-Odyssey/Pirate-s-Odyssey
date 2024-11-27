@@ -1,13 +1,56 @@
+<mat-toolbar>
+  <div>
+    @if (isHandset$ | async) {
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    }
+    <span>back-office</span>
+  </div>
+  <div>
+    <button
+      type="button"
+      aria-label="toggle theme menu"
+      mat-icon-button
+      [matMenuTriggerFor]="themeMenu"
+    >
+      <mat-icon aria-label="Theme menu icon">palette</mat-icon>
+    </button>
+    <mat-menu #themeMenu>
+      @for (theme of themes; track $index) {
+        <button
+          mat-menu-item
+          [class.selected]="themeService.theme() === theme.theme"
+          (click)="themeService.setTheme(theme.theme)"
+        >
+          <mat-icon>{{ theme.icon }}</mat-icon>
+          <span>{{ theme.label }}</span>
+        </button>
+      }
+    </mat-menu>
+    <a
+      href="https://github.com/Pirate-Odyssey/Pirate-s-Odyssey"
+      type="button"
+      aria-label="open repository"
+      mat-icon-button
+    >
+      <mat-icon>graph_1</mat-icon>
+    </a>
+  </div>
+</mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
     class="sidenav"
-    fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>PO back office</mat-toolbar>
     <mat-nav-list>
       @for (menuItem of menuItems; track $index) {
         <mat-list-item
@@ -25,51 +68,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div class="sidenav-toolbar">
-        <div>
-          @if (isHandset$ | async) {
-            <button
-              type="button"
-              aria-label="Toggle sidenav"
-              mat-icon-button
-              (click)="drawer.toggle()"
-            >
-              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-            </button>
-          }
-          <span>back-office</span>
-        </div>
-        <div>
-          <button
-            type="button"
-            aria-label="toggle theme menu"
-            mat-icon-button
-            color="primary"
-            [matMenuTriggerFor]="themeMenu"
-          >
-            <mat-icon aria-label="Theme menu icon">palette</mat-icon>
-          </button>
-          <mat-menu #themeMenu>
-            @for (theme of themes; track $index) {
-              <button
-                mat-menu-item
-                [class.selected]="themeService.theme() === theme.theme"
-                (click)="themeService.setTheme(theme.theme)"
-              >
-                <mat-icon>{{ theme.icon }}</mat-icon>
-                <span>{{ theme.label }}</span>
-              </button>
-            }
-          </mat-menu>
-        </div>
-      </div>
-    </mat-toolbar>
     <mat-drawer-container>
       <mat-drawer
-        class="sidenav"
-        fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        class="sidenav drawer"
+        role="dialog"
         mode="side"
         position="end"
         [opened]="

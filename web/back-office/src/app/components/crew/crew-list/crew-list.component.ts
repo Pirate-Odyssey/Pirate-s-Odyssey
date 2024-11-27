@@ -13,7 +13,6 @@ import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
 
 @Component({
   selector: 'bo-crew-list',
-  standalone: true,
   imports: [ListComponent],
   templateUrl: './crew-list.component.html',
   styleUrl: './crew-list.component.scss'

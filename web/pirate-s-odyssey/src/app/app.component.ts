@@ -18,7 +18,6 @@ export type WeatherForecasts = WeatherForecast[];
 
 @Component({
   selector: 'po-root',
-  standalone: true,
   imports: [RouterOutlet, CommonModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -16,7 +16,6 @@ import { ItemStatFormComponent } from '../item-stat-form/item-stat-form.componen
 
 @Component({
   selector: 'bo-item-stat-list',
-  standalone: true,
   imports: [MatIconModule, MatListModule, MatButtonModule],
   templateUrl: './item-stat-list.component.html',
   styleUrl: './item-stat-list.component.scss'

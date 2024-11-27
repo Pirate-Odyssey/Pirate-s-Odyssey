@@ -1,12 +1,18 @@
-<boc-list
-  [displayedColumns]="displayedColumns"
-  [data]="data()"
-  (selectItem)="selectItem($event)"
-  (readItem)="readItem($event)"
-  (addItem)="addItem()"
-  (editItem)="editItem($event)"
-  (deleteItem)="deleteItem($event)"
-></boc-list>
+@if (resourceData.isLoading()) {
+  chargement...
+}
+
+@if (resourceData.hasValue()) {
+  <boc-list
+    [displayedColumns]="displayedColumns"
+    [data]="data()"
+    [(selectItemId)]="selectedItemId"
+    (readItem)="readItem($event)"
+    (addItem)="addItem()"
+    (editItem)="editItem($event)"
+    (deleteItem)="deleteItem($event)"
+  ></boc-list>
+}
 
 @if (selectedItem()) {
   <bo-side-content>

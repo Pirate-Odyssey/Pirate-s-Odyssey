@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'boa-confirmation',
-  standalone: true,
   imports: [MatDialogModule, MatButtonModule],
   templateUrl: './confirmation.component.html',
   styleUrl: './confirmation.component.scss'

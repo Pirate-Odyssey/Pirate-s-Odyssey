@@ -6,7 +6,6 @@ import { EquipmentResponse, EquipmentService } from '../../api';
 @Component({
   selector: 'po-equipment',
   templateUrl: './equipment.component.html',
-  standalone: true,
   styleUrls: ['./equipment.component.scss'],
   imports: [CommonModule, ItemContainerComponent, SelectorComponent]
 })
@@ -28,14 +27,6 @@ export class EquipmentComponent implements OnInit {
       (item) => item.equipmentType === this.selectedOption()
     )
   );
-
-  // filteredItems = computed(() => {
-  //   const items = this.shopItems().filter(
-  //     (item) => item.equipmentType === this.selectedOption()
-  //   );
-  //   console.log(items); // Ajoutez ceci pour vérifier le contenu des items
-  //   return items;
-  // });
 
   ngOnInit(): void {
     // Appel de l'API pour obtenir les équipements

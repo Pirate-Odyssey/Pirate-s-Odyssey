@@ -11,7 +11,6 @@ import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'bo-root',
-  standalone: true,
   imports: [RouterOutlet, LayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
