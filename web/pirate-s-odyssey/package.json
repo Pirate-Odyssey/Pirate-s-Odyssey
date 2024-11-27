@@ -7,6 +7,7 @@
     "start:win32": "ng serve --port %PORT%",
     "start:default": "ng serve --port $PORT",
     "build": "ng build",
+    "build:libs": "ng build @po/common",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "openapi-generator": "openapi-generator-cli generate -g typescript-angular -o src/app/api --additional-properties fileNaming=kebab-case -c.\\openapi-generator.config.json -i",

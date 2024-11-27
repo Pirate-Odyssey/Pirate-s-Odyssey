@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { ItemContainerComponent, SelectorComponent } from '@po/common';
 
+
 @Component({
   selector: 'po-shop',
   templateUrl: './shop.component.html',

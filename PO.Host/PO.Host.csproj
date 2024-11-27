@@ -19,6 +19,10 @@
 			<PackageJsons Include="..\web\*\package.json" />
 		</ItemGroup>
 
+		<!-- Compile local lib packages -->
+		<Message Importance="Normal" Text="Compiling local packages for %(PackageJsons.RelativeDir)" />
+		<Exec Command="npm run build:libs" WorkingDirectory="%(PackageJsons.RootDir)%(PackageJsons.Directory)" />
+		
 		<!-- Install npm packages if node_modules is missing -->
 		<Message Importance="Normal" Text="Installing npm packages for %(PackageJsons.RelativeDir)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
 		<Exec Command="npm ci" WorkingDirectory="%(PackageJsons.RootDir)%(PackageJsons.Directory)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />

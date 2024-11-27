@@ -93,9 +93,7 @@ jobs:
       working-directory: web/back-office
 
     - name: Build dependencies
-      run: |
-        npm run ng build @bo/common
-        npm run ng build @bo/alert
+      run: npm run build:libs
       working-directory: web/back-office
         
     # - name: Run tests
