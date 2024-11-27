@@ -11,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'boa-alert',
-  standalone: true,
   imports: [MatIconModule, MatSnackBarModule, MatButtonModule],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss'

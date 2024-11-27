@@ -6,7 +6,6 @@ import { EquipmentResponse, EquipmentService } from '../../api';
 @Component({
   selector: 'po-equipment',
   templateUrl: './equipment.component.html',
-  standalone: true,
   styleUrls: ['./equipment.component.scss'],
   imports: [CommonModule, ItemContainerComponent, SelectorComponent]
 })

@@ -6,7 +6,6 @@ import { EquipmentResponse, EquipmentService } from '../../api';
 @Component({
   selector: 'po-shop',
   templateUrl: './shop.component.html',
-  standalone: true,
   styleUrls: ['./shop.component.scss'],
   imports: [CommonModule, ItemContainerComponent, SelectorComponent]
 })
@@ -14,7 +13,7 @@ export class ShopComponent implements OnInit {
   private readonly equipmentService = inject(EquipmentService);
 
   // Les options disponibles dans le shop (basées sur les types d'équipements)
-  shopOptions = signal(['Helmet', 'Sword', 'Boots', 'Shield', 'Chestplate']);
+  shopOptions = ['Helmet', 'Sword', 'Boots', 'Shield', 'Chestplate'];
 
   // Option sélectionnée par défaut
   selectedOption = signal(this.shopOptions()[0]);

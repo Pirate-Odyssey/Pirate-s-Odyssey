@@ -11,12 +11,9 @@ import { ItemRarity, ItemResponse } from '../../../api';
 
 @Component({
   selector: 'bo-item-form',
-  standalone: true,
   imports: [
     CommonModule,
-
     ReactiveFormsModule,
-
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,

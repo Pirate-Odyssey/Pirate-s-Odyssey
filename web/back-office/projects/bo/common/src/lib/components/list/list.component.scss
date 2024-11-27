@@ -6,6 +6,16 @@
 .actions {
   opacity: 0;
   transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+
+  .edit {
+    color: var(--mat-sys-primary);
+  }
+
+  .delete {
+    color: var(--mat-sys-error);
+  }
 }
 
 ::ng-deep .mat-mdc-row:hover .actions {

@@ -15,9 +15,14 @@
       <poc-item-container
         [itemName]="item.name"
         [itemDescription]="item.description"
+        [itemPrice]="item.price"
         [itemRarity]="item.rarity"
         [buttonText]="'Equip'"
       >
+        <div class="item-details">
+          <p><strong>Rarity:</strong> {{ item.rarity }}</p>
+          <p><strong>Price:</strong> {{ item.price }} gold</p>
+        </div>
       </poc-item-container>
     </ng-container>
   </div>

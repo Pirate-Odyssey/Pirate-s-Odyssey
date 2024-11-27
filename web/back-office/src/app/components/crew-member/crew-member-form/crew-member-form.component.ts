@@ -10,7 +10,6 @@ import { CrewFormComponent } from '../../crew/crew-form/crew-form.component';
 
 @Component({
   selector: 'bo-crew-member-form',
-  standalone: true,
   imports: [
     FormModalComponent,
     MatFormFieldModule,

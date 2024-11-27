@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'poc-item-container',
@@ -15,13 +15,6 @@ export class ItemContainerComponent {
    * @memberof ItemContainerComponent
    */
   itemName = input<string>();
-
-  /**
-   * input of a boolean, false default value
-   *
-   * @memberof ItemContainerComponent
-   */
-  shop = input<boolean>(false);
 
   /**
    * input of a description, no default value
@@ -42,7 +35,7 @@ export class ItemContainerComponent {
    *
    * @memberof ItemContainerComponent
    */
-  itemRarity = input<string>('');
+  itemRarity = input<string>();
 
   /**
    * input of a string, no default value, required
@@ -54,9 +47,5 @@ export class ItemContainerComponent {
   // Méthode pour réagir au clic du bouton (ici, on log l'action)
   onButtonClick(): void {
     console.log(`${this.buttonText()} action triggered for ${this.itemName()}`);
-  }
-
-  getRarityClass(): string {
-    return `rarity-${this.itemRarity().toLowerCase()}`;
   }
 }
