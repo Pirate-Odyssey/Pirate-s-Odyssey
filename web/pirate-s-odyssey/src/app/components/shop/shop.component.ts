@@ -3,12 +3,14 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ItemContainerComponent, SelectorComponent } from '@po/common';
 import { EquipmentResponse, EquipmentService } from '../../api';
 
+import { Button } from 'primeng/button';
+
 @Component({
   selector: 'po-shop',
   templateUrl: './shop.component.html',
   standalone: true,
   styleUrls: ['./shop.component.scss'],
-  imports: [CommonModule, ItemContainerComponent, SelectorComponent]
+  imports: [CommonModule, ItemContainerComponent, SelectorComponent, Button]
 })
 export class ShopComponent implements OnInit {
   private readonly equipmentService = inject(EquipmentService);
