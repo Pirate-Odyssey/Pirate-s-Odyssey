@@ -6,7 +6,6 @@ import { Resources } from '../../../models/resources.model';
 
 @Component({
   selector: 'po-header',
-  standalone: true,
   imports: [RouterOutlet, CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

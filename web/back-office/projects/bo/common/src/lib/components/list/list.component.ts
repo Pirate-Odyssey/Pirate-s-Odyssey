@@ -7,6 +7,7 @@ import {
   computed,
   effect,
   input,
+  model,
   output
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +25,6 @@ import {
 
 @Component({
   selector: 'boc-list',
-  standalone: true,
   imports: [
     TitleCasePipe,
     MatIconModule,
@@ -48,7 +48,7 @@ export class ListComponent<T = any> implements AfterViewInit {
 
   public columns = computed(() => [...this.displayedColumns(), 'action']);
 
-  public selectItem = output<string | undefined>();
+  public selectItemId = model<string | undefined>();
 
   public readItem = output<string>();
 
@@ -70,7 +70,7 @@ export class ListComponent<T = any> implements AfterViewInit {
       this.dataSource.data = this.data();
     });
     this.selection.changed.subscribe((value) => {
-      this.selectItem.emit(
+      this.selectItemId.set(
         (value.added[0]?.['id' as keyof T] as string) ?? undefined
       );
     });

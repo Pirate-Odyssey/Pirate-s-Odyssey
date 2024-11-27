@@ -20,7 +20,6 @@ import { routes } from '../../../app.routes';
   selector: 'bo-layout',
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     MatToolbarModule,

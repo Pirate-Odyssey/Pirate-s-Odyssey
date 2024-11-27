@@ -1,13 +1,13 @@
 import { JsonPipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AlertService } from '@bo/alert';
 import { ListComponent } from '@bo/common';
-import { connect } from 'ngxtension/connect';
 import { derivedFrom } from 'ngxtension/derived-from';
-import { of, pipe, startWith, switchMap } from 'rxjs';
+import { of, pipe, switchMap } from 'rxjs';
 
+import { rxResource } from '@angular/core/rxjs-interop';
 import {
   AddItemRequest,
   EditItemRequest,
@@ -21,7 +21,6 @@ import { ItemFormComponent } from '../item-form/item-form.component';
   selector: 'bo-item-list',
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss',
-  standalone: true,
   imports: [ListComponent, SideContentComponent, JsonPipe]
 })
 export class ItemListComponent {
@@ -30,9 +29,16 @@ export class ItemListComponent {
   private readonly alertService = inject(AlertService);
   private readonly router = inject(Router);
 
-  public data = signal<ItemResponse[]>([]);
+  public resourceData = rxResource({
+    loader: () => this.itemService.getItems()
+  });
+  public data = linkedSignal(() =>
+    this.resourceData.hasValue()
+      ? (this.resourceData.value() as ItemResponse[])
+      : []
+  );
 
-  private selectedItemId = signal<string | null>(null);
+  public selectedItemId = signal<string | undefined>(undefined);
   public selectedItem = derivedFrom(
     [this.selectedItemId],
     pipe(
@@ -42,9 +48,11 @@ export class ItemListComponent {
               id
             })
           : of(null)
-      ),
-      startWith(null)
-    )
+      )
+    ),
+    {
+      initialValue: null
+    }
   );
 
   displayedColumns = [
@@ -55,14 +63,6 @@ export class ItemListComponent {
     'description',
     'stats'
   ];
-
-  constructor() {
-    connect(this.data, this.itemService.getItems());
-  }
-
-  selectItem(id: string | undefined) {
-    this.selectedItemId.set(id ?? null);
-  }
 
   readItem(id: string): void {
     void this.router.navigate(['item', id]);

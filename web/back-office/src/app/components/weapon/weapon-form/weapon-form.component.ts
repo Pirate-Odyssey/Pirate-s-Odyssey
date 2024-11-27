@@ -12,7 +12,6 @@ import { ItemRarity, WeaponResponse } from '../../../api';
 
 @Component({
   selector: 'bo-weapon-form',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

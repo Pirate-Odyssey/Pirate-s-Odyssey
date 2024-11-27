@@ -8,7 +8,6 @@ import { Button } from 'primeng/button';
 @Component({
   selector: 'po-shop',
   templateUrl: './shop.component.html',
-  standalone: true,
   styleUrls: ['./shop.component.scss'],
   imports: [CommonModule, ItemContainerComponent, SelectorComponent, Button]
 })
