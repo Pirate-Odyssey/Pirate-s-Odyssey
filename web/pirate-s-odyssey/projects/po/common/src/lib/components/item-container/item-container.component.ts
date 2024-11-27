@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'poc-item-container',
@@ -7,17 +7,43 @@ import { Component, Input } from '@angular/core';
   styleUrl: './item-container.component.scss'
 })
 export class ItemContainerComponent {
-  // Input pour le nom de l'objet
-  @Input() itemName = '';
+  /**
+   * input of a string, no default value, required
+   *
+   * @memberof ItemContainerComponent
+   */
+  itemName = input<string>();
 
-  // Input pour la description de l'objet
-  @Input() itemDescription = '';
+  /**
+   * input of a description, no default value
+   *
+   * @memberof ItemContainerComponent
+   */
+  itemDescription = input<string>();
 
-  // Input pour personnaliser le texte du bouton (buy, upgrade, craft, etc.)
-  @Input() buttonText = 'Buy';
+  /**
+   * input of a number, no default value
+   *
+   * @memberof ItemContainerComponent
+   */
+  itemPrice = input<number>();
+
+  /**
+   * input of a string, no default value
+   *
+   * @memberof ItemContainerComponent
+   */
+  itemRarity = input<string>();
+
+  /**
+   * input of a string, no default value, required
+   *
+   * @memberof ItemContainerComponent
+   */
+  buttonText = input<string>();
 
   // Méthode pour réagir au clic du bouton (ici, on log l'action)
   onButtonClick(): void {
-    console.log(`${this.buttonText} action triggered for ${this.itemName}`);
+    console.log(`${this.buttonText()} action triggered for ${this.itemName()}`);
   }
 }

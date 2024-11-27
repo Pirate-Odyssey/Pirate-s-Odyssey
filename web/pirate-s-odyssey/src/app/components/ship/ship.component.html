@@ -1,10 +1,13 @@
-<div class="boat-page">
+<div class="boat-page" *ngIf="boat | async as currentBoat">
   <section class="boat-status">
-    <h2>Boat status</h2>
+    <h2>{{ currentBoat.name }} Status</h2>
     <div class="health-bar">
-      <div class="health" [style.width.%]="boatHealth()"></div>
+      <div
+        class="health"
+        [style.width.%]="(boatHealthPercentage | async) || 0"
+      ></div>
     </div>
-    <p>Strength: {{ boatHealth() }}%</p>
+    <p>Health: {{ (boatHealthPercentage | async) || 0 }}%</p>
   </section>
 
   <section class="boat-upgrades">
@@ -13,19 +16,27 @@
       <div class="upgrade" *ngFor="let upgrade of upgrades">
         <h3>{{ upgrade.name }}</h3>
         <p>{{ upgrade.description }}</p>
-        <p>Coast: {{ upgrade.cost }} {{ upgrade.resourceType }}</p>
+        <p>Cost: {{ upgrade.cost }} {{ upgrade.resourceType }}</p>
         <button (click)="applyUpgrade(upgrade)">Upgrade</button>
       </div>
     </div>
   </section>
 
-  <section class="crew-members">
+  <section class="crew-members" *ngIf="currentBoat.crewMembers.length > 0">
     <h2>Crew members</h2>
     <div class="crew-list">
-      <div class="crew-member" *ngFor="let member of crewMembers()">
-        <h3>{{ member.name }} - {{ member.role }}</h3>
+      <div class="crew-member" *ngFor="let member of currentBoat.crewMembers">
+        <h3>{{ member.name }}</h3>
         <p>Health: {{ member.health }}%</p>
       </div>
     </div>
+  </section>
+
+  <section class="seats">
+    <h3>Seats</h3>
+    <p>Min seats: {{ currentBoat.minSeat }}</p>
+    <p>Max seats: {{ currentBoat.maxSeat }}</p>
+    <h3>Speed</h3>
+    <p>{{ currentBoat.speed }} knots</p>
   </section>
 </div>

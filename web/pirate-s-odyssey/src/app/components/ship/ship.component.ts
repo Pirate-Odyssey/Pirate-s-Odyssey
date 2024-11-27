@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Signal, inject, signal } from '@angular/core';
-import { ShipService } from '../../api';
-// import { Resources } from '../../models/resources.model';
+import { Component, OnInit, inject } from '@angular/core';
+import { CrewMemberService, ShipService } from '../../api';
+import { BehaviorSubject, forkJoin } from 'rxjs';
 
 interface CrewMember {
   name: string;
-  role: string;
   health: number;
 }
 
@@ -16,6 +15,16 @@ interface Upgrade {
   resourceType: string;
 }
 
+interface Ship {
+  id: string;
+  name: string;
+  minSeat: number;
+  maxSeat: number;
+  speed: number;
+  health: number;
+  crewMembers: CrewMember[];
+}
+
 @Component({
   selector: 'po-ship',
   templateUrl: './ship.component.html',
@@ -24,14 +33,11 @@ interface Upgrade {
 })
 export class ShipComponent implements OnInit {
   private readonly shipService = inject(ShipService);
+  private readonly crewMemberService = inject(CrewMemberService);
 
-  boatHealth: Signal<number> = signal(25);
-
-  crewMembers: Signal<CrewMember[]> = signal([
-    { name: 'Jack Sparrow', role: 'Captain', health: 100 },
-    { name: 'Anne Bonny', role: 'First Mate', health: 90 },
-    { name: 'Blackbeard', role: 'Gunner', health: 85 }
-  ]);
+  // BehaviorSubject to hold the boat data
+  boat = new BehaviorSubject<Ship | null>(null);
+  boatHealthPercentage = new BehaviorSubject<number>(0);
 
   upgrades: Upgrade[] = [
     {
@@ -55,8 +61,27 @@ export class ShipComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.shipService.getShips().subscribe((response) => {
-      console.log(response);
+    this.loadBoatData();
+  }
+
+  private loadBoatData(): void {
+    forkJoin({
+      boatResponse: this.shipService.getShips(),
+      crewResponse: this.crewMemberService.getCrewMembers()
+    }).subscribe(({ boatResponse, crewResponse }) => {
+      if (boatResponse.length > 0) {
+        const boatData = boatResponse[0];
+        const mappedBoat: Ship = {
+          ...boatData,
+          crewMembers: crewResponse.map((member) => ({
+            name: member.name,
+            health: 100 // Valeur par défaut pour health
+          }))
+        };
+
+        this.boat.next(mappedBoat); // Met à jour le BehaviorSubject `boat`
+        this.boatHealthPercentage.next((mappedBoat.health / 1500) * 100); // Calcule le pourcentage de santé
+      }
     });
   }
 
