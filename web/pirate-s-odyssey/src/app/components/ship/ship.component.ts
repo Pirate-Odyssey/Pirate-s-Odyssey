@@ -19,7 +19,6 @@ interface Upgrade {
 @Component({
   selector: 'po-ship',
   templateUrl: './ship.component.html',
-  standalone: true,
   styleUrls: ['./ship.component.scss'],
   imports: [CommonModule]
 })

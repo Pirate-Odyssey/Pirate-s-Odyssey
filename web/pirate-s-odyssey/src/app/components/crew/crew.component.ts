@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'po-crew',
   templateUrl: './crew.component.html',
-  standalone: true,
   styleUrls: ['./crew.component.scss'],
   imports: [CommonModule]
 })

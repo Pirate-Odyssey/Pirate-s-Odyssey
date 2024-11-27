@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'poc-selector',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.scss'
