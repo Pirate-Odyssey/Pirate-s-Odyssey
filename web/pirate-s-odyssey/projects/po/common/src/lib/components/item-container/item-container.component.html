@@ -1,7 +1,6 @@
 <div class="item-container">
   <h3>{{ itemName() }}</h3>
   <p>{{ itemDescription() }}</p>
-  <p *ngIf="shop()">{{ itemPrice() }} Gold</p>
   @if (shop()) {
     <p>{{ itemPrice() }} Gold</p>
   }
