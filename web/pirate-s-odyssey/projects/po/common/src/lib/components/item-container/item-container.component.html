@@ -2,6 +2,9 @@
   <h3>{{ itemName() }}</h3>
   <p>{{ itemDescription() }}</p>
   <p *ngIf="shop()">{{ itemPrice() }} Gold</p>
-  <p [ngClass]="getRarityClass()">{{ itemRarity() }}</p>
+  @if (shop()) {
+    <p>{{ itemPrice() }} Gold</p>
+  }
+  <p [class]="getRarityClass()">{{ itemRarity() }}</p>
   <button (click)="onButtonClick()">{{ buttonText() }}</button>
 </div>

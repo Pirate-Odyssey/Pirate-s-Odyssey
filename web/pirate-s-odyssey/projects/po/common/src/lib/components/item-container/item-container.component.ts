@@ -1,11 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'poc-item-container',
   standalone: true,
   templateUrl: './item-container.component.html',
-  imports: [CommonModule],
   styleUrl: './item-container.component.scss'
 })
 export class ItemContainerComponent {
