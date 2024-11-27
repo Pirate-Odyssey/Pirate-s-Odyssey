@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ItemContainerComponent, SelectorComponent } from '@po/common';
 import { EquipmentResponse, EquipmentService } from '../../api';
@@ -7,13 +6,13 @@ import { EquipmentResponse, EquipmentService } from '../../api';
   selector: 'po-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
-  imports: [CommonModule, ItemContainerComponent, SelectorComponent]
+  imports: [ItemContainerComponent, SelectorComponent]
 })
 export class ShopComponent implements OnInit {
   private readonly equipmentService = inject(EquipmentService);
 
   // Les options disponibles dans le shop (basées sur les types d'équipements)
-  shopOptions = ['Helmet', 'Sword', 'Boots', 'Shield', 'Chestplate'];
+  shopOptions = signal(['Helmet', 'Sword', 'Boots', 'Shield', 'Chestplate']);
 
   // Option sélectionnée par défaut
   selectedOption = signal(this.shopOptions()[0]);

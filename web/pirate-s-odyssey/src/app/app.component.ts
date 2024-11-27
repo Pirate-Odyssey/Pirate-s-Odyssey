@@ -7,6 +7,8 @@ import { SignalRService } from './services/signal-r.service';
 
 import { HeaderComponent } from './components/shared/header/header.component';
 
+import { PrimeNGConfig } from 'primeng/api';
+
 export interface WeatherForecast {
   date: string;
   temperatureC: number;
@@ -23,6 +25,7 @@ export type WeatherForecasts = WeatherForecast[];
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+  constructor(private primengConfig: PrimeNGConfig) {}
   title = 'pirate-s-odyssey';
 
   private readonly signalRService = inject(SignalRService);
@@ -43,6 +46,8 @@ export class AppComponent implements OnInit {
         console.error(error);
       }
     });
+
+    this.primengConfig.ripple = true;
   }
 
   sendMessage(message: string): void {
