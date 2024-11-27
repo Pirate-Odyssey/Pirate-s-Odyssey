@@ -24,7 +24,7 @@ jobs:
   build-aspire:
 
     runs-on: ubuntu-latest
-    name: Build Apire
+    name: Build Aspire
     
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: true
